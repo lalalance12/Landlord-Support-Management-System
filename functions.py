@@ -57,4 +57,4 @@ class appFunctions():
     def __init__(self, arg):
         super(appFunctions, self).__init__()
         self.arg = arg
-    
+
