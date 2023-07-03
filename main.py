@@ -14,13 +14,11 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
-        ## PAGES
-       
-        ##################################################
-        
+        ##  MAIN PAGES
+        ####################################################################################################
         self.ui.TenantStatListBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.TSListPage))
         self.ui.CRUDTenantBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.CRUDTenantPage))
-        self.ui.TenantInfoBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.TenantInfoPage ))
+        self.ui.TenantInfoBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.TenantInfoPage))
         
         self.ui.ApartmentInfoBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.ApartmentInfoPage))
         self.ui.CRUDApartmentBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.CRUDApartPage))
@@ -28,8 +26,79 @@ class MainWindow(QMainWindow):
         self.ui.PaymentListBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.PaymentListPage))
         self.ui.CRUDPaymentBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.CRUDPaymentPage))
         
-        ##self.ui.ElecBillListBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.EBListPage))
+        self.ui.ElecBillBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.EBListPage))
         self.ui.CRUDElectricBillBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.CRUDElecBillPage))
+        
+        
+        
+        ##  TSListPage BUTTONS
+        ####################################################################################################
+        
+        
+        
+        
+        
+        ##  CRUDTenantPage BUTTONS
+        ####################################################################################################
+        
+        
+        
+        
+         
+        ##  TenantInfoPage BUTTONS
+        ####################################################################################################
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ##  ApartmentInfoPage BUTTONS
+        ####################################################################################################
+        
+        
+        
+        
+        ##  CRUDApartPage BUTTONS
+        ####################################################################################################
+        
+        
+        
+        
+        
+        
+        
+        
+        ##  PaymentListPage BUTTONS
+        ####################################################################################################
+        
+        
+        
+        
+        ##  CRUDPaymentPage BUTTONS
+        ####################################################################################################
+        
+        
+        
+        
+        
+        
+        
+        
+        ##  EBListPage BUTTONS
+        ####################################################################################################
+        
+        
+        
+        
+        
+        
+        ##  CRUDElecBillPage BUTTONS
+        ####################################################################################################
+        
         
         
         
