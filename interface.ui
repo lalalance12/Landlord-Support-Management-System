@@ -468,7 +468,7 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="TSListPage">
              <widget class="QLineEdit" name="lineEdit">
@@ -577,8 +577,8 @@ QLineEdit:focus{
              <widget class="QLabel" name="label_4">
               <property name="geometry">
                <rect>
-                <x>250</x>
-                <y>180</y>
+                <x>100</x>
+                <y>100</y>
                 <width>281</width>
                 <height>16</height>
                </rect>

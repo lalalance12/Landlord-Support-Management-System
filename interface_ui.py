@@ -316,7 +316,7 @@ class Ui_MainWindow(object):
         self.ApartmentInfoPage.setObjectName(u"ApartmentInfoPage")
         self.label_4 = QLabel(self.ApartmentInfoPage)
         self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(250, 180, 281, 16))
+        self.label_4.setGeometry(QRect(100, 100, 281, 16))
         self.stackedWidget.addWidget(self.ApartmentInfoPage)
         self.CRUDApartPage = QWidget()
         self.CRUDApartPage.setObjectName(u"CRUDApartPage")
@@ -390,7 +390,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
