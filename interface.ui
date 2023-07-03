@@ -468,7 +468,7 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>0</number>
+             <number>8</number>
             </property>
             <widget class="QWidget" name="TSListPage">
              <widget class="QLineEdit" name="lineEdit">
@@ -493,24 +493,26 @@ QPushButton{
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">QLineEdit{
-    border: 2px solid rgb(37,39,48);
-    border-radius: 30 px;
+               <string notr="true">QLineEdit {
+    border: none;
     color: #FFF;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: rgb(34,36,44);
+    background-color: rgb(33, 37, 41); 
+    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;
 }
-QLineEdit:hover{
-   border: 2px solid rgb(48, 50, 62);
+
+QLineEdit:hover {
+    border: 2px solid rgb(48, 50, 62);
 }
-QLineEdit:focus{
-   border: 2px solid rgb(85,170,255);
-   background-color: rgb(43,45,56);
+
+QLineEdit:focus {
+    border: 2px solid rgb(85, 170, 255);
+    background-color: rgb(33, 37, 41); 
 }</string>
               </property>
               <property name="placeholderText">
-               <string>Search Tenant ID or Name</string>
+               <string>Search....</string>
               </property>
              </widget>
              <widget class="QLabel" name="label_3">
@@ -540,6 +542,18 @@ QLineEdit:focus{
                 <width>831</width>
                 <height>421</height>
                </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QTableWidget {
+    background-color: #333333;
+    color: white;
+}
+
+QHeaderView::section {
+    background-color: #555555;
+    color: white;
+}
+</string>
               </property>
               <column>
                <property name="text">
@@ -676,40 +690,97 @@ QLineEdit:focus{
                 <layout class="QHBoxLayout" name="horizontalLayout_5">
                  <item>
                   <widget class="QFrame" name="frame_7">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: #333333;
+color: white;</string>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <widget class="QFrame" name="frame_8">
-                    <property name="geometry">
-                     <rect>
-                      <x>420</x>
-                      <y>0</y>
-                      <width>410</width>
-                      <height>446</height>
-                     </rect>
-                    </property>
-                    <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
-                    </property>
-                   </widget>
                    <widget class="QLabel" name="label_11">
                     <property name="geometry">
                      <rect>
-                      <x>120</x>
-                      <y>110</y>
-                      <width>281</width>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>201</width>
                       <height>16</height>
                      </rect>
                     </property>
-                    <property name="text">
-                     <string>CRUD Tenant Page</string>
+                    <property name="font">
+                     <font>
+                      <family>Times New Roman</family>
+                      <pointsize>11</pointsize>
+                     </font>
                     </property>
+                    <property name="text">
+                     <string>CRUD Tenant</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>1</width>
+                     <height>1</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_8">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QTableWidget" name="tableWidget_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>411</width>
+                      <height>451</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QTableWidget {
+    background-color: #333333;
+    color: white;
+}
+
+QHeaderView::section {
+    background-color: #555555;
+    color: white;
+}
+</string>
+                    </property>
+                    <column>
+                     <property name="text">
+                      <string>Tenant ID</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Name</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Number</string>
+                     </property>
+                    </column>
                    </widget>
                   </widget>
                  </item>

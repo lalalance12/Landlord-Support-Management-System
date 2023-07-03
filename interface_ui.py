@@ -272,20 +272,22 @@ class Ui_MainWindow(object):
         self.lineEdit.setGeometry(QRect(610, 20, 240, 20))
         self.lineEdit.setMinimumSize(QSize(240, 20))
         self.lineEdit.setMaximumSize(QSize(240, 30))
-        self.lineEdit.setStyleSheet(u"QLineEdit{\n"
-"    border: 2px solid rgb(37,39,48);\n"
-"    border-radius: 30 px;\n"
+        self.lineEdit.setStyleSheet(u"QLineEdit {\n"
+"    border: none;\n"
 "    color: #FFF;\n"
 "    padding-left: 20px;\n"
 "    padding-right: 20px;\n"
-"    background-color: rgb(34,36,44);\n"
+"    background-color: rgb(33, 37, 41); \n"
+"    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;\n"
 "}\n"
-"QLineEdit:hover{\n"
-"   border: 2px solid rgb(48, 50, 62);\n"
+"\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(48, 50, 62);\n"
 "}\n"
-"QLineEdit:focus{\n"
-"   border: 2px solid rgb(85,170,255);\n"
-"   background-color: rgb(43,45,56);\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(85, 170, 255);\n"
+"    background-color: rgb(33, 37, 41); \n"
 "}")
         self.label_3 = QLabel(self.TSListPage)
         self.label_3.setObjectName(u"label_3")
@@ -305,6 +307,16 @@ class Ui_MainWindow(object):
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setGeometry(QRect(20, 50, 831, 421))
+        self.tableWidget.setStyleSheet(u"QTableWidget {\n"
+"    background-color: #333333;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #555555;\n"
+"    color: white;\n"
+"}\n"
+"")
         self.stackedWidget.addWidget(self.TSListPage)
         self.TenantInfoPage = QWidget()
         self.TenantInfoPage.setObjectName(u"TenantInfoPage")
@@ -360,18 +372,48 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.frame_7 = QFrame(self.frame_6)
         self.frame_7.setObjectName(u"frame_7")
+        self.frame_7.setStyleSheet(u"background-color: #333333;\n"
+"color: white;")
         self.frame_7.setFrameShape(QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QFrame.Raised)
-        self.frame_8 = QFrame(self.frame_7)
-        self.frame_8.setObjectName(u"frame_8")
-        self.frame_8.setGeometry(QRect(420, 0, 410, 446))
-        self.frame_8.setFrameShape(QFrame.StyledPanel)
-        self.frame_8.setFrameShadow(QFrame.Raised)
         self.label_11 = QLabel(self.frame_7)
         self.label_11.setObjectName(u"label_11")
-        self.label_11.setGeometry(QRect(120, 110, 281, 16))
+        self.label_11.setGeometry(QRect(10, 10, 201, 16))
+        self.label_11.setFont(font3)
 
         self.horizontalLayout_5.addWidget(self.frame_7)
+
+        self.horizontalSpacer = QSpacerItem(1, 1, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer)
+
+        self.frame_8 = QFrame(self.frame_6)
+        self.frame_8.setObjectName(u"frame_8")
+        self.frame_8.setFrameShape(QFrame.StyledPanel)
+        self.frame_8.setFrameShadow(QFrame.Raised)
+        self.tableWidget_2 = QTableWidget(self.frame_8)
+        if (self.tableWidget_2.columnCount() < 3):
+            self.tableWidget_2.setColumnCount(3)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(0, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(1, __qtablewidgetitem4)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(2, __qtablewidgetitem5)
+        self.tableWidget_2.setObjectName(u"tableWidget_2")
+        self.tableWidget_2.setGeometry(QRect(0, 0, 411, 451))
+        self.tableWidget_2.setStyleSheet(u"QTableWidget {\n"
+"    background-color: #333333;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #555555;\n"
+"    color: white;\n"
+"}\n"
+"")
+
+        self.horizontalLayout_5.addWidget(self.frame_8)
 
 
         self.verticalLayout_5.addWidget(self.frame_6)
@@ -390,7 +432,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(8)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -409,7 +451,7 @@ class Ui_MainWindow(object):
         self.CRUDPaymentBtn.setText(QCoreApplication.translate("MainWindow", u"CRUD Payment", None))
         self.ElecBillBtn.setText(QCoreApplication.translate("MainWindow", u"Electric Bill List", None))
         self.CRUDElectricBillBtn.setText(QCoreApplication.translate("MainWindow", u"CRUD Electric Bill", None))
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search Tenant ID or Name", None))
+        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search....", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Tenant Status List", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
@@ -424,6 +466,12 @@ class Ui_MainWindow(object):
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"CRUD Payment Page", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Electric Bill List Page", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"CRUD Electric Bill Page", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"CRUD Tenant Page", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"CRUD Tenant", None))
+        ___qtablewidgetitem3 = self.tableWidget_2.horizontalHeaderItem(0)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
+        ___qtablewidgetitem4 = self.tableWidget_2.horizontalHeaderItem(1)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Name", None));
+        ___qtablewidgetitem5 = self.tableWidget_2.horizontalHeaderItem(2)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Number", None));
     # retranslateUi
 
