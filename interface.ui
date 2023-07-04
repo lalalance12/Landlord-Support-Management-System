@@ -468,7 +468,7 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>8</number>
+             <number>3</number>
             </property>
             <widget class="QWidget" name="TSListPage">
              <widget class="QLineEdit" name="Search_lineEdit">
@@ -1258,9 +1258,22 @@ QLineEdit:!hasFocus {
                     <height>22</height>
                    </rect>
                   </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: black;</string>
                   </property>
+                  <item>
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>2</string>
+                   </property>
+                  </item>
                  </widget>
                  <widget class="QPushButton" name="AddApartBtn">
                   <property name="geometry">
@@ -1276,6 +1289,9 @@ QLineEdit:!hasFocus {
                     <pointsize>12</pointsize>
                     <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: white
@@ -1301,6 +1317,9 @@ QLineEdit:!hasFocus {
                     <bold>true</bold>
                    </font>
                   </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: white
 ;
@@ -1324,6 +1343,9 @@ QLineEdit:!hasFocus {
                     <pointsize>12</pointsize>
                     <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: white

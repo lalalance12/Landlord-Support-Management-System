@@ -65,6 +65,7 @@ class MainWindow(QMainWindow):
         ##  CRUDApartPage BUTTONS
         ####################################################################################################
         
+        self.ui.AddApartBtn.clicked.connect(lambda: appFunctions.addapartment(self))
         
         
         

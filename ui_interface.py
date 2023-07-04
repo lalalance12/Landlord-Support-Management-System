@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfaceYaVtOr.ui'
+## Form generated from reading UI file 'interfacebKastR.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -580,13 +580,17 @@ class Ui_MainWindow(object):
         self.RentalBill_line_edit.setGeometry(QRect(160, 140, 121, 21))
         self.RentalBill_line_edit.setStyleSheet(u"background-color: #666666; color: black;")
         self.FloorLvl_comboBox = QComboBox(self.frame_15)
+        self.FloorLvl_comboBox.addItem("")
+        self.FloorLvl_comboBox.addItem("")
         self.FloorLvl_comboBox.setObjectName(u"FloorLvl_comboBox")
         self.FloorLvl_comboBox.setGeometry(QRect(160, 100, 61, 22))
+        self.FloorLvl_comboBox.setCursor(QCursor(Qt.PointingHandCursor))
         self.FloorLvl_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
         self.AddApartBtn = QPushButton(self.frame_15)
         self.AddApartBtn.setObjectName(u"AddApartBtn")
         self.AddApartBtn.setGeometry(QRect(150, 200, 111, 41))
         self.AddApartBtn.setFont(font4)
+        self.AddApartBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.AddApartBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -594,6 +598,7 @@ class Ui_MainWindow(object):
         self.DelApartBtn.setObjectName(u"DelApartBtn")
         self.DelApartBtn.setGeometry(QRect(150, 270, 111, 41))
         self.DelApartBtn.setFont(font4)
+        self.DelApartBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DelApartBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -601,6 +606,7 @@ class Ui_MainWindow(object):
         self.UpdApartBtn.setObjectName(u"UpdApartBtn")
         self.UpdApartBtn.setGeometry(QRect(150, 340, 111, 41))
         self.UpdApartBtn.setFont(font4)
+        self.UpdApartBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.UpdApartBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -1241,7 +1247,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(8)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1313,6 +1319,9 @@ class Ui_MainWindow(object):
         self.FloorLevel.setText(QCoreApplication.translate("MainWindow", u"Floor Level:", None))
         self.RentalBill.setText(QCoreApplication.translate("MainWindow", u"Rental Bill:", None))
         self.RentalBill_line_edit.setText("")
+        self.FloorLvl_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"1", None))
+        self.FloorLvl_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"2", None))
+
         self.AddApartBtn.setText(QCoreApplication.translate("MainWindow", u"ADD", None))
         self.DelApartBtn.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
         self.UpdApartBtn.setText(QCoreApplication.translate("MainWindow", u"UPDATE", None))
