@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfacebKastR.ui'
+## Form generated from reading UI file 'interfaceemhmeq.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -610,6 +610,17 @@ class Ui_MainWindow(object):
         self.UpdApartBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
+        self.GetApartBtn = QPushButton(self.frame_15)
+        self.GetApartBtn.setObjectName(u"GetApartBtn")
+        self.GetApartBtn.setGeometry(QRect(320, 10, 71, 31))
+        font5 = QFont()
+        font5.setPointSize(9)
+        font5.setBold(True)
+        self.GetApartBtn.setFont(font5)
+        self.GetApartBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.GetApartBtn.setStyleSheet(u"background-color: #666666; color: white\n"
+";\n"
+"")
 
         self.horizontalLayout_8.addWidget(self.frame_15)
 
@@ -1191,9 +1202,9 @@ class Ui_MainWindow(object):
         self.Tenant_tableWidget.setObjectName(u"Tenant_tableWidget")
         self.Tenant_tableWidget.setEnabled(True)
         self.Tenant_tableWidget.setGeometry(QRect(0, -20, 411, 451))
-        font5 = QFont()
-        font5.setKerning(True)
-        self.Tenant_tableWidget.setFont(font5)
+        font6 = QFont()
+        font6.setKerning(True)
+        self.Tenant_tableWidget.setFont(font6)
         self.Tenant_tableWidget.setStyleSheet(u"\n"
 "    QTableWidget {\n"
 "        background-color: #333333;\n"
@@ -1325,6 +1336,7 @@ class Ui_MainWindow(object):
         self.AddApartBtn.setText(QCoreApplication.translate("MainWindow", u"ADD", None))
         self.DelApartBtn.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
         self.UpdApartBtn.setText(QCoreApplication.translate("MainWindow", u"UPDATE", None))
+        self.GetApartBtn.setText(QCoreApplication.translate("MainWindow", u"GET", None))
         ___qtablewidgetitem14 = self.Apartment_tableWidget_3.horizontalHeaderItem(0)
         ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         ___qtablewidgetitem15 = self.Apartment_tableWidget_3.horizontalHeaderItem(1)

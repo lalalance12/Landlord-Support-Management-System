@@ -3,7 +3,7 @@ import sys
 import os
 os.environ['ICONIFY_QTLIB'] = 'PySide6'
 
-
+from PySide6.QtWidgets import QAbstractItemView
 from ui_interface import *
 
 from functions import appFunctions
@@ -13,6 +13,24 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        
+        tables = [
+            self.ui.Apartment_tableWidget_2,
+            self.ui.Apartment_tableWidget_3,
+            self.ui.ElectricBill_tableWidget_2,
+            self.ui.Payment_tableWidget_5,
+            self.ui.Tenant_tableWidget,
+            self.ui.ElectricBill_tableWidget,
+            self.ui.Payment_tableWidget,
+            self.ui.Tenant_tableWidget_3,
+            self.ui.PayHis_tableWidget_2
+        ]
+
+        for table in tables:
+            table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+            
+            table.verticalHeader().setVisible(False)
+                
         
         ##  MAIN PAGES
         ####################################################################################################
@@ -64,9 +82,12 @@ class MainWindow(QMainWindow):
         
         ##  CRUDApartPage BUTTONS
         ####################################################################################################
+        self.ui.CRUDApartmentBtn.clicked.connect(lambda: appFunctions.click_apart_page(self))   # table
         
-        self.ui.AddApartBtn.clicked.connect(lambda: appFunctions.addapartment(self))
         
+        self.ui.AddApartBtn.clicked.connect(lambda: appFunctions.add_apartment(self))           # add button
+        self.ui.DelApartBtn.clicked.connect(lambda: appFunctions.delete_apartment(self))        # delete button
+        self.ui.UpdApartBtn.clicked.connect(lambda: appFunctions.update_apartment(self))        # update button
         
         
         
