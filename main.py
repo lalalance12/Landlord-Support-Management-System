@@ -77,17 +77,18 @@ class MainWindow(QMainWindow):
         ##  ApartmentInfoPage BUTTONS
         ####################################################################################################
         
+        self.ui.ApartmentInfoBtn.clicked.connect(lambda: appFunctions.click_apart_info_page(self))           # table
+        self.ui.Search_lineEdit_2.textChanged.connect(lambda: appFunctions.search_apartment(self))           # search bar
         
         
-        
-        ##  CRUDApartPage BUTTONS
+        ##  CRUDApartPage BUTTON
         ####################################################################################################
-        self.ui.CRUDApartmentBtn.clicked.connect(lambda: appFunctions.click_apart_page(self))   # table
+        self.ui.CRUDApartmentBtn.clicked.connect(lambda: appFunctions.click_CRUD_apart_page(self))           # table
         
-        self.ui.AddApartBtn.clicked.connect(lambda: appFunctions.add_apartment(self))           # add button
-        self.ui.DelApartBtn.clicked.connect(lambda: appFunctions.delete_apartment(self))        # delete button
-        self.ui.GetApartBtn.clicked.connect(lambda: appFunctions.get_apartment(self))           # get button
-        self.ui.UpdApartBtn.clicked.connect(lambda: appFunctions.update_apartment(self))        # update button
+        self.ui.AddApartBtn.clicked.connect(lambda: appFunctions.add_apartment(self))                        # add button
+        self.ui.DelApartBtn.clicked.connect(lambda: appFunctions.delete_apartment(self))                     # delete button
+        self.ui.GetApartBtn.clicked.connect(lambda: appFunctions.get_apartment(self))                        # get button
+        self.ui.UpdApartBtn.clicked.connect(lambda: appFunctions.update_apartment(self))                     # update button
         
         
         

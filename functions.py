@@ -21,22 +21,63 @@ class appFunctions():
     def __init__(self, arg):
         super(appFunctions, self).__init__()
         self.arg = arg
+
+############################################################################################################################################################     
     
-    
-    def click_apart_page(self):
-         # Update the table widget with data from Apartment table
-            update_table_widget_sql = "SELECT * FROM Apartment"
-            mycursor.execute(update_table_widget_sql)
-            apartment_data = mycursor.fetchall()
+    def click_apart_info_page(self): 
+        # Update the table widget with data from Apartment table
+        update_table_widget_sql = "SELECT * FROM Apartment"
+        mycursor.execute(update_table_widget_sql)
+        apartment_data = mycursor.fetchall()
             
-            self.ui.Apartment_tableWidget_3.setRowCount(len(apartment_data))
-            for row, apartment in enumerate(apartment_data):
-                for column, value in enumerate(apartment):
-                    item = QTableWidgetItem(str(value))
-                    self.ui.Apartment_tableWidget_3.setItem(row, column, item)
+        self.ui.Apartment_tableWidget_2.setRowCount(len(apartment_data))
+        for row, apartment in enumerate(apartment_data):
+            for column, value in enumerate(apartment):
+                item = QTableWidgetItem(str(value))
+                self.ui.Apartment_tableWidget_2.setItem(row, column, item)
                     
-            self.ui.Apartment_tableWidget_3.verticalHeader().setVisible(False)
-            self.ui.Apartment_tableWidget_3.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.ui.Apartment_tableWidget_2.verticalHeader().setVisible(False)
+        self.ui.Apartment_tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers) 
+    
+    def search_apartment(self):
+        # Find the data in the Apartment table
+        search_text = self.ui.Search_lineEdit_2.text()
+
+        mycursor.execute("SELECT * FROM Apartment WHERE Apartment_ID LIKE %s OR Apartment_No LIKE %s OR Floor_level LIKE %s OR Rental_bill LIKE %s",
+            (f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%"))
+
+        result = mycursor.fetchall()
+
+        # Set up the table
+        table_widget = self.ui.Apartment_tableWidget_2
+        table_widget.clearContents()
+        table_widget.setRowCount(len(result))
+
+        for row, apartment in enumerate(result):
+            for col, data in enumerate(apartment):
+                item = QTableWidgetItem(str(data))
+                table_widget.setItem(row, col, item)
+
+        table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)
+        table_widget.resizeColumnsToContents()
+        
+        
+  ############################################################################################################################################################      
+    
+    def click_CRUD_apart_page(self):
+        # Update the table widget with data from Apartment table
+        update_table_widget_sql = "SELECT * FROM Apartment"
+        mycursor.execute(update_table_widget_sql)
+        apartment_data = mycursor.fetchall()
+            
+        self.ui.Apartment_tableWidget_3.setRowCount(len(apartment_data))
+        for row, apartment in enumerate(apartment_data):
+            for column, value in enumerate(apartment):
+                item = QTableWidgetItem(str(value))
+                self.ui.Apartment_tableWidget_3.setItem(row, column, item)
+                    
+        self.ui.Apartment_tableWidget_3.verticalHeader().setVisible(False)
+        self.ui.Apartment_tableWidget_3.setEditTriggers(QAbstractItemView.NoEditTriggers)
         
         
     def add_apartment(self):
@@ -189,7 +230,15 @@ class appFunctions():
         if not all((ApartmentNumber, FloorLevel, RentalBill)):
             QMessageBox.warning(self, "Missing Input", "Please enter all the necessary data.")
             return
-
+        
+        # Check if the apartment number already exists
+        check_existing_sql = "SELECT COUNT(*) FROM Apartment WHERE Apartment_No = %s"
+        mycursor.execute(check_existing_sql, (ApartmentNumber,))
+        count = mycursor.fetchone()[0]
+        if count > 0:
+            QMessageBox.warning(self, "Duplicate Apartment Number", "Apartment number already exists.")
+            return
+        
         # Update the apartment data in the database
         try:
             update_apartment_sql = "UPDATE Apartment SET Apartment_No = %s, Floor_level = %s, Rental_bill = %s WHERE Apartment_ID = %s"
