@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfacenQQpKY.ui'
+## Form generated from reading UI file 'interfaceizgjZi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -752,7 +752,7 @@ class Ui_MainWindow(object):
         self.CRUDPayment_label.setFont(font3)
         self.AmountPaid_line_edit = QLineEdit(self.frame_21)
         self.AmountPaid_line_edit.setObjectName(u"AmountPaid_line_edit")
-        self.AmountPaid_line_edit.setGeometry(QRect(160, 130, 101, 21))
+        self.AmountPaid_line_edit.setGeometry(QRect(160, 150, 101, 21))
         self.AmountPaid_line_edit.setStyleSheet(u"QLineEdit {\n"
 "    background-color: #666666;\n"
 "    color: black;\n"
@@ -764,19 +764,20 @@ class Ui_MainWindow(object):
 "")
         self.AmountPaid = QLabel(self.frame_21)
         self.AmountPaid.setObjectName(u"AmountPaid")
-        self.AmountPaid.setGeometry(QRect(40, 130, 91, 16))
+        self.AmountPaid.setGeometry(QRect(40, 150, 91, 16))
         self.PaymentDate = QLabel(self.frame_21)
         self.PaymentDate.setObjectName(u"PaymentDate")
-        self.PaymentDate.setGeometry(QRect(40, 170, 91, 16))
+        self.PaymentDate.setGeometry(QRect(40, 190, 91, 16))
         self.PaymentMethod = QLabel(self.frame_21)
         self.PaymentMethod.setObjectName(u"PaymentMethod")
-        self.PaymentMethod.setGeometry(QRect(40, 210, 101, 16))
+        self.PaymentMethod.setGeometry(QRect(40, 230, 101, 16))
         self.PayMethod_comboBox = QComboBox(self.frame_21)
         self.PayMethod_comboBox.addItem("")
         self.PayMethod_comboBox.addItem("")
         self.PayMethod_comboBox.addItem("")
+        self.PayMethod_comboBox.addItem("")
         self.PayMethod_comboBox.setObjectName(u"PayMethod_comboBox")
-        self.PayMethod_comboBox.setGeometry(QRect(160, 210, 101, 22))
+        self.PayMethod_comboBox.setGeometry(QRect(160, 230, 101, 22))
         self.PayMethod_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
         self.AddPayBtn = QPushButton(self.frame_21)
         self.AddPayBtn.setObjectName(u"AddPayBtn")
@@ -801,27 +802,27 @@ class Ui_MainWindow(object):
 "")
         self.Payment_dateEdit = QDateEdit(self.frame_21)
         self.Payment_dateEdit.setObjectName(u"Payment_dateEdit")
-        self.Payment_dateEdit.setGeometry(QRect(160, 170, 101, 22))
+        self.Payment_dateEdit.setGeometry(QRect(160, 190, 101, 22))
         self.Payment_dateEdit.setStyleSheet(u"background-color: #666666; color: black;")
         self.PaymentStatus = QLabel(self.frame_21)
         self.PaymentStatus.setObjectName(u"PaymentStatus")
-        self.PaymentStatus.setGeometry(QRect(40, 250, 101, 16))
+        self.PaymentStatus.setGeometry(QRect(40, 270, 101, 16))
         self.PayStat_comboBox = QComboBox(self.frame_21)
         self.PayStat_comboBox.addItem("")
         self.PayStat_comboBox.addItem("")
         self.PayStat_comboBox.addItem("")
         self.PayStat_comboBox.setObjectName(u"PayStat_comboBox")
-        self.PayStat_comboBox.setGeometry(QRect(160, 250, 101, 22))
+        self.PayStat_comboBox.setGeometry(QRect(160, 270, 101, 22))
         self.PayStat_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
         self.TenantID = QLabel(self.frame_21)
         self.TenantID.setObjectName(u"TenantID")
         self.TenantID.setGeometry(QRect(40, 50, 91, 16))
         self.ApartID = QLabel(self.frame_21)
         self.ApartID.setObjectName(u"ApartID")
-        self.ApartID.setGeometry(QRect(40, 80, 91, 16))
+        self.ApartID.setGeometry(QRect(40, 90, 91, 16))
         self.ApartID_line_edit_3 = QLineEdit(self.frame_21)
         self.ApartID_line_edit_3.setObjectName(u"ApartID_line_edit_3")
-        self.ApartID_line_edit_3.setGeometry(QRect(160, 80, 101, 21))
+        self.ApartID_line_edit_3.setGeometry(QRect(160, 90, 101, 21))
         self.ApartID_line_edit_3.setStyleSheet(u"QLineEdit {\n"
 "    background-color: #666666;\n"
 "    color: black;\n"
@@ -1282,7 +1283,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1390,9 +1391,10 @@ class Ui_MainWindow(object):
         self.AmountPaid.setText(QCoreApplication.translate("MainWindow", u"Amount Paid:", None))
         self.PaymentDate.setText(QCoreApplication.translate("MainWindow", u"Payment Date:", None))
         self.PaymentMethod.setText(QCoreApplication.translate("MainWindow", u"Payment Method:", None))
-        self.PayMethod_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Cash", None))
-        self.PayMethod_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Bank", None))
-        self.PayMethod_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"G-Cash", None))
+        self.PayMethod_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
+        self.PayMethod_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Cash", None))
+        self.PayMethod_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Bank", None))
+        self.PayMethod_comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"G-Cash", None))
 
         self.AddPayBtn.setText(QCoreApplication.translate("MainWindow", u"ADD", None))
         self.DelPayBtn.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
@@ -1459,7 +1461,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem41 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(4)
         ___qtablewidgetitem41.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         self.page_label.setText(QCoreApplication.translate("MainWindow", u"CRUD Tenant", None))
-        self.Name_line_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"First Name, Middle Initial, Last Name", None))
+        self.Name_line_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"First Name, Middle Name, Last Name", None))
         self.Name.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
         self.Age.setText(QCoreApplication.translate("MainWindow", u"Age:", None))
         self.Sex.setText(QCoreApplication.translate("MainWindow", u"Sex:", None))
