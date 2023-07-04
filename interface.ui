@@ -1931,6 +1931,33 @@ QLineEdit:!hasFocus {
                    <string/>
                   </property>
                  </widget>
+                 <widget class="QPushButton" name="GetPayBtn">
+                  <property name="geometry">
+                   <rect>
+                    <x>320</x>
+                    <y>10</y>
+                    <width>71</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: #666666; color: white
+;
+</string>
+                  </property>
+                  <property name="text">
+                   <string>GET</string>
+                  </property>
+                 </widget>
                 </widget>
                </item>
                <item>
@@ -2390,6 +2417,33 @@ color: white;</string>
                    </property>
                   </item>
                  </widget>
+                 <widget class="QPushButton" name="GetEBBtn">
+                  <property name="geometry">
+                   <rect>
+                    <x>320</x>
+                    <y>10</y>
+                    <width>71</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: #666666; color: white
+;
+</string>
+                  </property>
+                  <property name="text">
+                   <string>GET</string>
+                  </property>
+                 </widget>
                 </widget>
                </item>
                <item>
@@ -2767,6 +2821,33 @@ QLineEdit:!hasFocus {
                     </property>
                     <property name="text">
                      <string>UPDATE</string>
+                    </property>
+                   </widget>
+                   <widget class="QPushButton" name="GetTenantBtn">
+                    <property name="geometry">
+                     <rect>
+                      <x>320</x>
+                      <y>10</y>
+                      <width>71</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>9</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: #666666; color: white
+;
+</string>
+                    </property>
+                    <property name="text">
+                     <string>GET</string>
                     </property>
                    </widget>
                   </widget>

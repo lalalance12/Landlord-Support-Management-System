@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfaceemhmeq.ui'
+## Form generated from reading UI file 'interfaceGwOyyk.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -843,6 +843,14 @@ class Ui_MainWindow(object):
 "    color: white;\n"
 "}\n"
 "")
+        self.GetPayBtn = QPushButton(self.frame_21)
+        self.GetPayBtn.setObjectName(u"GetPayBtn")
+        self.GetPayBtn.setGeometry(QRect(320, 10, 71, 31))
+        self.GetPayBtn.setFont(font5)
+        self.GetPayBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.GetPayBtn.setStyleSheet(u"background-color: #666666; color: white\n"
+";\n"
+"")
 
         self.horizontalLayout_10.addWidget(self.frame_21)
 
@@ -1026,6 +1034,14 @@ class Ui_MainWindow(object):
         self.comboBox.setObjectName(u"comboBox")
         self.comboBox.setGeometry(QRect(130, 140, 91, 22))
         self.comboBox.setStyleSheet(u"background-color: #666666; color: black;")
+        self.GetEBBtn = QPushButton(self.frame_18)
+        self.GetEBBtn.setObjectName(u"GetEBBtn")
+        self.GetEBBtn.setGeometry(QRect(320, 10, 71, 31))
+        self.GetEBBtn.setFont(font5)
+        self.GetEBBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.GetEBBtn.setStyleSheet(u"background-color: #666666; color: white\n"
+";\n"
+"")
 
         self.horizontalLayout_9.addWidget(self.frame_18)
 
@@ -1169,6 +1185,14 @@ class Ui_MainWindow(object):
         self.UpdTenantBtn.setGeometry(QRect(280, 330, 111, 41))
         self.UpdTenantBtn.setFont(font4)
         self.UpdTenantBtn.setStyleSheet(u"background-color: #666666; color: white\n"
+";\n"
+"")
+        self.GetTenantBtn = QPushButton(self.frame_7)
+        self.GetTenantBtn.setObjectName(u"GetTenantBtn")
+        self.GetTenantBtn.setGeometry(QRect(320, 10, 71, 31))
+        self.GetTenantBtn.setFont(font5)
+        self.GetTenantBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.GetTenantBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
 
@@ -1382,6 +1406,7 @@ class Ui_MainWindow(object):
         self.ApartID.setText(QCoreApplication.translate("MainWindow", u"Apartment ID:", None))
         self.ApartID_line_edit_3.setPlaceholderText("")
         self.TenantID_line_edit3.setPlaceholderText("")
+        self.GetPayBtn.setText(QCoreApplication.translate("MainWindow", u"GET", None))
         ___qtablewidgetitem25 = self.Payment_tableWidget_5.horizontalHeaderItem(0)
         ___qtablewidgetitem25.setText(QCoreApplication.translate("MainWindow", u"Payment ID", None));
         ___qtablewidgetitem26 = self.Payment_tableWidget_5.horizontalHeaderItem(1)
@@ -1422,6 +1447,7 @@ class Ui_MainWindow(object):
         self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Succesful", None))
         self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Overdue", None))
 
+        self.GetEBBtn.setText(QCoreApplication.translate("MainWindow", u"GET", None))
         ___qtablewidgetitem37 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(0)
         ___qtablewidgetitem37.setText(QCoreApplication.translate("MainWindow", u"Electric Bill ID", None));
         ___qtablewidgetitem38 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(1)
@@ -1445,6 +1471,7 @@ class Ui_MainWindow(object):
         self.AddTenantBtn.setText(QCoreApplication.translate("MainWindow", u"ADD", None))
         self.DelTenantBtn.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
         self.UpdTenantBtn.setText(QCoreApplication.translate("MainWindow", u"UPDATE", None))
+        self.GetTenantBtn.setText(QCoreApplication.translate("MainWindow", u"GET", None))
         ___qtablewidgetitem42 = self.Tenant_tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem42.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
         ___qtablewidgetitem43 = self.Tenant_tableWidget.horizontalHeaderItem(1)

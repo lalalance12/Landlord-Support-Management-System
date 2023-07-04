@@ -140,9 +140,8 @@ class appFunctions():
                 print(e)
         else:
             QMessageBox.information(self, "Deletion Canceled", "Deletion operation canceled.")
-            
-            
-    def update_apartment(self):
+      
+    def get_apartment(self):
         # Get the selected row index from Apartment_tableWidget_3
         selected_row = self.ui.Apartment_tableWidget_3.currentRow()
         if selected_row == -1:
@@ -164,28 +163,37 @@ class appFunctions():
                 self.ui.FloorLvl_comboBox.setCurrentText(str(apartment_data[2]))
                 self.ui.RentalBill_line_edit.setText(str(apartment_data[3]))
 
-                # Disconnect the previous connection (if any)
-                self.ui.updateButton.clicked.disconnect()
-
-                # Connect the update button clicked signal to the update_data function
-                self.ui.updateButton.clicked.connect(lambda: self.update_data(apartment_id))
-
             else:
                 QMessageBox.warning(self, "Apartment Not Found", "Apartment ID does not exist.")
 
         except Error as e:
             print(e)
 
-    def update_data(self, apartment_id):
+    def update_apartment(self):
+        # Get the selected row index from Apartment_tableWidget_3
+        selected_row = self.ui.Apartment_tableWidget_3.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "No Selection", "Please select an apartment to update.")
+            return
+
+        # Get the Apartment_ID value from the selected row
+        apartment_id = self.ui.Apartment_tableWidget_3.item(selected_row, 0).text()
+
         # Get the input data from the input fields
-        apartment_number = self.ui.ApartNum_line_edit.text()
-        floor_level = self.ui.FloorLvl_comboBox.currentText()
-        rental_bill = self.ui.RentalBill_line_edit.text()
+        ApartmentNumber = self.ui.ApartNum_line_edit.text()
+        FloorLevel = self.ui.FloorLvl_comboBox.currentText()
+        RentalBill = self.ui.RentalBill_line_edit.text()
+        
+        
+        # Check if any input is missing
+        if not all((ApartmentNumber, FloorLevel, RentalBill)):
+            QMessageBox.warning(self, "Missing Input", "Please enter all the necessary data.")
+            return
 
         # Update the apartment data in the database
         try:
             update_apartment_sql = "UPDATE Apartment SET Apartment_No = %s, Floor_level = %s, Rental_bill = %s WHERE Apartment_ID = %s"
-            mycursor.execute(update_apartment_sql, (apartment_number, floor_level, rental_bill, apartment_id))
+            mycursor.execute(update_apartment_sql, (ApartmentNumber, FloorLevel, RentalBill, apartment_id))
             mydb.commit()
             QMessageBox.information(self, "Success", "Apartment updated successfully.")
 
@@ -201,17 +209,12 @@ class appFunctions():
                     self.ui.Apartment_tableWidget_3.setItem(row, column, item)
 
             self.ui.Apartment_tableWidget_3.verticalHeader().setVisible(False)
-
-            # Clear the input fields
-            self.ui.ApartNum_line_edit.clear()
+            
+            self.ui.ApartNum_line_edit.setText("")
             self.ui.FloorLvl_comboBox.setCurrentIndex(0)
-            self.ui.RentalBill_line_edit.clear()
-
-            # Disconnect the current connection
-            self.ui.updateButton.clicked.disconnect()
-
-            # Connect the update button clicked signal back to the update_apartment function
-            self.ui.updateButton.clicked.connect(self.update_apartment)
+            self.ui.RentalBill_line_edit.setText("")
 
         except Error as e:
             print(e)
+            
+############################################################################################################################################################       
