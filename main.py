@@ -92,8 +92,8 @@ class MainWindow(QMainWindow):
         ##  PaymentListPage BUTTONS
         ####################################################################################################
         
-        
-        
+        self.ui.PaymentListBtn.clicked.connect(lambda: appFunctions.click_pay_list_page(self))               # table
+        self.ui.Search_lineEdit_3.textChanged.connect(lambda: appFunctions.search_payment(self))             # search bar
         
         ##  CRUDPaymentPage BUTTONS
         ####################################################################################################
@@ -108,10 +108,8 @@ class MainWindow(QMainWindow):
         ##  EBListPage BUTTONS
         ####################################################################################################
         
-        
-        
-        
-        
+        self.ui.ElecBillBtn.clicked.connect(lambda: appFunctions.click_EB_list_page(self))                    # table
+        self.ui.Search_lineEdit_3.textChanged.connect(lambda: appFunctions.search_electricbill(self))         # search bar
         
         ##  CRUDElecBillPage BUTTONS
         ####################################################################################################

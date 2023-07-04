@@ -224,16 +224,15 @@ class appFunctions():
         ApartmentNumber = self.ui.ApartNum_line_edit.text()
         FloorLevel = self.ui.FloorLvl_comboBox.currentText()
         RentalBill = self.ui.RentalBill_line_edit.text()
-        
-        
+
         # Check if any input is missing
         if not all((ApartmentNumber, FloorLevel, RentalBill)):
             QMessageBox.warning(self, "Missing Input", "Please enter all the necessary data.")
             return
-        
-        # Check if the apartment number already exists
-        check_existing_sql = "SELECT COUNT(*) FROM Apartment WHERE Apartment_No = %s"
-        mycursor.execute(check_existing_sql, (ApartmentNumber,))
+
+        # Check if the apartment number already exists, except for the selected apartment
+        check_existing_sql = "SELECT COUNT(*) FROM Apartment WHERE Apartment_No = %s AND Apartment_ID <> %s"  
+        mycursor.execute(check_existing_sql, (ApartmentNumber, apartment_id))
         count = mycursor.fetchone()[0]
         if count > 0:
             QMessageBox.warning(self, "Duplicate Apartment Number", "Apartment number already exists.")
@@ -266,4 +265,100 @@ class appFunctions():
         except Error as e:
             print(e)
             
-############################################################################################################################################################       
+############################################################################################################################################################
+    def click_pay_list_page(self): 
+        # Update the table widget with data from Payment table
+        update_table_widget_sql = "SELECT * FROM Payment"
+        mycursor.execute(update_table_widget_sql)
+        payment_data = mycursor.fetchall()
+            
+        self.ui.Payment_tableWidget.setRowCount(len(payment_data))
+        for row, apartment in enumerate(payment_data):
+            for column, value in enumerate(apartment):
+                item = QTableWidgetItem(str(value))
+                self.ui.Payment_tableWidget.setItem(row, column, item)
+                    
+        self.ui.Payment_tableWidget.verticalHeader().setVisible(False)
+        self.ui.Payment_tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers) 
+    
+    def search_payment(self):
+        # Find the data in the Payment table
+        search_text = self.ui.Search_lineEdit_3.text()
+
+        mycursor.execute("SELECT * FROM Apartment WHERE Payment_ID LIKE %s OR Payment_Status LIKE %s OR Payment_Date LIKE %s OR Amount_Paid LIKE %s OR Payment_Method LIKE %s OR Tenant_ID %s OR Apartment_ID LIKE %s",
+            (f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%" f"{search_text}%", f"{search_text}%", f"{search_text}%"))
+
+        result = mycursor.fetchall()
+
+        # Set up the table
+        table_widget = self.ui.Payment_tableWidget
+        table_widget.clearContents()
+        table_widget.setRowCount(len(result))
+
+        for row, apartment in enumerate(result):
+            for col, data in enumerate(apartment):
+                item = QTableWidgetItem(str(data))
+                table_widget.setItem(row, col, item)
+
+        table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)
+        table_widget.resizeColumnsToContents()
+        
+############################################################################################################################################################
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ 
+    
+    
+    
+    
+    
+
+
+
+############################################################################################################################################################
+
+    def click_EB_list_page(self): 
+        # Update the table widget with data from Electric Bill table
+        update_table_widget_sql = "SELECT * FROM Electric_Bill"
+        mycursor.execute(update_table_widget_sql)
+        ElectricBill_data = mycursor.fetchall()
+            
+        self.ui.ElectricBill_tableWidget.setRowCount(len(ElectricBill_data))
+        for row, apartment in enumerate(ElectricBill_data):
+            for column, value in enumerate(apartment):
+                item = QTableWidgetItem(str(value))
+                self.ui.ElectricBill_tableWidget.setItem(row, column, item)
+                    
+        self.ui.ElectricBill_tableWidget.verticalHeader().setVisible(False)
+        self.ui.ElectricBill_tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers) 
+    
+    def search_electricbill(self):
+        # Find the data in the Electric Bill table
+        search_text = self.ui.Search_lineEdit_4.text()
+
+        mycursor.execute("SELECT * FROM Apartment WHERE Elec_Bill_ID LIKE %s OR Date_Start LIKE %s OR KWH LIKE %s OR Status LIKE %s OR Apartment_ID LIKE %s",
+            (f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%" f"{search_text}%"))
+
+        result = mycursor.fetchall()
+
+        # Set up the table
+        table_widget = self.ui.ElectricBill_tableWidget
+        table_widget.clearContents()
+        table_widget.setRowCount(len(result))
+
+        for row, apartment in enumerate(result):
+            for col, data in enumerate(apartment):
+                item = QTableWidgetItem(str(data))
+                table_widget.setItem(row, col, item)
+
+        table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)
+        table_widget.resizeColumnsToContents()            
+        
+############################################################################################################################################################
