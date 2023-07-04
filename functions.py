@@ -76,7 +76,7 @@ class appFunctions():
         
         # Get input of the user in creating an apartment
         ApartmentNumber = self.ui.ApartNum_line_edit.text()
-        FloorLevel= self.ui.FloorLvl_comboBox.text()
+        FloorLevel = self.ui.FloorLvl_comboBox.currentText()
         RentalBill = self.ui.RentalBill_line_edit.text()
 
         insert_apartment_sql = "INSERT INTO Apartment (Apartment_No, Floor_level, Rental_bill) VALUES (%s, %s, %s)"
