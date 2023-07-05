@@ -468,7 +468,7 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>8</number>
+             <number>7</number>
             </property>
             <widget class="QWidget" name="TSListPage">
              <widget class="QLineEdit" name="Search_lineEdit">
@@ -1218,7 +1218,7 @@ color: white;</string>
 </string>
                </property>
                <property name="text">
-                <string>Apart. List</string>
+                <string>APART. LIST</string>
                </property>
               </widget>
              </widget>
@@ -1407,7 +1407,7 @@ QLineEdit:!hasFocus {
                   <property name="geometry">
                    <rect>
                     <x>150</x>
-                    <y>270</y>
+                    <y>330</y>
                     <width>111</width>
                     <height>41</height>
                    </rect>
@@ -1434,7 +1434,7 @@ QLineEdit:!hasFocus {
                   <property name="geometry">
                    <rect>
                     <x>150</x>
-                    <y>340</y>
+                    <y>270</y>
                     <width>111</width>
                     <height>41</height>
                    </rect>
@@ -1741,107 +1741,11 @@ color: white;</string>
                    <string>CRUD Payment</string>
                   </property>
                  </widget>
-                 <widget class="QLineEdit" name="AmountPaid_line_edit">
-                  <property name="geometry">
-                   <rect>
-                    <x>160</x>
-                    <y>150</y>
-                    <width>101</width>
-                    <height>21</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QLineEdit {
-    background-color: #666666;
-    color: black;
-}
-
-QLineEdit:!hasFocus {
-    color: white;
-}
-</string>
-                  </property>
-                  <property name="placeholderText">
-                   <string/>
-                  </property>
-                 </widget>
-                 <widget class="QLabel" name="AmountPaid">
-                  <property name="geometry">
-                   <rect>
-                    <x>40</x>
-                    <y>150</y>
-                    <width>91</width>
-                    <height>16</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Amount Paid:</string>
-                  </property>
-                 </widget>
-                 <widget class="QLabel" name="PaymentDate">
-                  <property name="geometry">
-                   <rect>
-                    <x>40</x>
-                    <y>190</y>
-                    <width>91</width>
-                    <height>16</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Payment Date:</string>
-                  </property>
-                 </widget>
-                 <widget class="QLabel" name="PaymentMethod">
-                  <property name="geometry">
-                   <rect>
-                    <x>40</x>
-                    <y>230</y>
-                    <width>101</width>
-                    <height>16</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Payment Method:</string>
-                  </property>
-                 </widget>
-                 <widget class="QComboBox" name="PayMethod_comboBox">
-                  <property name="geometry">
-                   <rect>
-                    <x>160</x>
-                    <y>230</y>
-                    <width>101</width>
-                    <height>22</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: #666666; color: black;</string>
-                  </property>
-                  <item>
-                   <property name="text">
-                    <string>None</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>Cash</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>Bank</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>G-Cash</string>
-                   </property>
-                  </item>
-                 </widget>
                  <widget class="QPushButton" name="AddPayBtn">
                   <property name="geometry">
                    <rect>
-                    <x>30</x>
-                    <y>340</y>
+                    <x>150</x>
+                    <y>220</y>
                     <width>111</width>
                     <height>41</height>
                    </rect>
@@ -1851,6 +1755,9 @@ QLineEdit:!hasFocus {
                     <pointsize>12</pointsize>
                     <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: white
@@ -1862,30 +1769,6 @@ QLineEdit:!hasFocus {
                   </property>
                  </widget>
                  <widget class="QPushButton" name="DelPayBtn">
-                  <property name="geometry">
-                   <rect>
-                    <x>270</x>
-                    <y>340</y>
-                    <width>111</width>
-                    <height>41</height>
-                   </rect>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: #666666; color: white
-;
-</string>
-                  </property>
-                  <property name="text">
-                   <string>DELETE</string>
-                  </property>
-                 </widget>
-                 <widget class="QPushButton" name="UpdPayBtn">
                   <property name="geometry">
                    <rect>
                     <x>150</x>
@@ -1900,6 +1783,36 @@ QLineEdit:!hasFocus {
                     <bold>true</bold>
                    </font>
                   </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: #666666; color: white
+;
+</string>
+                  </property>
+                  <property name="text">
+                   <string>DELETE</string>
+                  </property>
+                 </widget>
+                 <widget class="QPushButton" name="UpdPayBtn">
+                  <property name="geometry">
+                   <rect>
+                    <x>150</x>
+                    <y>280</y>
+                    <width>111</width>
+                    <height>41</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: white
 ;
@@ -1909,24 +1822,11 @@ QLineEdit:!hasFocus {
                    <string>UPDATE</string>
                   </property>
                  </widget>
-                 <widget class="QDateEdit" name="Payment_dateEdit">
-                  <property name="geometry">
-                   <rect>
-                    <x>160</x>
-                    <y>190</y>
-                    <width>101</width>
-                    <height>22</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: #666666; color: black;</string>
-                  </property>
-                 </widget>
                  <widget class="QLabel" name="PaymentStatus">
                   <property name="geometry">
                    <rect>
                     <x>40</x>
-                    <y>270</y>
+                    <y>130</y>
                     <width>101</width>
                     <height>16</height>
                    </rect>
@@ -1939,7 +1839,7 @@ QLineEdit:!hasFocus {
                   <property name="geometry">
                    <rect>
                     <x>160</x>
-                    <y>270</y>
+                    <y>130</y>
                     <width>101</width>
                     <height>22</height>
                    </rect>
@@ -1954,7 +1854,7 @@ QLineEdit:!hasFocus {
                   </item>
                   <item>
                    <property name="text">
-                    <string>Succesful</string>
+                    <string>Successful</string>
                    </property>
                   </item>
                   <item>
@@ -2132,17 +2032,7 @@ QLineEdit:!hasFocus {
                   </column>
                   <column>
                    <property name="text">
-                    <string>Tenant ID</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Apartment ID</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Amount Paid</string>
+                    <string>Payment Status</string>
                    </property>
                   </column>
                   <column>
@@ -2152,12 +2042,22 @@ QLineEdit:!hasFocus {
                   </column>
                   <column>
                    <property name="text">
+                    <string>Amount Paid</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
                     <string>Payment Method</string>
                    </property>
                   </column>
                   <column>
                    <property name="text">
-                    <string>Payment Status</string>
+                    <string>Tenant ID</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Apartment ID</string>
                    </property>
                   </column>
                  </widget>
@@ -2396,6 +2296,9 @@ color: white;</string>
                     <bold>true</bold>
                    </font>
                   </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: white
 ;
@@ -2420,6 +2323,9 @@ color: white;</string>
                     <bold>true</bold>
                    </font>
                   </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: white
 ;
@@ -2443,6 +2349,9 @@ color: white;</string>
                     <pointsize>12</pointsize>
                     <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: white

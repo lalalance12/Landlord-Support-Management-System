@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfaceznaIXd.ui'
+## Form generated from reading UI file 'interfaceQCSZHG.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -627,7 +627,7 @@ class Ui_MainWindow(object):
 "")
         self.DelApartBtn = QPushButton(self.frame_15)
         self.DelApartBtn.setObjectName(u"DelApartBtn")
-        self.DelApartBtn.setGeometry(QRect(150, 270, 111, 41))
+        self.DelApartBtn.setGeometry(QRect(150, 330, 111, 41))
         self.DelApartBtn.setFont(font4)
         self.DelApartBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DelApartBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -635,7 +635,7 @@ class Ui_MainWindow(object):
 "")
         self.UpdApartBtn = QPushButton(self.frame_15)
         self.UpdApartBtn.setObjectName(u"UpdApartBtn")
-        self.UpdApartBtn.setGeometry(QRect(150, 340, 111, 41))
+        self.UpdApartBtn.setGeometry(QRect(150, 270, 111, 41))
         self.UpdApartBtn.setFont(font4)
         self.UpdApartBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.UpdApartBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -781,69 +781,39 @@ class Ui_MainWindow(object):
         self.CRUDPayment_label.setObjectName(u"CRUDPayment_label")
         self.CRUDPayment_label.setGeometry(QRect(10, 10, 201, 16))
         self.CRUDPayment_label.setFont(font3)
-        self.AmountPaid_line_edit = QLineEdit(self.frame_21)
-        self.AmountPaid_line_edit.setObjectName(u"AmountPaid_line_edit")
-        self.AmountPaid_line_edit.setGeometry(QRect(160, 150, 101, 21))
-        self.AmountPaid_line_edit.setStyleSheet(u"QLineEdit {\n"
-"    background-color: #666666;\n"
-"    color: black;\n"
-"}\n"
-"\n"
-"QLineEdit:!hasFocus {\n"
-"    color: white;\n"
-"}\n"
-"")
-        self.AmountPaid = QLabel(self.frame_21)
-        self.AmountPaid.setObjectName(u"AmountPaid")
-        self.AmountPaid.setGeometry(QRect(40, 150, 91, 16))
-        self.PaymentDate = QLabel(self.frame_21)
-        self.PaymentDate.setObjectName(u"PaymentDate")
-        self.PaymentDate.setGeometry(QRect(40, 190, 91, 16))
-        self.PaymentMethod = QLabel(self.frame_21)
-        self.PaymentMethod.setObjectName(u"PaymentMethod")
-        self.PaymentMethod.setGeometry(QRect(40, 230, 101, 16))
-        self.PayMethod_comboBox = QComboBox(self.frame_21)
-        self.PayMethod_comboBox.addItem("")
-        self.PayMethod_comboBox.addItem("")
-        self.PayMethod_comboBox.addItem("")
-        self.PayMethod_comboBox.addItem("")
-        self.PayMethod_comboBox.setObjectName(u"PayMethod_comboBox")
-        self.PayMethod_comboBox.setGeometry(QRect(160, 230, 101, 22))
-        self.PayMethod_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
         self.AddPayBtn = QPushButton(self.frame_21)
         self.AddPayBtn.setObjectName(u"AddPayBtn")
-        self.AddPayBtn.setGeometry(QRect(30, 340, 111, 41))
+        self.AddPayBtn.setGeometry(QRect(150, 220, 111, 41))
         self.AddPayBtn.setFont(font4)
+        self.AddPayBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.AddPayBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
         self.DelPayBtn = QPushButton(self.frame_21)
         self.DelPayBtn.setObjectName(u"DelPayBtn")
-        self.DelPayBtn.setGeometry(QRect(270, 340, 111, 41))
+        self.DelPayBtn.setGeometry(QRect(150, 340, 111, 41))
         self.DelPayBtn.setFont(font4)
+        self.DelPayBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DelPayBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
         self.UpdPayBtn = QPushButton(self.frame_21)
         self.UpdPayBtn.setObjectName(u"UpdPayBtn")
-        self.UpdPayBtn.setGeometry(QRect(150, 340, 111, 41))
+        self.UpdPayBtn.setGeometry(QRect(150, 280, 111, 41))
         self.UpdPayBtn.setFont(font4)
+        self.UpdPayBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.UpdPayBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
-        self.Payment_dateEdit = QDateEdit(self.frame_21)
-        self.Payment_dateEdit.setObjectName(u"Payment_dateEdit")
-        self.Payment_dateEdit.setGeometry(QRect(160, 190, 101, 22))
-        self.Payment_dateEdit.setStyleSheet(u"background-color: #666666; color: black;")
         self.PaymentStatus = QLabel(self.frame_21)
         self.PaymentStatus.setObjectName(u"PaymentStatus")
-        self.PaymentStatus.setGeometry(QRect(40, 270, 101, 16))
+        self.PaymentStatus.setGeometry(QRect(40, 130, 101, 16))
         self.PayStat_comboBox = QComboBox(self.frame_21)
         self.PayStat_comboBox.addItem("")
         self.PayStat_comboBox.addItem("")
         self.PayStat_comboBox.addItem("")
         self.PayStat_comboBox.setObjectName(u"PayStat_comboBox")
-        self.PayStat_comboBox.setGeometry(QRect(160, 270, 101, 22))
+        self.PayStat_comboBox.setGeometry(QRect(160, 130, 101, 22))
         self.PayStat_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
         self.TenantID = QLabel(self.frame_21)
         self.TenantID.setObjectName(u"TenantID")
@@ -1031,6 +1001,7 @@ class Ui_MainWindow(object):
         self.AddEBBtn.setObjectName(u"AddEBBtn")
         self.AddEBBtn.setGeometry(QRect(20, 300, 111, 41))
         self.AddEBBtn.setFont(font4)
+        self.AddEBBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.AddEBBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -1038,6 +1009,7 @@ class Ui_MainWindow(object):
         self.DelEBBtn.setObjectName(u"DelEBBtn")
         self.DelEBBtn.setGeometry(QRect(150, 300, 111, 41))
         self.DelEBBtn.setFont(font4)
+        self.DelEBBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DelEBBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -1045,6 +1017,7 @@ class Ui_MainWindow(object):
         self.UpdEBBtn.setObjectName(u"UpdEBBtn")
         self.UpdEBBtn.setGeometry(QRect(280, 300, 111, 41))
         self.UpdEBBtn.setFont(font4)
+        self.UpdEBBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.UpdEBBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -1306,7 +1279,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(8)
+        self.stackedWidget.setCurrentIndex(7)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1374,7 +1347,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Rental Bill", None));
         self.AptLeaseBtn.setText(QCoreApplication.translate("MainWindow", u"LEASE", None))
         self.AptOcctBtn.setText(QCoreApplication.translate("MainWindow", u"OCCUPY", None))
-        self.AptListBtn.setText(QCoreApplication.translate("MainWindow", u"Apart. List", None))
+        self.AptListBtn.setText(QCoreApplication.translate("MainWindow", u"APART. LIST", None))
         self.page_label_4.setText(QCoreApplication.translate("MainWindow", u"CRUD Apartment", None))
         self.ApartNum_line_edit.setPlaceholderText("")
         self.ApartNum.setText(QCoreApplication.translate("MainWindow", u"Apartment Number:", None))
@@ -1413,21 +1386,12 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem24 = self.Payment_tableWidget.horizontalHeaderItem(6)
         ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         self.CRUDPayment_label.setText(QCoreApplication.translate("MainWindow", u"CRUD Payment", None))
-        self.AmountPaid_line_edit.setPlaceholderText("")
-        self.AmountPaid.setText(QCoreApplication.translate("MainWindow", u"Amount Paid:", None))
-        self.PaymentDate.setText(QCoreApplication.translate("MainWindow", u"Payment Date:", None))
-        self.PaymentMethod.setText(QCoreApplication.translate("MainWindow", u"Payment Method:", None))
-        self.PayMethod_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
-        self.PayMethod_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Cash", None))
-        self.PayMethod_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Bank", None))
-        self.PayMethod_comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"G-Cash", None))
-
         self.AddPayBtn.setText(QCoreApplication.translate("MainWindow", u"ADD", None))
         self.DelPayBtn.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
         self.UpdPayBtn.setText(QCoreApplication.translate("MainWindow", u"UPDATE", None))
         self.PaymentStatus.setText(QCoreApplication.translate("MainWindow", u"Payment Status:", None))
         self.PayStat_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Pending", None))
-        self.PayStat_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Succesful", None))
+        self.PayStat_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Successful", None))
         self.PayStat_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Overdue", None))
 
         self.TenantID.setText(QCoreApplication.translate("MainWindow", u"Tenant ID:", None))
@@ -1438,17 +1402,17 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem25 = self.Payment_tableWidget_5.horizontalHeaderItem(0)
         ___qtablewidgetitem25.setText(QCoreApplication.translate("MainWindow", u"Payment ID", None));
         ___qtablewidgetitem26 = self.Payment_tableWidget_5.horizontalHeaderItem(1)
-        ___qtablewidgetitem26.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
+        ___qtablewidgetitem26.setText(QCoreApplication.translate("MainWindow", u"Payment Status", None));
         ___qtablewidgetitem27 = self.Payment_tableWidget_5.horizontalHeaderItem(2)
-        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
+        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"Payment Date", None));
         ___qtablewidgetitem28 = self.Payment_tableWidget_5.horizontalHeaderItem(3)
         ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"Amount Paid", None));
         ___qtablewidgetitem29 = self.Payment_tableWidget_5.horizontalHeaderItem(4)
-        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"Payment Date", None));
+        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"Payment Method", None));
         ___qtablewidgetitem30 = self.Payment_tableWidget_5.horizontalHeaderItem(5)
-        ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Payment Method", None));
+        ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
         ___qtablewidgetitem31 = self.Payment_tableWidget_5.horizontalHeaderItem(6)
-        ___qtablewidgetitem31.setText(QCoreApplication.translate("MainWindow", u"Payment Status", None));
+        ___qtablewidgetitem31.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         self.ElectricBillList_label.setText(QCoreApplication.translate("MainWindow", u"Electric Bill List", None))
         self.Search_lineEdit_4.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search....", None))
         ___qtablewidgetitem32 = self.ElectricBill_tableWidget.horizontalHeaderItem(0)

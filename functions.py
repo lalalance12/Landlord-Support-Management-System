@@ -2,7 +2,7 @@ import mysql.connector
 from mysql.connector import Error
 from PySide6.QtWidgets import QTableWidgetItem, QComboBox, QHeaderView, QDialog, QVBoxLayout, QMessageBox, QInputDialog, QAbstractItemView, QCalendarWidget, QDialogButtonBox, QLabel, QDialogButtonBox
 from PySide6.QtCore import Qt, QDate
-from datetime import date
+import datetime
 
 
 mydb = mysql.connector.connect (
@@ -72,7 +72,7 @@ class appFunctions():
         """)
         mydb.commit()
         
-        set_auto_increment_sql = "ALTER TABLE Lease AUTO_INCREMENT = 4000"
+        set_auto_increment_sql = "ALTER TABLE Lease AUTO_INCREMENT = 4400"
         mycursor.execute(set_auto_increment_sql)
         mydb.commit()
         
@@ -88,7 +88,7 @@ class appFunctions():
         """)
         mydb.commit()
         
-        set_auto_increment_sql = "ALTER TABLE Tenant AUTO_INCREMENT = 2020"
+        set_auto_increment_sql = "ALTER TABLE Tenant AUTO_INCREMENT = 5500"
         mycursor.execute(set_auto_increment_sql)
         mydb.commit()
 
@@ -571,7 +571,7 @@ class appFunctions():
         """)
         mydb.commit()
         
-        set_auto_increment_sql = "ALTER TABLE Apartment AUTO_INCREMENT = 1000"
+        set_auto_increment_sql = "ALTER TABLE Apartment AUTO_INCREMENT = 8800"
         mycursor.execute(set_auto_increment_sql)
         mydb.commit()
           
@@ -751,7 +751,6 @@ class appFunctions():
             
 ############################################################################################################################################################
 
-
     def click_pay_list_page(self): 
         # Update the table widget with data from Payment table
         update_table_widget_sql = "SELECT * FROM Payment"
@@ -772,9 +771,9 @@ class appFunctions():
         # Find the data in the Payment table
         search_text = self.ui.Search_lineEdit_3.text()
 
-        mycursor.execute("SELECT * FROM Apartment WHERE Payment_ID LIKE %s OR Payment_Status LIKE %s OR Payment_Date LIKE %s OR Amount_Paid LIKE %s OR Payment_Method LIKE %s OR Tenant_ID %s OR Apartment_ID LIKE %s",
-            (f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%" f"{search_text}%", f"{search_text}%", f"{search_text}%"))
-
+        sql_query = "SELECT * FROM Payment WHERE Payment_ID LIKE %s OR Payment_Status LIKE %s OR Payment_Date LIKE %s OR Amount_Paid LIKE %s OR Payment_Method LIKE %s OR Tenant_ID LIKE %s OR Apartment_ID LIKE %s"
+        params = (f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%")
+        mycursor.execute(sql_query, params)
         result = mycursor.fetchall()
 
         # Set up the table
@@ -785,119 +784,337 @@ class appFunctions():
         for row, apartment in enumerate(result):
             for col, data in enumerate(apartment):
                 item = QTableWidgetItem(str(data))
+                item.setTextAlignment(Qt.AlignCenter)
                 table_widget.setItem(row, col, item)
 
         table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)
         table_widget.resizeColumnsToContents()
-        
-        
+                
 ############################################################################################################################################################
 
-
-    def click_CRUD_payment_page(self):
+    def click_payment_page(self):
         # Update the table widget with data from Payment table
         update_table_widget_sql = "SELECT * FROM Payment"
         mycursor.execute(update_table_widget_sql)
         payment_data = mycursor.fetchall()
-            
-        self.ui.Payment_tableWidget_5.setRowCount(len( payment_data))
-        for row, apartment in enumerate(payment_data):
-            for column, value in enumerate(apartment):
+
+        self.ui.Payment_tableWidget_5.setRowCount(len(payment_data))
+        for row, payment in enumerate(payment_data):
+            for column, value in enumerate(payment):
                 item = QTableWidgetItem(str(value))
-                item.setTextAlignment(Qt.AlignCenter)
                 self.ui.Payment_tableWidget_5.setItem(row, column, item)
-                    
+
         self.ui.Payment_tableWidget_5.verticalHeader().setVisible(False)
         self.ui.Payment_tableWidget_5.setEditTriggers(QAbstractItemView.NoEditTriggers)
         
-        
+
     def add_payment(self):
         # Create table Payment if there is no existing table
         mycursor.execute("""
             CREATE TABLE IF NOT EXISTS Payment (
-                Payment_ID INT PRIMARY KEY,
-                Payment_Status VARCHAR(15),
+                Payment_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                Payment_Status VARCHAR(15) NOT NULL,
                 Payment_Date DATE,
                 Amount_Paid DECIMAL(6, 2),
                 Payment_Method VARCHAR(15),
-                Tenant_ID INT,
-                Apartment_ID INT,
+                Tenant_ID INT NOT NULL,
+                Apartment_ID INT NOT NULL,
                 CONSTRAINT fk2 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE,
                 CONSTRAINT fk3 FOREIGN KEY (Tenant_ID) REFERENCES Tenant (Tenant_ID) ON DELETE CASCADE ON UPDATE CASCADE
-                )
+            )
         """)
         mydb.commit()
-        
-        set_auto_increment_sql = "ALTER TABLE Payment AUTO_INCREMENT = 4000"
+
+        set_auto_increment_sql = "ALTER TABLE Payment AUTO_INCREMENT = 6700"
         mycursor.execute(set_auto_increment_sql)
         mydb.commit()
-        
-        #######################################     RESUME HERE
-        
-        """"
-        # Get input of the user in creating an payment
-        ApartmentNumber = self.ui.ApartNum_line_edit.text()
-        FloorLevel = self.ui.FloorLvl_comboBox.currentText()
-        RentalBill = self.ui.RentalBill_line_edit.text()
-        
+
+        # Get input of the user in creating a payment
+        apartment_id = self.ui.ApartID_line_edit_3.text()
+        tenant_id = self.ui.TenantID_line_edit3.text()
+        PayStatus = self.ui.PayStat_comboBox.currentText()
         
         # Check if any input is missing
-        if not all((ApartmentNumber, FloorLevel, RentalBill)):
+        if not all((PayStatus, apartment_id, tenant_id)):
             QMessageBox.warning(self, "Missing Input", "Please enter all the necessary data.")
             return
-        
-        # Check if the apartment number already exists
-        check_existing_sql = "SELECT COUNT(*) FROM Apartment WHERE Apartment_No = %s"
-        mycursor.execute(check_existing_sql, (ApartmentNumber,))
+
+        # Check if the apartment ID exists in the Apartment table
+        check_apartment_sql = "SELECT COUNT(*) FROM Apartment WHERE Apartment_ID = %s"
+        mycursor.execute(check_apartment_sql, (apartment_id,))
         count = mycursor.fetchone()[0]
-        if count > 0:
-            QMessageBox.warning(self, "Duplicate Apartment Number", "Apartment number already exists.")
+        if count == 0:
+            QMessageBox.warning(self, "Invalid Apartment ID", "Apartment ID does not exist.")
+            return
+        
+        # Check if the Tenant ID exists in the Tenant table
+        check_tenant_sql = "SELECT COUNT(*) FROM Tenant WHERE Tenant_ID = %s"
+        mycursor.execute(check_tenant_sql, (tenant_id,))
+        count = mycursor.fetchone()[0]
+        if count == 0:
+            QMessageBox.warning(self, "Invalid Tenant ID", "Tenant ID does not exist.")
             return
 
-        insert_apartment_sql = "INSERT INTO Apartment (Apartment_No, Floor_level, Rental_bill) VALUES (%s, %s, %s)"
-        
+        # Check if the payment status is successful
+        if PayStatus == "Successful":
+            # Prompt for payment amount, payment date, and payment method
+            payment_amount, ok = QInputDialog.getDouble(self, "Enter Payment Amount", "Payment Amount:")
+            if not ok:
+                return
+
+            payment_date, ok = QInputDialog.getText(self, "Enter Payment Date", "Payment Date (YYYY-MM-DD):")
+            if not ok:
+                return
+
+            payment_method, ok = QInputDialog.getItem(self, "Select Payment Method", "Payment Method:",
+                                                    ["Cash", "G-cash", "Bank"], 0, False)
+            if not ok:
+                return
+
+        else:
+            # Set default values for payment amount, payment date, and payment method
+            payment_amount = None
+            payment_date = None
+            payment_method = None
+
+
+        insert_payment_sql = "INSERT INTO Payment (Payment_Status, Payment_Date, Amount_Paid, Payment_Method, Apartment_ID, Tenant_ID) VALUES (%s, %s, %s, %s, %s, %s)"
+
         try:
-            # Insert the new apartment data
-            mycursor.execute(insert_apartment_sql, (ApartmentNumber, FloorLevel, RentalBill))
+            # Insert the new payment data
+            mycursor.execute(insert_payment_sql,
+                         (PayStatus, payment_date, payment_amount, payment_method, apartment_id, tenant_id))
             mydb.commit()
-            QMessageBox.information(self, "Success", "Apartment inserted successfully.")
-            
-             # Update the table widget with data from Apartment table
-            update_table_widget_sql = "SELECT * FROM Apartment"
+            QMessageBox.information(self, "Success", "Payment inserted successfully.")
+
+
+            # Update the table widget with data from Payment table
+            update_table_widget_sql = "SELECT * FROM Payment"
             mycursor.execute(update_table_widget_sql)
-            apartment_data = mycursor.fetchall()
-            
-            self.ui.Apartment_tableWidget_3.setRowCount(len(apartment_data))
-            for row, apartment in enumerate(apartment_data):
-                for column, value in enumerate(apartment):
+            payment_data = mycursor.fetchall()
+
+            self.ui.Payment_tableWidget_5.setRowCount(len(payment_data))
+            for row, payment in enumerate(payment_data):
+                for column, value in enumerate(payment):
                     item = QTableWidgetItem(str(value))
-                    self.ui.Apartment_tableWidget_3.setItem(row, column, item)
-                    
-            self.ui.Apartment_tableWidget_3.verticalHeader().setVisible(False)
-                
-            self.ui.ApartNum_line_edit.setText("")
-            self.ui.FloorLvl_comboBox.setCurrentIndex(0)
-            self.ui.RentalBill_line_edit.setText("")
+                    self.ui.Payment_tableWidget_5.setItem(row, column, item)
+
+            self.ui.Payment_tableWidget_5.verticalHeader().setVisible(False)
+            
+            # Reset to blank all line edit and combo box
+            self.ui.TenantID_line_edit3.setText("")
+            self.ui.ApartID_line_edit_3.setText("")
+            self.ui.PayStat_comboBox.setCurrentIndex(0)
             
         except Error as e:
+            print("Error inserting payment:", e)
+
+    def get_payment(self):
+        # Get the selected row index from Payment_tableWidget_5
+        selected_row = self.ui.Payment_tableWidget_5.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "No Selection", "Please select a payment to update.")
+            return
+
+        # Get the Payment ID value from the selected row
+        payment_id = self.ui.Payment_tableWidget_5.item(selected_row, 0).text()
+
+        try:
+            # Fetch the payment data from the database
+            fetch_payment_sql = "SELECT * FROM Payment WHERE Payment_ID = %s"
+            mycursor.execute(fetch_payment_sql, (payment_id,))
+            payment_data = mycursor.fetchone()
+
+            if payment_data is not None:
+                # Update the input fields with the apartment data
+                self.ui.TenantID_line_edit3.setText(str(payment_data[5]))
+                self.ui.ApartID_line_edit_3.setText(str(payment_data[6]))
+                self.ui.PayStat_comboBox.setCurrentText(str(payment_data[1]))
+            
+            else:
+                QMessageBox.warning(self, "Payment Not Found", "Payment ID does not exist.")
+
+        except Error as e:
             print(e)
-    
-        """
-    
-    
-    
-    
-    
+
+    def update_payment(self):
+        selected_row = self.ui.Payment_tableWidget_5.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "No Selection", "Please select an apartment to update.")
+            return
+        # Get the payment ID from the selected row
+        payment_id = self.ui.Payment_tableWidget_5.item(selected_row, 0).text()
+        
+        # Get input of the user in creating a payment
+        tenant_id = self.ui.TenantID_line_edit3.text()
+        apartment_id = self.ui.ApartID_line_edit_3.text()
+        PayStatus = self.ui.PayStat_comboBox.currentText()
+
+        # Check if any input is missing
+        if not all((apartment_id, tenant_id, PayStatus)):
+            QMessageBox.warning(self, "Missing Input", "Please enter all the necessary data.")
+            return
+
+        # Check if the apartment ID exists in the Apartment table
+        check_apartment_sql = "SELECT COUNT(*) FROM Apartment WHERE Apartment_ID = %s"
+        mycursor.execute(check_apartment_sql, (apartment_id,))
+        count = mycursor.fetchone()[0]
+        if count == 0:
+            QMessageBox.warning(self, "Invalid Apartment ID", "Apartment ID does not exist.")
+            return
+        
+        # Check if the Tenant ID exists in the Tenant table
+        check_tenant_sql = "SELECT COUNT(*) FROM Tenant WHERE Tenant_ID = %s"
+        mycursor.execute(check_tenant_sql, (tenant_id,))
+        count = mycursor.fetchone()[0]
+        if count == 0:
+            QMessageBox.warning(self, "Invalid Tenant ID", "Tenant ID does not exist.")
+            return
+        
+        # Check if the payment status is successful
+        if PayStatus == "Successful":
+            # Prompt for payment amount, payment date, and payment method
+            payment_amount, ok = QInputDialog.getDouble(self, "Enter Payment Amount", "Payment Amount:")
+            if not ok:
+                return
+
+            payment_date, ok = QInputDialog.getText(self, "Enter Payment Date", "Payment Date (YYYY-MM-DD):")
+            if not ok:
+                return
+
+            payment_method, ok = QInputDialog.getItem(self, "Select Payment Method", "Payment Method:",
+                                                    ["Cash", "G-cash", "Bank"], 0, False)
+            if not ok:
+                return
+
+        else:
+            # Set default values for payment amount, payment date, and payment method
+            payment_amount = None
+            payment_date = None
+            payment_method = None
+
+        # Update the apartment data in the database
+        try:
+            update_payment_sql = "UPDATE Payment SET Payment_Status = %s, Payment_Date = %s, Amount_Paid = %s, Payment_Method = %s, Tenant_ID = %s, Apartment_ID = %s WHERE Payment_ID = %s"
+            # Update the payment data
+            mycursor.execute(update_payment_sql,
+                            (PayStatus, payment_date, payment_amount, payment_method, tenant_id, apartment_id, payment_id))
+            mydb.commit()
+            QMessageBox.information(self, "Success", "Payment updated successfully.")
+
+            # Update the table widget with data from Payment table
+            update_table_widget_sql = "SELECT * FROM Payment"
+            mycursor.execute(update_table_widget_sql)
+            payment_data = mycursor.fetchall()
+
+            self.ui.Payment_tableWidget_5.setRowCount(len(payment_data))
+            for row, payment in enumerate(payment_data):
+                for column, value in enumerate(payment):
+                    item = QTableWidgetItem(str(value))
+                    self.ui.Payment_tableWidget_5.setItem(row, column, item)
+
+            self.ui.Payment_tableWidget_5.verticalHeader().setVisible(False)
+            
+            # Reset to blank all line edit and combo box
+            self.ui.TenantID_line_edit3.setText("")
+            self.ui.ApartID_line_edit_3.setText("")
+            self.ui.PayStat_comboBox.setCurrentIndex(0)
+            
+        except Error as e:
+            print("Error inserting payment:", e)
+
+    def delete_payment(self):
+        current_row = self.ui.Payment_tableWidget_5.currentRow()
+        if current_row != -1:
+            # Get the payment ID from the selected row
+            payment_id = self.ui.Payment_tableWidget_5.item(current_row, 0).text()
+
+            # Confirm the deletion with the user
+            confirm = QMessageBox.question(
+                self, "Delete Payment", "Are you sure you want to delete this payment?", 
+                QMessageBox.Yes | QMessageBox.No
+            )
+            if confirm == QMessageBox.Yes:
+                # Delete the payment from the Payment table
+                delete_payment_sql = "DELETE FROM Payment WHERE Payment_ID = %s"
+
+                try:
+                    mycursor.execute(delete_payment_sql, (payment_id,))
+                    mydb.commit()
+                    QMessageBox.information(self, "Success", "Payment deleted successfully.")
+
+                    # Update the table widget with data from Payment table
+                    update_table_widget_sql = "SELECT * FROM Payment"
+                    mycursor.execute(update_table_widget_sql)
+                    payment_data = mycursor.fetchall()
+
+                    self.ui.Payment_tableWidget_5.setRowCount(len(payment_data))
+                    for row, payment in enumerate(payment_data):
+                        for column, value in enumerate(payment):
+                            item = QTableWidgetItem(str(value))
+                            self.ui.Payment_tableWidget_5.setItem(row, column, item)
+
+                    self.ui.Payment_tableWidget_5.verticalHeader().setVisible(False)
+
+                except Error as e:
+                    print("Error deleting payment:", e)
+        else:
+            QMessageBox.warning(self, "No Selection", "Please select a payment to delete.")
     
  
-    
-    
-    
-    
-    
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 ############################################################################################################################################################
 
     def click_EB_list_page(self): 
@@ -937,5 +1154,147 @@ class appFunctions():
 
         table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)
         table_widget.resizeColumnsToContents()            
+ 
+ 
+ 
         
 ############################################################################################################################################################
+
+    def click_electric_bill_page(self):
+        # Update the table widget with data from Electric_Bill table
+        update_table_widget_sql = "SELECT * FROM Electric_Bill"
+        mycursor.execute(update_table_widget_sql)
+        electric_bill_data = mycursor.fetchall()
+
+        self.ui.ElectricBill_tableWidget_2.setRowCount(len(electric_bill_data))
+        for row, bill in enumerate(electric_bill_data):
+            for column, value in enumerate(bill):
+                item = QTableWidgetItem(str(value))
+                self.ui.ElectricBill_tableWidget_2.setItem(row, column, item)
+
+        self.ui.ElectricBill_tableWidget_2.verticalHeader().setVisible(False)
+        self.ui.ElectricBill_tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+    def add_electric_bill(self):
+        # Create table Electric_Bill if there is no existing table
+        mycursor.execute("""
+            CREATE TABLE IF NOT EXISTS Electric_Bill (
+                Elec_Bill_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                Date_Start DATE NOT NULL,
+                KWH DECIMAL(6, 2) NOT NULL,
+                Status VARCHAR(15)NOT NULL,
+                Apartment_ID INT NOT NULL,
+                CONSTRAINT fk4 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE
+            )
+        """)
+        mydb.commit()
+
+        set_auto_increment_sql = "ALTER TABLE Electric_Bill AUTO_INCREMENT = 1"
+        mycursor.execute(set_auto_increment_sql)
+        mydb.commit()
+        
+        # Get input of the user in creating an electric bill
+        DateStarted = self.ui.DateStart_dateEdit.date().toString("yyyy-MM-dd")
+        Kwh = self.ui.kwh_line_edit.text()
+        Status = self.ui.comboBox.currentText()
+        ApartmentID = self.ui.ApartID_line_edit.text()
+
+        # Check if any input is missing
+        if not all((DateStarted, Kwh, Status, ApartmentID)):
+            QMessageBox.warning(self, "Missing Input", "Please enter all the necessary data.")
+            return
+
+        # Check if the apartment ID exists in the Apartment table
+        check_apartment_sql = "SELECT COUNT(*) FROM Apartment WHERE Apartment_ID = %s"
+        mycursor.execute(check_apartment_sql, (ApartmentID,))
+        count = mycursor.fetchone()[0]
+        if count == 0:
+            QMessageBox.warning(self, "Invalid Apartment ID", "Apartment ID does not exist.")
+            return
+
+        insert_electric_bill_sql = "INSERT INTO Electric_Bill (Date_Start, KWH, Status, Apartment_ID) VALUES (%s, %s, %s, %s)"
+
+        try:
+            # Insert the new electric bill data
+            mycursor.execute(insert_electric_bill_sql, (DateStarted, Kwh, Status, ApartmentID))
+            mydb.commit()
+            QMessageBox.information(self, "Success", "Electric bill inserted successfully.")
+
+            # Update the table widget with data from Electric_Bill table
+            update_table_widget_sql = "SELECT * FROM Electric_Bill"
+            mycursor.execute(update_table_widget_sql)
+            electric_bill_data = mycursor.fetchall()
+
+            self.ui.ElectricBill_tableWidget_2.setRowCount(len(electric_bill_data))
+            for row, bill in enumerate(electric_bill_data):
+                for column, value in enumerate(bill):
+                    item = QTableWidgetItem(str(value))
+                    self.ui.ElectricBill_tableWidget_2.setItem(row, column, item)
+
+            self.ui.ElectricBill_tableWidget_2.verticalHeader().setVisible(True)
+            self.ui.ElectricBill_tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+
+        except Error as e:
+            print("Error inserting electric bill:", e)
+
+    def update_electric_bill(self):
+        current_row = self.ui.ElectricBill_tableWidget.currentRow()
+        if current_row != -1:
+            # Get the electric bill ID from the selected row
+            elec_bill_id = self.ui.ElectricBill_tableWidget.item(current_row, 0).text()
+
+            # Prompt the user for the new KWH value
+            kwh, ok = QInputDialog.getDouble(self, "Update Electric Bill", "New KWH value:", decimals=2)
+            if ok:
+                # Update the KWH value in the Electric_Bill table
+                update_sql = "UPDATE Electric_Bill SET KWH = %s WHERE Elec_Bill_ID = %s"
+                mycursor.execute(update_sql, (kwh, elec_bill_id))
+                mydb.commit()
+
+                QMessageBox.information(self, "Success", "Electric bill updated successfully.")
+
+                # Update the table widget with data from Electric_Bill table
+                update_table_widget_sql = "SELECT * FROM Electric_Bill"
+                mycursor.execute(update_table_widget_sql)
+                electric_bill_data = mycursor.fetchall()
+
+                self.ui.ElectricBill_tableWidget.setRowCount(len(electric_bill_data))
+                for row, bill in enumerate(electric_bill_data):
+                    for column, value in enumerate(bill):
+                        item = QTableWidgetItem(str(value))
+                        self.ui.ElectricBill_tableWidget.setItem(row, column, item)
+
+        else:
+            QMessageBox.warning(self.ui, "No Selection", "Please select an electric bill to update.")
+
+    def delete_electric_bill(self):
+        current_row = self.ui.ElectricBill_tableWidget.currentRow()
+        if current_row != -1:
+            # Get the electric bill ID from the selected row
+            elec_bill_id = self.ui.ElectricBill_tableWidget.item(current_row, 0).text()
+
+            # Confirm deletion with the user
+            confirm = QMessageBox.question(self, "Delete Electric Bill", "Are you sure you want to delete this electric bill?",
+                                           QMessageBox.Yes | QMessageBox.No)
+            if confirm == QMessageBox.Yes:
+                # Delete the electric bill from the Electric_Bill table
+                delete_sql = "DELETE FROM Electric_Bill WHERE Elec_Bill_ID = %s"
+                mycursor.execute(delete_sql, (elec_bill_id,))
+                mydb.commit()
+
+                QMessageBox.information(self, "Success", "Electric bill deleted successfully.")
+
+                # Update the table widget with data from Electric_Bill table
+                update_table_widget_sql = "SELECT * FROM Electric_Bill"
+                mycursor.execute(update_table_widget_sql)
+                electric_bill_data = mycursor.fetchall()
+
+                self.ui.ElectricBill_tableWidget.setRowCount(len(electric_bill_data))
+                for row, bill in enumerate(electric_bill_data):
+                    for column, value in enumerate(bill):
+                        item = QTableWidgetItem(str(value))
+                        self.ui.ElectricBill_tableWidget.setItem(row, column, item)
+
+        else:
+            QMessageBox.warning(self, "No Selection", "Please select an electric bill to delete.")

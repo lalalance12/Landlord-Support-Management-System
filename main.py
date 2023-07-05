@@ -112,23 +112,25 @@ class MainWindow(QMainWindow):
         ##  CRUDPaymentPage BUTTONS
         ####################################################################################################
         
-        
-        
-        
-        
-        
-        
-        
+        self.ui.CRUDPaymentBtn.clicked.connect(lambda: appFunctions.click_payment_page(self))                # table
+        self.ui.AddPayBtn.clicked.connect(lambda: appFunctions.add_payment(self))                            # add button
+        self.ui.UpdPayBtn.clicked.connect(lambda: appFunctions.update_payment(self))                         # update button
+        self.ui.GetPayBtn.clicked.connect(lambda: appFunctions.get_payment(self))                            # get button
+        self.ui.DelPayBtn.clicked.connect(lambda: appFunctions.delete_payment(self))                         # delete button  
+              
         ##  EBListPage BUTTONS
         ####################################################################################################
-        
-        self.ui.ElecBillBtn.clicked.connect(lambda: appFunctions.click_EB_list_page(self))                    # table
-        self.ui.Search_lineEdit_3.textChanged.connect(lambda: appFunctions.search_electricbill(self))         # search bar
+     
+        self.ui.ElecBillBtn.clicked.connect(lambda: appFunctions.click_EB_list_page(self))                   # table
+        self.ui.Search_lineEdit_4.textChanged.connect(lambda: appFunctions.search_electricbill(self))        # search bar
         
         ##  CRUDElecBillPage BUTTONS
         ####################################################################################################
         
-        
+        self.ui.CRUDElectricBillBtn.clicked.connect(lambda: appFunctions.click_electric_bill_page(self))     # table
+        self.ui.AddEBBtn.clicked.connect(lambda: appFunctions.add_electric_bill(self))                       # add button
+        self.ui.UpdEBBtn.clicked.connect(lambda: appFunctions.update_electric_bill(self))                    # update button
+        self.ui.DelEBBtn.clicked.connect(lambda: appFunctions.delete_electric_bill(self))                    # delete button  
         
         
         
