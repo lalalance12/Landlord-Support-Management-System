@@ -36,6 +36,7 @@ class appFunctions():
         for row, apartment in enumerate(tenant_data):
             for column, value in enumerate(apartment):
                 item = QTableWidgetItem(str(value))
+                item.setTextAlignment(Qt.AlignCenter)
                 self.ui.Tenant_tableWidget.setItem(row, column, item)
                     
         self.ui.Tenant_tableWidget.verticalHeader().setVisible(False)
@@ -107,7 +108,7 @@ class appFunctions():
             print("Error:", Name, Age, Sex, PhoneNum, Email, ApartmentID)
             return
         
-        # Check if the ApartmentNum exists in the Apartment table
+        # Check if the Apartment_ID exists in the Apartment table
         apartment_exists_sql = "SELECT Apartment_ID FROM Apartment WHERE Apartment_ID = %s"
         mycursor.execute(apartment_exists_sql, (ApartmentID,))
         apartment_result = mycursor.fetchone()
@@ -180,10 +181,12 @@ class appFunctions():
             for row, tenant in enumerate(tenant_data):
                 for column, value in enumerate(tenant):
                     item = QTableWidgetItem(str(value))
+                    item.setTextAlignment(Qt.AlignCenter)
                     self.ui.Tenant_tableWidget.setItem(row, column, item)
                     
             self.ui.Tenant_tableWidget.verticalHeader().setVisible(False)
-                
+            
+            # Reset to blank all line edit and combo box    
             self.ui.Name_line_edit.setText("")
             self.ui.Age_line_edit.setText("")
             self.ui.Sex_comboBox.setCurrentIndex(0)
@@ -194,7 +197,142 @@ class appFunctions():
         except Error as e:
             print("Error:", e)
 
+    def delete_tenant(self):
+        # Get the selected row index from Tenant_tableWidget
+        selected_row = self.ui.Tenant_tableWidget.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "No Selection", "Please select a tenant to delete.")
+            return
 
+        # Get the Tenant_ID value from the selected row
+        tenant_id = self.ui.Tenant_tableWidget.item(selected_row, 0).text()
+
+        # Prompt the user for confirmation before deleting
+        confirm_delete = QMessageBox.question(self, "Confirm Deletion", "Are you sure you want to delete this tenant?",
+                                            QMessageBox.Yes | QMessageBox.No)
+        if confirm_delete == QMessageBox.Yes:
+            try:
+                # Delete the tenant from the database
+                delete_tenant_sql = "DELETE FROM Tenant WHERE Tenant_ID = %s"
+                mycursor.execute(delete_tenant_sql, (tenant_id,))
+                mydb.commit()
+                QMessageBox.information(self, "Success", "Tenant deleted successfully.")
+
+                # Update the table widget with data from tenant table
+                update_table_widget_sql = "SELECT * FROM Tenant"
+                mycursor.execute(update_table_widget_sql)
+                tenant_data = mycursor.fetchall()
+
+                self.ui.Tenant_tableWidget.setRowCount(len( tenant_data))
+                for row, tenant in enumerate(tenant_data):
+                    for column, value in enumerate(tenant):
+                        item = QTableWidgetItem(str(value))
+                        item.setTextAlignment(Qt.AlignCenter)
+                        self.ui.Tenant_tableWidget.setItem(row, column, item)
+
+                self.ui.Tenant_tableWidget.verticalHeader().setVisible(False)
+
+            except Error as e:
+                print(e)
+        else:
+            QMessageBox.information(self, "Deletion Canceled", "Deletion operation canceled.")
+    
+    def get_tenant(self):
+        # Get the selected row index from Tenant_tableWidget
+        selected_row = self.ui.Tenant_tableWidget.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "No Selection", "Please select a tenant to update.")
+            return
+
+        # Get the Tenant_ID value from the selected row
+        tenant_id = self.ui.Tenant_tableWidget.item(selected_row, 0).text()
+
+        try:
+            # Fetch the tenant data from the database
+            fetch_tenant_sql = "SELECT * FROM Tenant WHERE Tenant_ID = %s"
+            mycursor.execute(fetch_tenant_sql, (tenant_id,))
+            tenant_data = mycursor.fetchone()
+
+            if tenant_data is not None:
+                # Update the input fields with the tenant data
+                self.ui.Name_line_edit.setText(str(tenant_data[1]))
+                self.ui.Age_line_edit.setText(str(tenant_data[2]))
+                self.ui.Sex_comboBox.setCurrentText(str(tenant_data[3]))
+                self.ui.PhoneNum_line_edit.setText(str(tenant_data[4]))
+                self.ui.Email_line_edit.setText(str(tenant_data[5]))
+                self.ui.ApartNum_line_edit_3.setText(str(tenant_data[6]))
+
+            else:
+                QMessageBox.warning(self, "Tenant Not Found", "Tenant ID does not exist.")
+
+        except Error as e:
+            print(e)
+            
+            
+    def update_tenant(self):
+        # Get the selected row index from Tenant_tableWidget
+        selected_row = self.ui.Tenant_tableWidget.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "No Selection", "Please select an tenant to update.")
+            return
+
+        # Get the Tenant_ID value from the selected row
+        tenant_id = self.ui.Tenant_tableWidget.item(selected_row, 0).text()
+
+        # Get the input data from the input fields
+        Name = self.ui.Name_line_edit.text()
+        Age = self.ui.Age_line_edit.text()
+        Sex = self.ui.Sex_comboBox.currentText()
+        PhoneNum = self.ui.PhoneNum_line_edit.text()
+        Email = self.ui.Email_line_edit.text()
+        ApartmentID = self.ui.ApartNum_line_edit_3.text()
+
+        # Check if any input is missing
+        if not all((Name, Age, Sex, PhoneNum, Email, ApartmentID)):
+            QMessageBox.warning(self, "Missing Input", "Please enter all the necessary data.")
+            print("Error:", Name, Age, Sex, PhoneNum, Email, ApartmentID)
+            return
+        
+        # Check if the Apartment_ID exists in the Apartment table
+        apartment_exists_sql = "SELECT Apartment_ID FROM Apartment WHERE Apartment_ID = %s"
+        mycursor.execute(apartment_exists_sql, (ApartmentID,))
+        apartment_result = mycursor.fetchone()
+        
+        if not apartment_result:
+            QMessageBox.warning(self, "Invalid Apartment ID", "The entered Apartment ID does not exist.")
+            return
+        
+        # Update the tenant data in the database
+        try:
+            update_tenant_sql = "UPDATE Tenant SET Name = %s, Age = %s, Sex = %s, Phone_no = %s, Email = %s, Apartment_ID = %s WHERE Tenant_ID = %s"
+            mycursor.execute(update_tenant_sql, (Name, Age, Sex, PhoneNum, Email, ApartmentID, tenant_id))
+            mydb.commit()
+            QMessageBox.information(self, "Success", "Tenant updated successfully.")
+
+            # Update the table widget with updated data
+            update_table_widget_sql = "SELECT * FROM Tenant"
+            mycursor.execute(update_table_widget_sql)
+            tenant_data = mycursor.fetchall()
+
+            self.ui.Tenant_tableWidget.setRowCount(len( tenant_data))
+            for row, tenant in enumerate(tenant_data):
+                for column, value in enumerate(tenant):
+                    item = QTableWidgetItem(str(value))
+                    item.setTextAlignment(Qt.AlignCenter)
+                    self.ui.Tenant_tableWidget.setItem(row, column, item)
+
+            self.ui.Tenant_tableWidget.verticalHeader().setVisible(False)
+            
+            # Reset to blank all line edit and combo box
+            self.ui.Name_line_edit.setText("")
+            self.ui.Age_line_edit.setText("")
+            self.ui.Sex_comboBox.setCurrentIndex(0)
+            self.ui.PhoneNum_line_edit.setText("")
+            self.ui.Email_line_edit.setText("")
+            self.ui.ApartNum_line_edit_3.setText("")
+
+        except Error as e:
+            print(e)
 
 
 
@@ -232,6 +370,7 @@ class appFunctions():
         for row, apartment in enumerate(apartment_data):
             for column, value in enumerate(apartment):
                 item = QTableWidgetItem(str(value))
+                item.setTextAlignment(Qt.AlignCenter)
                 self.ui.Apartment_tableWidget_2.setItem(row, column, item)
                     
         self.ui.Apartment_tableWidget_2.verticalHeader().setVisible(False)
@@ -254,6 +393,7 @@ class appFunctions():
         for row, apartment in enumerate(result):
             for col, data in enumerate(apartment):
                 item = QTableWidgetItem(str(data))
+                item.setTextAlignment(Qt.AlignCenter)
                 table_widget.setItem(row, col, item)
 
         table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)
@@ -272,6 +412,7 @@ class appFunctions():
         for row, apartment in enumerate(apartment_data):
             for column, value in enumerate(apartment):
                 item = QTableWidgetItem(str(value))
+                item.setTextAlignment(Qt.AlignCenter)
                 self.ui.Apartment_tableWidget_3.setItem(row, column, item)
                     
         self.ui.Apartment_tableWidget_3.verticalHeader().setVisible(False)
@@ -330,10 +471,12 @@ class appFunctions():
             for row, apartment in enumerate(apartment_data):
                 for column, value in enumerate(apartment):
                     item = QTableWidgetItem(str(value))
+                    item.setTextAlignment(Qt.AlignCenter)
                     self.ui.Apartment_tableWidget_3.setItem(row, column, item)
                     
             self.ui.Apartment_tableWidget_3.verticalHeader().setVisible(False)
-                
+            
+            # Reset to blank all line edit and combo box    
             self.ui.ApartNum_line_edit.setText("")
             self.ui.FloorLvl_comboBox.setCurrentIndex(0)
             self.ui.RentalBill_line_edit.setText("")
@@ -371,6 +514,7 @@ class appFunctions():
                 for row, apartment in enumerate(apartment_data):
                     for column, value in enumerate(apartment):
                         item = QTableWidgetItem(str(value))
+                        item.setTextAlignment(Qt.AlignCenter)
                         self.ui.Apartment_tableWidget_3.setItem(row, column, item)
 
                 self.ui.Apartment_tableWidget_3.verticalHeader().setVisible(False)
@@ -452,10 +596,12 @@ class appFunctions():
             for row, apartment in enumerate(apartment_data):
                 for column, value in enumerate(apartment):
                     item = QTableWidgetItem(str(value))
+                    item.setTextAlignment(Qt.AlignCenter)
                     self.ui.Apartment_tableWidget_3.setItem(row, column, item)
 
             self.ui.Apartment_tableWidget_3.verticalHeader().setVisible(False)
             
+            # Reset to blank all line edit and combo box
             self.ui.ApartNum_line_edit.setText("")
             self.ui.FloorLvl_comboBox.setCurrentIndex(0)
             self.ui.RentalBill_line_edit.setText("")
@@ -464,6 +610,8 @@ class appFunctions():
             print(e)
             
 ############################################################################################################################################################
+
+
     def click_pay_list_page(self): 
         # Update the table widget with data from Payment table
         update_table_widget_sql = "SELECT * FROM Payment"
@@ -474,6 +622,7 @@ class appFunctions():
         for row, apartment in enumerate(payment_data):
             for column, value in enumerate(apartment):
                 item = QTableWidgetItem(str(value))
+                item.setTextAlignment(Qt.AlignCenter)
                 self.ui.Payment_tableWidget.setItem(row, column, item)
                     
         self.ui.Payment_tableWidget.verticalHeader().setVisible(False)
@@ -501,7 +650,10 @@ class appFunctions():
         table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)
         table_widget.resizeColumnsToContents()
         
+        
 ############################################################################################################################################################
+
+
     def click_CRUD_payment_page(self):
         # Update the table widget with data from Payment table
         update_table_widget_sql = "SELECT * FROM Payment"
@@ -512,6 +664,7 @@ class appFunctions():
         for row, apartment in enumerate(payment_data):
             for column, value in enumerate(apartment):
                 item = QTableWidgetItem(str(value))
+                item.setTextAlignment(Qt.AlignCenter)
                 self.ui.Payment_tableWidget_5.setItem(row, column, item)
                     
         self.ui.Payment_tableWidget_5.verticalHeader().setVisible(False)
@@ -617,6 +770,7 @@ class appFunctions():
         for row, apartment in enumerate(ElectricBill_data):
             for column, value in enumerate(apartment):
                 item = QTableWidgetItem(str(value))
+                item.setTextAlignment(Qt.AlignCenter)
                 self.ui.ElectricBill_tableWidget.setItem(row, column, item)
                     
         self.ui.ElectricBill_tableWidget.verticalHeader().setVisible(False)

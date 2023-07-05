@@ -61,9 +61,10 @@ class MainWindow(QMainWindow):
         
         self.ui.CRUDTenantBtn.clicked.connect(lambda: appFunctions.click_CRUD_tenant_page(self))           # table
         self.ui.AddTenantBtn.clicked.connect(lambda: appFunctions.add_tenant(self))                        # add button
+        self.ui.DelTenantBtn.clicked.connect(lambda: appFunctions.delete_tenant(self))                     # delete button
+        self.ui.GetTenantBtn.clicked.connect(lambda: appFunctions.get_tenant(self))                        # get button
+        self.ui.UpdTenantBtn.clicked.connect(lambda: appFunctions.update_tenant(self))                     # update button
         
-        
-         
         ##  TenantInfoPage BUTTONS
         ####################################################################################################
         
