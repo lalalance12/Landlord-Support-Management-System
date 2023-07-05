@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
-from PySide6.QtWidgets import QTableWidgetItem, QComboBox, QHeaderView, QDialog, QVBoxLayout, QMessageBox, QInputDialog, QAbstractItemView
-from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QTableWidgetItem, QComboBox, QHeaderView, QDialog, QVBoxLayout, QMessageBox, QInputDialog, QAbstractItemView, QCalendarWidget, QDialogButtonBox, QLabel, QDialogButtonBox
+from PySide6.QtCore import Qt, QDate
 from datetime import date
 
 
@@ -21,6 +21,204 @@ class appFunctions():
     def __init__(self, arg):
         super(appFunctions, self).__init__()
         self.arg = arg
+        
+############################################################################################################################################################
+
+############################################################################################################################################################
+
+    def click_CRUD_tenant_page(self):
+        # Update the table widget with data from Tenant table
+        update_table_widget_sql = "SELECT * FROM Tenant"
+        mycursor.execute(update_table_widget_sql)
+        tenant_data = mycursor.fetchall()
+            
+        self.ui.Tenant_tableWidget.setRowCount(len(tenant_data))
+        for row, apartment in enumerate(tenant_data):
+            for column, value in enumerate(apartment):
+                item = QTableWidgetItem(str(value))
+                self.ui.Tenant_tableWidget.setItem(row, column, item)
+                    
+        self.ui.Tenant_tableWidget.verticalHeader().setVisible(False)
+        self.ui.Tenant_tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.ui.Tenant_tableWidget.resizeColumnsToContents()
+
+    def add_tenant(self):
+        # Create table Tenant if there is no existing table
+        mycursor.execute("""
+            CREATE TABLE IF NOT EXISTS Tenant (
+                Tenant_ID INT AUTO_INCREMENT PRIMARY KEY,
+                Name VARCHAR (90),
+                Age INT,
+                Sex VARCHAR(10),
+                Phone_no BIGINT,
+                Email VARCHAR(50),
+                Apartment_ID INT,
+                CONSTRAINT fk1 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE
+            )
+        """)
+        mydb.commit()
+        
+         # Create table Lease if there is no existing table
+        mycursor.execute("""
+            CREATE TABLE IF NOT EXISTS Lease (
+                Lease_ID INT AUTO_INCREMENT PRIMARY KEY,
+                Date_Lease DATE,
+                Tenant_ID INT,
+                Apartment_ID INT,
+                CONSTRAINT fk5 FOREIGN KEY (Tenant_ID) REFERENCES Tenant (Tenant_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+                CONSTRAINT fk6 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE
+                )
+        """)
+        mydb.commit()
+        
+        set_auto_increment_sql = "ALTER TABLE Lease AUTO_INCREMENT = 4000"
+        mycursor.execute(set_auto_increment_sql)
+        mydb.commit()
+        
+         # Create table Occupy if there is no existing table
+        mycursor.execute("""
+            CREATE TABLE IF NOT EXISTS Occupy (
+                Tenant_ID INT,
+                Apartment_ID INT,
+                PRIMARY KEY (Tenant_ID, Apartment_ID),
+                CONSTRAINT fk7 FOREIGN KEY (Tenant_ID) REFERENCES Tenant (Tenant_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+                CONSTRAINT fk8 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE
+            )
+        """)
+        mydb.commit()
+        
+        set_auto_increment_sql = "ALTER TABLE Tenant AUTO_INCREMENT = 2020"
+        mycursor.execute(set_auto_increment_sql)
+        mydb.commit()
+
+
+        # Get input of the user in creating an apartment
+        Name = self.ui.Name_line_edit.text()
+        Age = self.ui.Age_line_edit.text()
+        Sex = self.ui.Sex_comboBox.currentText()
+        PhoneNum = self.ui.PhoneNum_line_edit.text()
+        Email = self.ui.Email_line_edit.text()
+        ApartmentID = self.ui.ApartNum_line_edit_3.text()
+        
+        
+        # Check if any input is missing
+        if not all((Name, Age, Sex, PhoneNum, Email, ApartmentID)):
+            QMessageBox.warning(self, "Missing Input", "Please enter all the necessary data.")
+            print("Error:", Name, Age, Sex, PhoneNum, Email, ApartmentID)
+            return
+        
+        # Check if the ApartmentNum exists in the Apartment table
+        apartment_exists_sql = "SELECT Apartment_ID FROM Apartment WHERE Apartment_ID = %s"
+        mycursor.execute(apartment_exists_sql, (ApartmentID,))
+        apartment_result = mycursor.fetchone()
+        
+        if not apartment_result:
+            QMessageBox.warning(self, "Invalid Apartment ID", "The entered Apartment ID does not exist.")
+            return
+        
+        
+        try:
+            # Insert the new tenant data into Tenant table
+            insert_tenant_sql = "INSERT INTO Tenant (Name, Age, Sex, Phone_no, Email, Apartment_ID) VALUES (%s, %s, %s, %s, %s, %s)"
+            values = (Name, Age, Sex, PhoneNum, Email, ApartmentID)
+            mycursor.execute(insert_tenant_sql, values)
+            mydb.commit()
+            
+            # Get the generated Tenant_ID
+            tenant_id = mycursor.lastrowid
+
+            # Insert the new tenant data into the Occupy table
+            insert_occupy_sql = "INSERT INTO Occupy (Tenant_ID, Apartment_ID) VALUES (%s, %s)"
+            values = (tenant_id, ApartmentID)
+            mycursor.execute(insert_occupy_sql, values)
+            mydb.commit()
+            
+            # Check if the Apartment_ID exists in the Lease table
+            apartment_leased_sql = "SELECT Apartment_ID FROM Lease WHERE Apartment_ID = %s"
+            mycursor.execute(apartment_leased_sql, (ApartmentID,))
+            apartment_leased_result = mycursor.fetchone()
+
+            if not apartment_leased_result:
+                # Create a dialog to enter the lease date
+                lease_dialog = QDialog(self)
+                lease_dialog.setWindowTitle("Lease Date")
+                calendar_widget = QCalendarWidget()
+
+                # Create a label
+                label = QLabel("Enter the Lease Date:", lease_dialog)
+                button_box = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+                button_box.accepted.connect(lease_dialog.accept)
+                button_box.rejected.connect(lease_dialog.reject)
+                layout = QVBoxLayout(lease_dialog)
+                layout.addWidget(label)
+                layout.addWidget(calendar_widget)
+                layout.addWidget(button_box)
+
+                if lease_dialog.exec() == QDialog.Accepted:
+                    selected_date = calendar_widget.selectedDate()
+                    lease_date = selected_date.toString("yyyy-MM-dd")
+                else:
+                    QMessageBox.warning(self, "Lease Date", "Lease operation canceled.")
+                    return
+
+                # Insert the lease data into the Lease table
+                insert_lease_sql = "INSERT INTO Lease (Date_Lease, Tenant_ID, Apartment_ID) VALUES (%s, %s, %s)"
+                values = (lease_date, tenant_id, ApartmentID)
+                mycursor.execute(insert_lease_sql, values)
+                mydb.commit()
+
+                QMessageBox.information(self, "Success", "Lease information inserted successfully.")
+            
+            QMessageBox.information(self, "Success", "Tenant inserted successfully.")
+            
+            # Update the table widget with data from Tenant table
+            update_table_widget_sql = "SELECT * FROM Tenant"
+            mycursor.execute(update_table_widget_sql)
+            tenant_data = mycursor.fetchall()
+            
+            self.ui.Tenant_tableWidget.setRowCount(len(tenant_data))
+            for row, tenant in enumerate(tenant_data):
+                for column, value in enumerate(tenant):
+                    item = QTableWidgetItem(str(value))
+                    self.ui.Tenant_tableWidget.setItem(row, column, item)
+                    
+            self.ui.Tenant_tableWidget.verticalHeader().setVisible(False)
+                
+            self.ui.Name_line_edit.setText("")
+            self.ui.Age_line_edit.setText("")
+            self.ui.Sex_comboBox.setCurrentIndex(0)
+            self.ui.PhoneNum_line_edit.setText("")
+            self.ui.Email_line_edit.setText("")
+            self.ui.ApartNum_line_edit_3.setText("")
+            
+        except Error as e:
+            print("Error:", e)
+
+
+
+
+
+############################################################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ############################################################################################################################################################     
     
@@ -95,7 +293,7 @@ class appFunctions():
         set_auto_increment_sql = "ALTER TABLE Apartment AUTO_INCREMENT = 1000"
         mycursor.execute(set_auto_increment_sql)
         mydb.commit()
-        
+          
         # Get input of the user in creating an apartment
         ApartmentNumber = self.ui.ApartNum_line_edit.text()
         FloorLevel = self.ui.FloorLvl_comboBox.currentText()
@@ -123,7 +321,7 @@ class appFunctions():
             mydb.commit()
             QMessageBox.information(self, "Success", "Apartment inserted successfully.")
             
-             # Update the table widget with data from Apartment table
+            # Update the table widget with data from Apartment table
             update_table_widget_sql = "SELECT * FROM Apartment"
             mycursor.execute(update_table_widget_sql)
             apartment_data = mycursor.fetchall()
@@ -304,9 +502,94 @@ class appFunctions():
         table_widget.resizeColumnsToContents()
         
 ############################################################################################################################################################
+    def click_CRUD_payment_page(self):
+        # Update the table widget with data from Payment table
+        update_table_widget_sql = "SELECT * FROM Payment"
+        mycursor.execute(update_table_widget_sql)
+        payment_data = mycursor.fetchall()
+            
+        self.ui.Payment_tableWidget_5.setRowCount(len( payment_data))
+        for row, apartment in enumerate(payment_data):
+            for column, value in enumerate(apartment):
+                item = QTableWidgetItem(str(value))
+                self.ui.Payment_tableWidget_5.setItem(row, column, item)
+                    
+        self.ui.Payment_tableWidget_5.verticalHeader().setVisible(False)
+        self.ui.Payment_tableWidget_5.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        
+        
+    def add_payment(self):
+        # Create table Payment if there is no existing table
+        mycursor.execute("""
+            CREATE TABLE IF NOT EXISTS Payment (
+                Payment_ID INT PRIMARY KEY,
+                Payment_Status VARCHAR(15),
+                Payment_Date DATE,
+                Amount_Paid DECIMAL(6, 2),
+                Payment_Method VARCHAR(15),
+                Tenant_ID INT,
+                Apartment_ID INT,
+                CONSTRAINT fk2 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+                CONSTRAINT fk3 FOREIGN KEY (Tenant_ID) REFERENCES Tenant (Tenant_ID) ON DELETE CASCADE ON UPDATE CASCADE
+                )
+        """)
+        mydb.commit()
+        
+        set_auto_increment_sql = "ALTER TABLE Payment AUTO_INCREMENT = 4000"
+        mycursor.execute(set_auto_increment_sql)
+        mydb.commit()
+        
+        #######################################     RESUME HERE
+        
+        """"
+        # Get input of the user in creating an payment
+        ApartmentNumber = self.ui.ApartNum_line_edit.text()
+        FloorLevel = self.ui.FloorLvl_comboBox.currentText()
+        RentalBill = self.ui.RentalBill_line_edit.text()
+        
+        
+        # Check if any input is missing
+        if not all((ApartmentNumber, FloorLevel, RentalBill)):
+            QMessageBox.warning(self, "Missing Input", "Please enter all the necessary data.")
+            return
+        
+        # Check if the apartment number already exists
+        check_existing_sql = "SELECT COUNT(*) FROM Apartment WHERE Apartment_No = %s"
+        mycursor.execute(check_existing_sql, (ApartmentNumber,))
+        count = mycursor.fetchone()[0]
+        if count > 0:
+            QMessageBox.warning(self, "Duplicate Apartment Number", "Apartment number already exists.")
+            return
+
+        insert_apartment_sql = "INSERT INTO Apartment (Apartment_No, Floor_level, Rental_bill) VALUES (%s, %s, %s)"
+        
+        try:
+            # Insert the new apartment data
+            mycursor.execute(insert_apartment_sql, (ApartmentNumber, FloorLevel, RentalBill))
+            mydb.commit()
+            QMessageBox.information(self, "Success", "Apartment inserted successfully.")
+            
+             # Update the table widget with data from Apartment table
+            update_table_widget_sql = "SELECT * FROM Apartment"
+            mycursor.execute(update_table_widget_sql)
+            apartment_data = mycursor.fetchall()
+            
+            self.ui.Apartment_tableWidget_3.setRowCount(len(apartment_data))
+            for row, apartment in enumerate(apartment_data):
+                for column, value in enumerate(apartment):
+                    item = QTableWidgetItem(str(value))
+                    self.ui.Apartment_tableWidget_3.setItem(row, column, item)
+                    
+            self.ui.Apartment_tableWidget_3.verticalHeader().setVisible(False)
+                
+            self.ui.ApartNum_line_edit.setText("")
+            self.ui.FloorLvl_comboBox.setCurrentIndex(0)
+            self.ui.RentalBill_line_edit.setText("")
+            
+        except Error as e:
+            print(e)
     
-    
-    
+        """
     
     
     

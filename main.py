@@ -59,7 +59,8 @@ class MainWindow(QMainWindow):
         ##  CRUDTenantPage BUTTONS
         ####################################################################################################
         
-        
+        self.ui.CRUDTenantBtn.clicked.connect(lambda: appFunctions.click_CRUD_tenant_page(self))           # table
+        self.ui.AddTenantBtn.clicked.connect(lambda: appFunctions.add_tenant(self))                        # add button
         
         
          

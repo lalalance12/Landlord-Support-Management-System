@@ -514,7 +514,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem13 = QTableWidgetItem()
         self.Apartment_tableWidget_2.setHorizontalHeaderItem(3, __qtablewidgetitem13)
         self.Apartment_tableWidget_2.setObjectName(u"Apartment_tableWidget_2")
-        self.Apartment_tableWidget_2.setGeometry(QRect(10, 50, 831, 421))
+        self.Apartment_tableWidget_2.setGeometry(QRect(230, 50, 611, 421))
         self.Apartment_tableWidget_2.setStyleSheet(u"QTableWidget {\n"
 "    background-color: #333333;\n"
 "    color: white;\n"
@@ -534,6 +534,37 @@ class Ui_MainWindow(object):
         self.Apartment_tableWidget_2.horizontalHeader().setStretchLastSection(False)
         self.Apartment_tableWidget_2.verticalHeader().setVisible(True)
         self.Apartment_tableWidget_2.verticalHeader().setStretchLastSection(False)
+        self.frame_13 = QFrame(self.ApartmentInfoPage)
+        self.frame_13.setObjectName(u"frame_13")
+        self.frame_13.setGeometry(QRect(20, 50, 191, 421))
+        self.frame_13.setStyleSheet(u"background-color: #333333;\n"
+"color: white;")
+        self.frame_13.setFrameShape(QFrame.StyledPanel)
+        self.frame_13.setFrameShadow(QFrame.Raised)
+        self.AptLeaseBtn = QPushButton(self.frame_13)
+        self.AptLeaseBtn.setObjectName(u"AptLeaseBtn")
+        self.AptLeaseBtn.setGeometry(QRect(40, 200, 111, 41))
+        self.AptLeaseBtn.setFont(font4)
+        self.AptLeaseBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.AptLeaseBtn.setStyleSheet(u"background-color: #666666; color: white\n"
+";\n"
+"")
+        self.AptOcctBtn = QPushButton(self.frame_13)
+        self.AptOcctBtn.setObjectName(u"AptOcctBtn")
+        self.AptOcctBtn.setGeometry(QRect(40, 130, 111, 41))
+        self.AptOcctBtn.setFont(font4)
+        self.AptOcctBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.AptOcctBtn.setStyleSheet(u"background-color: #666666; color: white\n"
+";\n"
+"")
+        self.AptListBtn = QPushButton(self.frame_13)
+        self.AptListBtn.setObjectName(u"AptListBtn")
+        self.AptListBtn.setGeometry(QRect(40, 60, 111, 41))
+        self.AptListBtn.setFont(font4)
+        self.AptListBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.AptListBtn.setStyleSheet(u"background-color: #666666; color: white\n"
+";\n"
+"")
         self.stackedWidget.addWidget(self.ApartmentInfoPage)
         self.CRUDApartPage = QWidget()
         self.CRUDApartPage.setObjectName(u"CRUDApartPage")
@@ -752,7 +783,7 @@ class Ui_MainWindow(object):
         self.CRUDPayment_label.setFont(font3)
         self.AmountPaid_line_edit = QLineEdit(self.frame_21)
         self.AmountPaid_line_edit.setObjectName(u"AmountPaid_line_edit")
-        self.AmountPaid_line_edit.setGeometry(QRect(160, 130, 101, 21))
+        self.AmountPaid_line_edit.setGeometry(QRect(160, 150, 101, 21))
         self.AmountPaid_line_edit.setStyleSheet(u"QLineEdit {\n"
 "    background-color: #666666;\n"
 "    color: black;\n"
@@ -764,19 +795,20 @@ class Ui_MainWindow(object):
 "")
         self.AmountPaid = QLabel(self.frame_21)
         self.AmountPaid.setObjectName(u"AmountPaid")
-        self.AmountPaid.setGeometry(QRect(40, 130, 91, 16))
+        self.AmountPaid.setGeometry(QRect(40, 150, 91, 16))
         self.PaymentDate = QLabel(self.frame_21)
         self.PaymentDate.setObjectName(u"PaymentDate")
-        self.PaymentDate.setGeometry(QRect(40, 170, 91, 16))
+        self.PaymentDate.setGeometry(QRect(40, 190, 91, 16))
         self.PaymentMethod = QLabel(self.frame_21)
         self.PaymentMethod.setObjectName(u"PaymentMethod")
-        self.PaymentMethod.setGeometry(QRect(40, 210, 101, 16))
+        self.PaymentMethod.setGeometry(QRect(40, 230, 101, 16))
         self.PayMethod_comboBox = QComboBox(self.frame_21)
         self.PayMethod_comboBox.addItem("")
         self.PayMethod_comboBox.addItem("")
         self.PayMethod_comboBox.addItem("")
+        self.PayMethod_comboBox.addItem("")
         self.PayMethod_comboBox.setObjectName(u"PayMethod_comboBox")
-        self.PayMethod_comboBox.setGeometry(QRect(160, 210, 101, 22))
+        self.PayMethod_comboBox.setGeometry(QRect(160, 230, 101, 22))
         self.PayMethod_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
         self.AddPayBtn = QPushButton(self.frame_21)
         self.AddPayBtn.setObjectName(u"AddPayBtn")
@@ -801,27 +833,27 @@ class Ui_MainWindow(object):
 "")
         self.Payment_dateEdit = QDateEdit(self.frame_21)
         self.Payment_dateEdit.setObjectName(u"Payment_dateEdit")
-        self.Payment_dateEdit.setGeometry(QRect(160, 170, 101, 22))
+        self.Payment_dateEdit.setGeometry(QRect(160, 190, 101, 22))
         self.Payment_dateEdit.setStyleSheet(u"background-color: #666666; color: black;")
         self.PaymentStatus = QLabel(self.frame_21)
         self.PaymentStatus.setObjectName(u"PaymentStatus")
-        self.PaymentStatus.setGeometry(QRect(40, 250, 101, 16))
+        self.PaymentStatus.setGeometry(QRect(40, 270, 101, 16))
         self.PayStat_comboBox = QComboBox(self.frame_21)
         self.PayStat_comboBox.addItem("")
         self.PayStat_comboBox.addItem("")
         self.PayStat_comboBox.addItem("")
         self.PayStat_comboBox.setObjectName(u"PayStat_comboBox")
-        self.PayStat_comboBox.setGeometry(QRect(160, 250, 101, 22))
+        self.PayStat_comboBox.setGeometry(QRect(160, 270, 101, 22))
         self.PayStat_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
         self.TenantID = QLabel(self.frame_21)
         self.TenantID.setObjectName(u"TenantID")
         self.TenantID.setGeometry(QRect(40, 50, 91, 16))
         self.ApartID = QLabel(self.frame_21)
         self.ApartID.setObjectName(u"ApartID")
-        self.ApartID.setGeometry(QRect(40, 80, 91, 16))
+        self.ApartID.setGeometry(QRect(40, 90, 91, 16))
         self.ApartID_line_edit_3 = QLineEdit(self.frame_21)
         self.ApartID_line_edit_3.setObjectName(u"ApartID_line_edit_3")
-        self.ApartID_line_edit_3.setGeometry(QRect(160, 80, 101, 21))
+        self.ApartID_line_edit_3.setGeometry(QRect(160, 90, 101, 21))
         self.ApartID_line_edit_3.setStyleSheet(u"QLineEdit {\n"
 "    background-color: #666666;\n"
 "    color: black;\n"
@@ -1143,7 +1175,7 @@ class Ui_MainWindow(object):
         self.Sex.setGeometry(QRect(40, 140, 41, 16))
         self.PhoneNum_line_edit = QLineEdit(self.frame_7)
         self.PhoneNum_line_edit.setObjectName(u"PhoneNum_line_edit")
-        self.PhoneNum_line_edit.setGeometry(QRect(140, 180, 81, 21))
+        self.PhoneNum_line_edit.setGeometry(QRect(140, 180, 101, 21))
         self.PhoneNum_line_edit.setStyleSheet(u"background-color: #666666; color: black;")
         self.Email_line_edit = QLineEdit(self.frame_7)
         self.Email_line_edit.setObjectName(u"Email_line_edit")
@@ -1159,17 +1191,16 @@ class Ui_MainWindow(object):
         self.Apart_num.setObjectName(u"Apart_num")
         self.Apart_num.setGeometry(QRect(40, 260, 81, 16))
         self.Sex_comboBox = QComboBox(self.frame_7)
+        self.Sex_comboBox.addItem("")
+        self.Sex_comboBox.addItem("")
         self.Sex_comboBox.setObjectName(u"Sex_comboBox")
         self.Sex_comboBox.setGeometry(QRect(140, 140, 81, 22))
         self.Sex_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
-        self.ApartNum_comboBox = QComboBox(self.frame_7)
-        self.ApartNum_comboBox.setObjectName(u"ApartNum_comboBox")
-        self.ApartNum_comboBox.setGeometry(QRect(140, 260, 61, 22))
-        self.ApartNum_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
         self.AddTenantBtn = QPushButton(self.frame_7)
         self.AddTenantBtn.setObjectName(u"AddTenantBtn")
         self.AddTenantBtn.setGeometry(QRect(40, 330, 111, 41))
         self.AddTenantBtn.setFont(font4)
+        self.AddTenantBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.AddTenantBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -1177,6 +1208,7 @@ class Ui_MainWindow(object):
         self.DelTenantBtn.setObjectName(u"DelTenantBtn")
         self.DelTenantBtn.setGeometry(QRect(160, 330, 111, 41))
         self.DelTenantBtn.setFont(font4)
+        self.DelTenantBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DelTenantBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -1184,6 +1216,7 @@ class Ui_MainWindow(object):
         self.UpdTenantBtn.setObjectName(u"UpdTenantBtn")
         self.UpdTenantBtn.setGeometry(QRect(280, 330, 111, 41))
         self.UpdTenantBtn.setFont(font4)
+        self.UpdTenantBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.UpdTenantBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -1195,6 +1228,10 @@ class Ui_MainWindow(object):
         self.GetTenantBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
+        self.ApartNum_line_edit_3 = QLineEdit(self.frame_7)
+        self.ApartNum_line_edit_3.setObjectName(u"ApartNum_line_edit_3")
+        self.ApartNum_line_edit_3.setGeometry(QRect(140, 260, 41, 21))
+        self.ApartNum_line_edit_3.setStyleSheet(u"background-color: #666666; color: black;")
 
         self.horizontalLayout_5.addWidget(self.frame_7)
 
@@ -1224,11 +1261,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem48 = QTableWidgetItem()
         self.Tenant_tableWidget.setHorizontalHeaderItem(6, __qtablewidgetitem48)
         self.Tenant_tableWidget.setObjectName(u"Tenant_tableWidget")
-        self.Tenant_tableWidget.setEnabled(True)
-        self.Tenant_tableWidget.setGeometry(QRect(0, -20, 411, 451))
-        font6 = QFont()
-        font6.setKerning(True)
-        self.Tenant_tableWidget.setFont(font6)
+        self.Tenant_tableWidget.setGeometry(QRect(0, 0, 411, 451))
         self.Tenant_tableWidget.setStyleSheet(u"\n"
 "    QTableWidget {\n"
 "        background-color: #333333;\n"
@@ -1253,15 +1286,6 @@ class Ui_MainWindow(object):
 "        background: none;\n"
 "    }\n"
 "")
-        self.Tenant_tableWidget.horizontalHeader().setVisible(True)
-        self.Tenant_tableWidget.horizontalHeader().setCascadingSectionResizes(False)
-        self.Tenant_tableWidget.horizontalHeader().setHighlightSections(True)
-        self.Tenant_tableWidget.horizontalHeader().setProperty("showSortIndicator", True)
-        self.Tenant_tableWidget.horizontalHeader().setStretchLastSection(False)
-        self.Tenant_tableWidget.verticalHeader().setVisible(True)
-        self.Tenant_tableWidget.verticalHeader().setHighlightSections(True)
-        self.Tenant_tableWidget.verticalHeader().setProperty("showSortIndicator", False)
-        self.Tenant_tableWidget.verticalHeader().setStretchLastSection(False)
 
         self.horizontalLayout_5.addWidget(self.frame_8)
 
@@ -1282,7 +1306,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(8)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1338,7 +1362,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Payment Date", None));
         ___qtablewidgetitem9 = self.PayHis_tableWidget_2.horizontalHeaderItem(3)
         ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Payment Method", None));
-        self.ApartmentInfo_label.setText(QCoreApplication.translate("MainWindow", u"Apartment List", None))
+        self.ApartmentInfo_label.setText(QCoreApplication.translate("MainWindow", u"Apartment Information", None))
         self.Search_lineEdit_2.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search....", None))
         ___qtablewidgetitem10 = self.Apartment_tableWidget_2.horizontalHeaderItem(0)
         ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
@@ -1348,6 +1372,9 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Floor Level ", None));
         ___qtablewidgetitem13 = self.Apartment_tableWidget_2.horizontalHeaderItem(3)
         ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Rental Bill", None));
+        self.AptLeaseBtn.setText(QCoreApplication.translate("MainWindow", u"LEASE", None))
+        self.AptOcctBtn.setText(QCoreApplication.translate("MainWindow", u"OCCUPY", None))
+        self.AptListBtn.setText(QCoreApplication.translate("MainWindow", u"Apart. List", None))
         self.page_label_4.setText(QCoreApplication.translate("MainWindow", u"CRUD Apartment", None))
         self.ApartNum_line_edit.setPlaceholderText("")
         self.ApartNum.setText(QCoreApplication.translate("MainWindow", u"Apartment Number:", None))
@@ -1390,9 +1417,10 @@ class Ui_MainWindow(object):
         self.AmountPaid.setText(QCoreApplication.translate("MainWindow", u"Amount Paid:", None))
         self.PaymentDate.setText(QCoreApplication.translate("MainWindow", u"Payment Date:", None))
         self.PaymentMethod.setText(QCoreApplication.translate("MainWindow", u"Payment Method:", None))
-        self.PayMethod_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Cash", None))
-        self.PayMethod_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Bank", None))
-        self.PayMethod_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"G-Cash", None))
+        self.PayMethod_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
+        self.PayMethod_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Cash", None))
+        self.PayMethod_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Bank", None))
+        self.PayMethod_comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"G-Cash", None))
 
         self.AddPayBtn.setText(QCoreApplication.translate("MainWindow", u"ADD", None))
         self.DelPayBtn.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
@@ -1459,7 +1487,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem41 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(4)
         ___qtablewidgetitem41.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         self.page_label.setText(QCoreApplication.translate("MainWindow", u"CRUD Tenant", None))
-        self.Name_line_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"First Name, Middle Initial, Last Name", None))
+        self.Name_line_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"First Name, Middle Name, Last Name", None))
         self.Name.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
         self.Age.setText(QCoreApplication.translate("MainWindow", u"Age:", None))
         self.Sex.setText(QCoreApplication.translate("MainWindow", u"Sex:", None))
@@ -1467,11 +1495,15 @@ class Ui_MainWindow(object):
         self.Email_line_edit.setText("")
         self.Phone_number.setText(QCoreApplication.translate("MainWindow", u"Phone Number:", None))
         self.Email.setText(QCoreApplication.translate("MainWindow", u"Email:", None))
-        self.Apart_num.setText(QCoreApplication.translate("MainWindow", u"Apart. Number:", None))
+        self.Apart_num.setText(QCoreApplication.translate("MainWindow", u"Apartment ID:", None))
+        self.Sex_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Male", None))
+        self.Sex_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Female", None))
+
         self.AddTenantBtn.setText(QCoreApplication.translate("MainWindow", u"ADD", None))
         self.DelTenantBtn.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
         self.UpdTenantBtn.setText(QCoreApplication.translate("MainWindow", u"UPDATE", None))
         self.GetTenantBtn.setText(QCoreApplication.translate("MainWindow", u"GET", None))
+        self.ApartNum_line_edit_3.setText("")
         ___qtablewidgetitem42 = self.Tenant_tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem42.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
         ___qtablewidgetitem43 = self.Tenant_tableWidget.horizontalHeaderItem(1)
@@ -1481,9 +1513,9 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem45 = self.Tenant_tableWidget.horizontalHeaderItem(3)
         ___qtablewidgetitem45.setText(QCoreApplication.translate("MainWindow", u"Sex", None));
         ___qtablewidgetitem46 = self.Tenant_tableWidget.horizontalHeaderItem(4)
-        ___qtablewidgetitem46.setText(QCoreApplication.translate("MainWindow", u"Phone Number", None));
+        ___qtablewidgetitem46.setText(QCoreApplication.translate("MainWindow", u"Email", None));
         ___qtablewidgetitem47 = self.Tenant_tableWidget.horizontalHeaderItem(5)
-        ___qtablewidgetitem47.setText(QCoreApplication.translate("MainWindow", u"Email", None));
+        ___qtablewidgetitem47.setText(QCoreApplication.translate("MainWindow", u"Phone Number", None));
         ___qtablewidgetitem48 = self.Tenant_tableWidget.horizontalHeaderItem(6)
         ___qtablewidgetitem48.setText(QCoreApplication.translate("MainWindow", u"Apart. Number", None));
     # retranslateUi
