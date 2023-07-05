@@ -468,7 +468,7 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>7</number>
+             <number>4</number>
             </property>
             <widget class="QWidget" name="TSListPage">
              <widget class="QLineEdit" name="Search_lineEdit">
