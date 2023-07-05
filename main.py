@@ -130,6 +130,7 @@ class MainWindow(QMainWindow):
         self.ui.CRUDElectricBillBtn.clicked.connect(lambda: appFunctions.click_electric_bill_page(self))     # table
         self.ui.AddEBBtn.clicked.connect(lambda: appFunctions.add_electric_bill(self))                       # add button
         self.ui.UpdEBBtn.clicked.connect(lambda: appFunctions.update_electric_bill(self))                    # update button
+        self.ui.GetEBBtn.clicked.connect(lambda: appFunctions.get_electric_bill(self))                       # get button
         self.ui.DelEBBtn.clicked.connect(lambda: appFunctions.delete_electric_bill(self))                    # delete button  
         
         

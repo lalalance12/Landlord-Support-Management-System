@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfacexmxvLP.ui'
+## Form generated from reading UI file 'interfaceHuoVWa.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -1007,7 +1007,7 @@ class Ui_MainWindow(object):
 "")
         self.DelEBBtn = QPushButton(self.frame_18)
         self.DelEBBtn.setObjectName(u"DelEBBtn")
-        self.DelEBBtn.setGeometry(QRect(150, 300, 111, 41))
+        self.DelEBBtn.setGeometry(QRect(260, 300, 111, 41))
         self.DelEBBtn.setFont(font4)
         self.DelEBBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DelEBBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -1015,7 +1015,7 @@ class Ui_MainWindow(object):
 "")
         self.UpdEBBtn = QPushButton(self.frame_18)
         self.UpdEBBtn.setObjectName(u"UpdEBBtn")
-        self.UpdEBBtn.setGeometry(QRect(280, 300, 111, 41))
+        self.UpdEBBtn.setGeometry(QRect(140, 300, 111, 41))
         self.UpdEBBtn.setFont(font4)
         self.UpdEBBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.UpdEBBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -1028,17 +1028,17 @@ class Ui_MainWindow(object):
         self.ApartmentID = QLabel(self.frame_18)
         self.ApartmentID.setObjectName(u"ApartmentID")
         self.ApartmentID.setGeometry(QRect(40, 180, 81, 16))
-        self.ApartID_line_edit = QLineEdit(self.frame_18)
-        self.ApartID_line_edit.setObjectName(u"ApartID_line_edit")
-        self.ApartID_line_edit.setGeometry(QRect(130, 180, 91, 21))
-        self.ApartID_line_edit.setStyleSheet(u"background-color: #666666; color: black;")
-        self.comboBox = QComboBox(self.frame_18)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
-        self.comboBox.setGeometry(QRect(130, 140, 91, 22))
-        self.comboBox.setStyleSheet(u"background-color: #666666; color: black;")
+        self.ApartID_line_edit_7 = QLineEdit(self.frame_18)
+        self.ApartID_line_edit_7.setObjectName(u"ApartID_line_edit_7")
+        self.ApartID_line_edit_7.setGeometry(QRect(130, 180, 91, 21))
+        self.ApartID_line_edit_7.setStyleSheet(u"background-color: #666666; color: black;")
+        self.Status_comboBox = QComboBox(self.frame_18)
+        self.Status_comboBox.addItem("")
+        self.Status_comboBox.addItem("")
+        self.Status_comboBox.addItem("")
+        self.Status_comboBox.setObjectName(u"Status_comboBox")
+        self.Status_comboBox.setGeometry(QRect(130, 140, 91, 22))
+        self.Status_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
         self.GetEBBtn = QPushButton(self.frame_18)
         self.GetEBBtn.setObjectName(u"GetEBBtn")
         self.GetEBBtn.setGeometry(QRect(320, 10, 71, 31))
@@ -1279,7 +1279,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(7)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1434,10 +1434,10 @@ class Ui_MainWindow(object):
         self.DelEBBtn.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
         self.UpdEBBtn.setText(QCoreApplication.translate("MainWindow", u"UPDATE", None))
         self.ApartmentID.setText(QCoreApplication.translate("MainWindow", u"Apartment ID:", None))
-        self.ApartID_line_edit.setText("")
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Pending", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Succesful", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Overdue", None))
+        self.ApartID_line_edit_7.setText("")
+        self.Status_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Pending", None))
+        self.Status_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Succesful", None))
+        self.Status_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Overdue", None))
 
         self.GetEBBtn.setText(QCoreApplication.translate("MainWindow", u"GET", None))
         ___qtablewidgetitem37 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(0)

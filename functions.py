@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 from PySide6.QtWidgets import QTableWidgetItem, QComboBox, QHeaderView, QDialog, QVBoxLayout, QMessageBox, QInputDialog, QAbstractItemView, QCalendarWidget, QDialogButtonBox, QLabel, QDialogButtonBox
-from PySide6.QtCore import Qt, QDate
+from PySide6.QtCore import Qt, QDate, QLocale
 import datetime
 
 
@@ -815,7 +815,7 @@ class appFunctions():
                 Payment_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 Payment_Status VARCHAR(15) NOT NULL,
                 Payment_Date DATE,
-                Amount_Paid DECIMAL(6, 2),
+                Amount_Paid DECIMAL(10, 2),
                 Payment_Method VARCHAR(15),
                 Tenant_ID INT NOT NULL,
                 Apartment_ID INT NOT NULL,
@@ -825,7 +825,7 @@ class appFunctions():
         """)
         mydb.commit()
 
-        set_auto_increment_sql = "ALTER TABLE Payment AUTO_INCREMENT = 6700"
+        set_auto_increment_sql = "ALTER TABLE Payment AUTO_INCREMENT = 7700"
         mycursor.execute(set_auto_increment_sql)
         mydb.commit()
 
@@ -900,6 +900,7 @@ class appFunctions():
                     self.ui.Payment_tableWidget_5.setItem(row, column, item)
 
             self.ui.Payment_tableWidget_5.verticalHeader().setVisible(False)
+            self.ui.Payment_tableWidget_5.setEditTriggers(QAbstractItemView.NoEditTriggers)
             
             # Reset to blank all line edit and combo box
             self.ui.TenantID_line_edit3.setText("")
@@ -942,6 +943,7 @@ class appFunctions():
         if selected_row == -1:
             QMessageBox.warning(self, "No Selection", "Please select an apartment to update.")
             return
+        
         # Get the payment ID from the selected row
         payment_id = self.ui.Payment_tableWidget_5.item(selected_row, 0).text()
         
@@ -1137,8 +1139,8 @@ class appFunctions():
         # Find the data in the Electric Bill table
         search_text = self.ui.Search_lineEdit_4.text()
 
-        mycursor.execute("SELECT * FROM Apartment WHERE Elec_Bill_ID LIKE %s OR Date_Start LIKE %s OR KWH LIKE %s OR Status LIKE %s OR Apartment_ID LIKE %s",
-            (f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%" f"{search_text}%"))
+        mycursor.execute("SELECT * FROM Electric_Bill WHERE Elec_Bill_ID LIKE %s OR Date_Start LIKE %s OR KWH LIKE %s OR Status LIKE %s OR Apartment_ID LIKE %s",
+            (f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%"))
 
         result = mycursor.fetchall()
 
@@ -1150,13 +1152,10 @@ class appFunctions():
         for row, apartment in enumerate(result):
             for col, data in enumerate(apartment):
                 item = QTableWidgetItem(str(data))
+                item.setTextAlignment(Qt.AlignCenter)
                 table_widget.setItem(row, col, item)
 
-        table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)
-        table_widget.resizeColumnsToContents()            
- 
- 
- 
+        table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)          
         
 ############################################################################################################################################################
 
@@ -1181,7 +1180,7 @@ class appFunctions():
             CREATE TABLE IF NOT EXISTS Electric_Bill (
                 Elec_Bill_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 Date_Start DATE NOT NULL,
-                KWH DECIMAL(6, 2) NOT NULL,
+                KWH DECIMAL(10, 2) NOT NULL,
                 Status VARCHAR(15)NOT NULL,
                 Apartment_ID INT NOT NULL,
                 CONSTRAINT fk4 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE
@@ -1189,15 +1188,15 @@ class appFunctions():
         """)
         mydb.commit()
 
-        set_auto_increment_sql = "ALTER TABLE Electric_Bill AUTO_INCREMENT = 1"
+        set_auto_increment_sql = "ALTER TABLE Electric_Bill AUTO_INCREMENT = 9900"
         mycursor.execute(set_auto_increment_sql)
         mydb.commit()
         
         # Get input of the user in creating an electric bill
         DateStarted = self.ui.DateStart_dateEdit.date().toString("yyyy-MM-dd")
         Kwh = self.ui.kwh_line_edit.text()
-        Status = self.ui.comboBox.currentText()
-        ApartmentID = self.ui.ApartID_line_edit.text()
+        Status = self.ui.Status_comboBox.currentText()
+        ApartmentID = self.ui.ApartID_line_edit_7.text()
 
         # Check if any input is missing
         if not all((DateStarted, Kwh, Status, ApartmentID)):
@@ -1231,53 +1230,125 @@ class appFunctions():
                     item = QTableWidgetItem(str(value))
                     self.ui.ElectricBill_tableWidget_2.setItem(row, column, item)
 
-            self.ui.ElectricBill_tableWidget_2.verticalHeader().setVisible(True)
+            self.ui.ElectricBill_tableWidget_2.verticalHeader().setVisible(False)
             self.ui.ElectricBill_tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
+            # Reset to blank all line edit and combo box
+            self.ui.DateStart_dateEdit.setDate(QDate())
+            self.ui.kwh_line_edit.setText("")
+            self.ui.Status_comboBox.setCurrentIndex(0)
+            self.ui.ApartID_line_edit_7.setText("")
+            
+        except Error as e:
+            print("Error inserting electric bill:", e)
+            
+            
+    def get_electric_bill(self):
+        # Get the selected row index from ElectricBill_tableWidget_2
+        selected_row = self.ui.ElectricBill_tableWidget_2.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "No Selection", "Please select a electric bill to update.")
+            return
 
+        # Get the Payment ID value from the selected row
+        EB_ID = self.ui.ElectricBill_tableWidget_2.item(selected_row, 0).text()
+
+        try:
+            # Fetch the payment data from the database
+            fetch_EB_sql = "SELECT * FROM Electric_Bill WHERE Elec_Bill_ID = %s"
+            mycursor.execute(fetch_EB_sql, (EB_ID,))
+            EB_data = mycursor.fetchone()
+
+            if EB_data is not None:
+                 # Convert the date string to a QDate object
+                date_str = str(EB_data[1])
+                year, month, day = map(int, date_str.split('-'))
+                date_start = QDate(year, month, day)
+
+                # Update the input fields with the apartment data
+                self.ui.DateStart_dateEdit.setDate(date_start)
+                self.ui.kwh_line_edit.setText(str(EB_data[2]))
+                self.ui.Status_comboBox.setCurrentText(str(EB_data[3]))
+                self.ui.ApartID_line_edit_7.setText(str(EB_data[4]))
+            
+            else:
+                QMessageBox.warning(self, "Electric Bill Not Found", "Electric Bill ID does not exist.")
+
+        except Error as e:
+            print(e)
+
+
+    def update_electric_bill(self):
+        selected_row = self.ui.ElectricBill_tableWidget_2.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "No Selection", "Please select an apartment to update.")
+            return
+        
+        # Get the electric bill ID from the selected row
+        elec_bill_id = self.ui.ElectricBill_tableWidget_2.item(selected_row, 0).text()
+
+        # Get input of the user in creating an electric bill
+        DateStarted = self.ui.DateStart_dateEdit.date().toString("yyyy-MM-dd")
+        Kwh = self.ui.kwh_line_edit.text()
+        Status = self.ui.Status_comboBox.currentText()
+        ApartmentID = self.ui.ApartID_line_edit_7.text()
+        
+        # Check if any input is missing
+        if not all((DateStarted, Kwh, Status, ApartmentID)):
+            QMessageBox.warning(self, "Missing Input", "Please enter all the necessary data.")
+            return
+        
+        # Check if the apartment ID exists in the Apartment table
+        check_apartment_sql = "SELECT COUNT(*) FROM Apartment WHERE Apartment_ID = %s"
+        mycursor.execute(check_apartment_sql, (ApartmentID,))
+        count = mycursor.fetchone()[0]
+        if count == 0:
+            QMessageBox.warning(self, "Invalid Apartment ID", "Apartment ID does not exist.")
+            return
+
+        # Update the apartment data in the database
+        try:
+            update_EB_sql = "UPDATE Electric_Bill SET Date_Start = %s, KWH = %s, Status = %s, Apartment_ID = %s WHERE Elec_Bill_ID = %s"
+            # Update the payment data
+            mycursor.execute(update_EB_sql,
+                            (DateStarted, Kwh, Status, ApartmentID, elec_bill_id))
+            mydb.commit()
+            QMessageBox.information(self, "Success", "Electric Bill updated successfully.")
+
+           # Update the table widget with data from Electric_Bill table
+            update_table_widget_sql = "SELECT * FROM Electric_Bill"
+            mycursor.execute(update_table_widget_sql)
+            electric_bill_data = mycursor.fetchall()
+
+            self.ui.ElectricBill_tableWidget_2.setRowCount(len(electric_bill_data))
+            for row, bill in enumerate(electric_bill_data):
+                for column, value in enumerate(bill):
+                    item = QTableWidgetItem(str(value))
+                    self.ui.ElectricBill_tableWidget_2.setItem(row, column, item)
+
+            self.ui.ElectricBill_tableWidget_2.verticalHeader().setVisible(False)
+            self.ui.ElectricBill_tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+            # Reset to blank all line edit and combo box
+            self.ui.DateStart_dateEdit.setDate(QDate())
+            self.ui.kwh_line_edit.setText("")
+            self.ui.Status_comboBox.setCurrentIndex(0)
+            self.ui.ApartID_line_edit_7.setText("")
+            
         except Error as e:
             print("Error inserting electric bill:", e)
 
-    def update_electric_bill(self):
-        current_row = self.ui.ElectricBill_tableWidget.currentRow()
-        if current_row != -1:
-            # Get the electric bill ID from the selected row
-            elec_bill_id = self.ui.ElectricBill_tableWidget.item(current_row, 0).text()
-
-            # Prompt the user for the new KWH value
-            kwh, ok = QInputDialog.getDouble(self, "Update Electric Bill", "New KWH value:", decimals=2)
-            if ok:
-                # Update the KWH value in the Electric_Bill table
-                update_sql = "UPDATE Electric_Bill SET KWH = %s WHERE Elec_Bill_ID = %s"
-                mycursor.execute(update_sql, (kwh, elec_bill_id))
-                mydb.commit()
-
-                QMessageBox.information(self, "Success", "Electric bill updated successfully.")
-
-                # Update the table widget with data from Electric_Bill table
-                update_table_widget_sql = "SELECT * FROM Electric_Bill"
-                mycursor.execute(update_table_widget_sql)
-                electric_bill_data = mycursor.fetchall()
-
-                self.ui.ElectricBill_tableWidget.setRowCount(len(electric_bill_data))
-                for row, bill in enumerate(electric_bill_data):
-                    for column, value in enumerate(bill):
-                        item = QTableWidgetItem(str(value))
-                        self.ui.ElectricBill_tableWidget.setItem(row, column, item)
-
-        else:
-            QMessageBox.warning(self.ui, "No Selection", "Please select an electric bill to update.")
-
     def delete_electric_bill(self):
-        current_row = self.ui.ElectricBill_tableWidget.currentRow()
-        if current_row != -1:
+        selected_row = self.ui.ElectricBill_tableWidget_2.currentRow()
+        if selected_row != -1:
             # Get the electric bill ID from the selected row
-            elec_bill_id = self.ui.ElectricBill_tableWidget.item(current_row, 0).text()
+            elec_bill_id = self.ui.ElectricBill_tableWidget_2.item(selected_row, 0).text()
 
             # Confirm deletion with the user
             confirm = QMessageBox.question(self, "Delete Electric Bill", "Are you sure you want to delete this electric bill?",
                                            QMessageBox.Yes | QMessageBox.No)
             if confirm == QMessageBox.Yes:
+                
                 # Delete the electric bill from the Electric_Bill table
                 delete_sql = "DELETE FROM Electric_Bill WHERE Elec_Bill_ID = %s"
                 mycursor.execute(delete_sql, (elec_bill_id,))
@@ -1290,11 +1361,11 @@ class appFunctions():
                 mycursor.execute(update_table_widget_sql)
                 electric_bill_data = mycursor.fetchall()
 
-                self.ui.ElectricBill_tableWidget.setRowCount(len(electric_bill_data))
+                self.ui.ElectricBill_tableWidget_2.setRowCount(len(electric_bill_data))
                 for row, bill in enumerate(electric_bill_data):
                     for column, value in enumerate(bill):
                         item = QTableWidgetItem(str(value))
-                        self.ui.ElectricBill_tableWidget.setItem(row, column, item)
+                        self.ui.ElectricBill_tableWidget_2.setItem(row, column, item)
 
         else:
             QMessageBox.warning(self, "No Selection", "Please select an electric bill to delete.")
