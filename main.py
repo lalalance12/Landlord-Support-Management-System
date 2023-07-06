@@ -68,11 +68,9 @@ class MainWindow(QMainWindow):
         ##  TenantInfoPage BUTTONS
         ####################################################################################################
         
-        
-        
-        
-        
-        
+        self.ui.TenantInfoBtn.clicked.connect(lambda: appFunctions.click_tenant_info_page(self))             # clear line edits and tables
+        self.ui.SearchTenantBtn.clicked.connect(lambda: appFunctions.search_tenant(self))                    # search button
+        self.ui.PayHisBtn.clicked.connect(lambda: appFunctions.payment_history(self))                        # payment history button
         
         
         

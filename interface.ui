@@ -468,7 +468,7 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>4</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="TSListPage">
              <widget class="QLineEdit" name="Search_lineEdit">
@@ -779,7 +779,7 @@ QLineEdit:!hasFocus {
                    </rect>
                   </property>
                   <property name="text">
-                   <string>Apart. Number:</string>
+                   <string>Apart. ID:</string>
                   </property>
                  </widget>
                  <widget class="QPushButton" name="SearchTenantBtn">
@@ -846,7 +846,7 @@ QLineEdit:!hasFocus {
                    <string>Enter Tenant ID</string>
                   </property>
                  </widget>
-                 <widget class="QLineEdit" name="Email_line_edit_3">
+                 <widget class="QLineEdit" name="Payment_Stat_line_edit">
                   <property name="geometry">
                    <rect>
                     <x>140</x>
@@ -969,7 +969,7 @@ QLineEdit:!hasFocus {
                   </column>
                   <column>
                    <property name="text">
-                    <string>Amount Paid</string>
+                    <string>Payment Status</string>
                    </property>
                   </column>
                   <column>
@@ -979,7 +979,22 @@ QLineEdit:!hasFocus {
                   </column>
                   <column>
                    <property name="text">
+                    <string>Amount Paid</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
                     <string>Payment Method</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Tenant ID</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Apartment ID</string>
                    </property>
                   </column>
                  </widget>

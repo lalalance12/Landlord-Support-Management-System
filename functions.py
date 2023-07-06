@@ -336,9 +336,155 @@ class appFunctions():
 
 
 ############################################################################################################################################################
+    
+    def click_tenant_info_page(self):
+        # Clear all data in line edits
+        self.ui.Search_line_edit.setText("")
+        self.ui.Name_line_edit_2.setText("")
+        self.ui.Age_line_edit_2.setText("")
+        self.ui.Sex_line_edit_2.setText("")
+        self.ui.PhoneNum_line_edit_2.setText("")
+        self.ui.Email_line_edit_2.setText("")
+        self.ui.ApartNum_line_edit_2.setText("")
+        self.ui.Payment_Stat_line_edit.setText("")
+        
+        # Clear the table widget of data
+        self.ui.PayHis_tableWidget_2.clearContents()
+        self.ui.PayHis_tableWidget_2.setRowCount(0)
+    
+    def search_tenant(self):
+        # Clear data from previous tenant in the table widget
+        self.ui.PayHis_tableWidget_2.clearContents()
+        self.ui.PayHis_tableWidget_2.setRowCount(0)
+        
+        # Get the Tenant ID from Search_line_edit
+        tenant_id = self.ui.Search_line_edit.text()
 
+        if not tenant_id:
+            QMessageBox.warning(self, "No Input", "Please enter a Tenant ID.")
+            return
 
+        # Check if the Tenant_ID exists in the Tenant table
+        tenant_exists_sql = "SELECT Tenant_ID FROM Tenant WHERE Tenant_ID = %s"
+        mycursor.execute(tenant_exists_sql, (tenant_id,))
+        tenant_result = mycursor.fetchone()
+        
+        if not tenant_result:
+            QMessageBox.warning(self, "Invalid Tenant ID", "The entered Tenant ID does not exist.")
+            return
+        
+        try:
+            # Fetch the tenant data from the database
+            fetch_tenant_sql = "SELECT * FROM Tenant WHERE Tenant_ID = %s"
+            mycursor.execute(fetch_tenant_sql, (tenant_id,))
+            tenant_data = mycursor.fetchone()
 
+            if tenant_data is not None:
+                # Update the input fields with the tenant data
+                self.ui.Name_line_edit_2.setText(str(tenant_data[1]))
+                self.ui.Name_line_edit_2.setAlignment(Qt.AlignCenter)
+                self.ui.Name_line_edit_2.setReadOnly(True)
+
+                self.ui.Age_line_edit_2.setText(str(tenant_data[2]))
+                self.ui.Age_line_edit_2.setAlignment(Qt.AlignCenter)
+                self.ui.Age_line_edit_2.setReadOnly(True)
+
+                self.ui.Sex_line_edit_2.setText(str(tenant_data[3]))
+                self.ui.Sex_line_edit_2.setAlignment(Qt.AlignCenter)
+                self.ui.Sex_line_edit_2.setReadOnly(True)
+
+                self.ui.PhoneNum_line_edit_2.setText(str(tenant_data[4]))
+                self.ui.PhoneNum_line_edit_2.setAlignment(Qt.AlignCenter)
+                self.ui.PhoneNum_line_edit_2.setReadOnly(True)
+
+                self.ui.Email_line_edit_2.setText(str(tenant_data[5]))
+                self.ui.Email_line_edit_2.setAlignment(Qt.AlignCenter)
+                self.ui.Email_line_edit_2.setReadOnly(True)
+
+                self.ui.ApartNum_line_edit_2.setText(str(tenant_data[6]))
+                self.ui.ApartNum_line_edit_2.setAlignment(Qt.AlignCenter)
+                self.ui.ApartNum_line_edit_2.setReadOnly(True)
+             
+            else:
+                QMessageBox.warning(self, "Tenant Not Found", "Tenant ID does not exist.")
+
+        
+            # Fetch the payment data from the database
+            fetch_payment_sql = "SELECT * FROM Payment WHERE Tenant_ID = %s"
+            mycursor.execute(fetch_payment_sql, (tenant_id,))
+            payment_data = mycursor.fetchall()
+            
+            if payment_data is not None:
+                # Check for overdue payment
+                for payment in payment_data:
+                    if payment[1] == 'Overdue':
+                        self.ui.Payment_Stat_line_edit.setText('Overdue')
+                        self.ui.Payment_Stat_line_edit.setAlignment(Qt.AlignCenter)
+                        self.ui.Payment_Stat_line_edit.setReadOnly(True)
+                        break
+                else:
+                    # Check for pending payment
+                    for payment in payment_data:
+                        if payment[1] == 'Pending':
+                            self.ui.Payment_Stat_line_edit.setText('Pending')
+                            self.ui.Payment_Stat_line_edit.setAlignment(Qt.AlignCenter)
+                            self.ui.Payment_Stat_line_edit.setReadOnly(True)
+                            break
+                    else:
+                        self.ui.Payment_Stat_line_edit.setText('Successful')
+                        self.ui.Payment_Stat_line_edit.setAlignment(Qt.AlignCenter)
+                        self.ui.Payment_Stat_line_edit.setReadOnly(True)
+            else:
+                    self.ui.Payment_Stat_line_edit.setText("")
+                    QMessageBox.warning(self, "Tenant Not Found", "There are no payments made by this Tenant.") 
+                               
+        except Error as e:
+            print(e)
+ 
+ 
+    def payment_history(self): 
+        
+        #Get the Tenant ID from Search_line_edit
+        tenant_id = self.ui.Search_line_edit.text()
+
+        if not tenant_id:
+            QMessageBox.warning(self, "No Input", "Please enter a Tenant ID.")
+            return
+
+        # Check if the Tenant_ID exists in the Tenant table
+        tenant_exists_sql = "SELECT Tenant_ID FROM Tenant WHERE Tenant_ID = %s"
+        mycursor.execute(tenant_exists_sql, (tenant_id,))
+        tenant_result = mycursor.fetchone()
+        
+        if not tenant_result:
+            QMessageBox.warning(self, "Invalid Tenant ID", "The entered Tenant ID does not exist.")
+            return
+        
+        try:          
+            # Fetch the payment data from the database
+            fetch_payment_sql = "SELECT * FROM Payment WHERE Tenant_ID = %s ORDER BY Payment_Date ASC"
+            mycursor.execute(fetch_payment_sql, (tenant_id,))
+            payment_data = mycursor.fetchall()
+                        
+            if payment_data is not None:
+                # Clear the existing table widget data
+                self.ui.PayHis_tableWidget_2.clearContents()
+                self.ui.PayHis_tableWidget_2.setRowCount(0)
+
+                # Populate the table widget with payment data
+                for row, payment in enumerate(payment_data):
+                    self.ui.PayHis_tableWidget_2.insertRow(row)
+                    for column, value in enumerate(payment):
+                        item = QTableWidgetItem(str(value))
+                        item.setTextAlignment(Qt.AlignCenter)
+                        self.ui.PayHis_tableWidget_2.setItem(row, column, item)
+            else:
+                    QMessageBox.warning(self, "Tenant Not Found", "There are no payments made by this Tenant.")
+                    
+        except Error as e:
+            print(e)
+ 
+                
 
 
 
@@ -802,6 +948,7 @@ class appFunctions():
         for row, payment in enumerate(payment_data):
             for column, value in enumerate(payment):
                 item = QTableWidgetItem(str(value))
+                item.setTextAlignment(Qt.AlignCenter)
                 self.ui.Payment_tableWidget_5.setItem(row, column, item)
 
         self.ui.Payment_tableWidget_5.verticalHeader().setVisible(False)
@@ -1063,60 +1210,6 @@ class appFunctions():
         else:
             QMessageBox.warning(self, "No Selection", "Please select a payment to delete.")
     
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
 ############################################################################################################################################################
 
     def click_EB_list_page(self): 
@@ -1169,6 +1262,7 @@ class appFunctions():
         for row, bill in enumerate(electric_bill_data):
             for column, value in enumerate(bill):
                 item = QTableWidgetItem(str(value))
+                item.setTextAlignment(Qt.AlignCenter)
                 self.ui.ElectricBill_tableWidget_2.setItem(row, column, item)
 
         self.ui.ElectricBill_tableWidget_2.verticalHeader().setVisible(False)
@@ -1228,6 +1322,7 @@ class appFunctions():
             for row, bill in enumerate(electric_bill_data):
                 for column, value in enumerate(bill):
                     item = QTableWidgetItem(str(value))
+                    item.setTextAlignment(Qt.AlignCenter)
                     self.ui.ElectricBill_tableWidget_2.setItem(row, column, item)
 
             self.ui.ElectricBill_tableWidget_2.verticalHeader().setVisible(False)
