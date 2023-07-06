@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfaceHuoVWa.ui'
+## Form generated from reading UI file 'interfaceCtHwjb.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -627,7 +627,7 @@ class Ui_MainWindow(object):
 "")
         self.DelApartBtn = QPushButton(self.frame_15)
         self.DelApartBtn.setObjectName(u"DelApartBtn")
-        self.DelApartBtn.setGeometry(QRect(150, 330, 111, 41))
+        self.DelApartBtn.setGeometry(QRect(150, 340, 111, 41))
         self.DelApartBtn.setFont(font4)
         self.DelApartBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DelApartBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -1279,7 +1279,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(7)
+        self.stackedWidget.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
