@@ -52,7 +52,7 @@ class MainWindow(QMainWindow):
         ##  TSListPage BUTTONS
         ####################################################################################################
         
-        
+        self.ui.TenantStatListBtn.clicked.connect(lambda: appFunctions.click_tenant_stat_list_page(self))             # table
         
         
         

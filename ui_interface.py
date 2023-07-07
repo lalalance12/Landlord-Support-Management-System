@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfacewFWAyp.ui'
+## Form generated from reading UI file 'interfacelIjXGy.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -393,6 +393,7 @@ class Ui_MainWindow(object):
         font4.setPointSize(12)
         font4.setBold(True)
         self.SearchTenantBtn.setFont(font4)
+        self.SearchTenantBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.SearchTenantBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -400,6 +401,7 @@ class Ui_MainWindow(object):
         self.PayHisBtn.setObjectName(u"PayHisBtn")
         self.PayHisBtn.setGeometry(QRect(110, 380, 191, 41))
         self.PayHisBtn.setFont(font4)
+        self.PayHisBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.PayHisBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
@@ -633,7 +635,7 @@ class Ui_MainWindow(object):
 "")
         self.DelApartBtn = QPushButton(self.frame_15)
         self.DelApartBtn.setObjectName(u"DelApartBtn")
-        self.DelApartBtn.setGeometry(QRect(150, 340, 111, 41))
+        self.DelApartBtn.setGeometry(QRect(150, 260, 111, 41))
         self.DelApartBtn.setFont(font4)
         self.DelApartBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DelApartBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -641,7 +643,7 @@ class Ui_MainWindow(object):
 "")
         self.UpdApartBtn = QPushButton(self.frame_15)
         self.UpdApartBtn.setObjectName(u"UpdApartBtn")
-        self.UpdApartBtn.setGeometry(QRect(150, 270, 111, 41))
+        self.UpdApartBtn.setGeometry(QRect(150, 320, 111, 41))
         self.UpdApartBtn.setFont(font4)
         self.UpdApartBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.UpdApartBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -797,7 +799,7 @@ class Ui_MainWindow(object):
 "")
         self.DelPayBtn = QPushButton(self.frame_21)
         self.DelPayBtn.setObjectName(u"DelPayBtn")
-        self.DelPayBtn.setGeometry(QRect(150, 340, 111, 41))
+        self.DelPayBtn.setGeometry(QRect(150, 280, 111, 41))
         self.DelPayBtn.setFont(font4)
         self.DelPayBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DelPayBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -805,7 +807,7 @@ class Ui_MainWindow(object):
 "")
         self.UpdPayBtn = QPushButton(self.frame_21)
         self.UpdPayBtn.setObjectName(u"UpdPayBtn")
-        self.UpdPayBtn.setGeometry(QRect(150, 280, 111, 41))
+        self.UpdPayBtn.setGeometry(QRect(150, 340, 111, 41))
         self.UpdPayBtn.setFont(font4)
         self.UpdPayBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.UpdPayBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -1013,7 +1015,7 @@ class Ui_MainWindow(object):
 "")
         self.DelEBBtn = QPushButton(self.frame_18)
         self.DelEBBtn.setObjectName(u"DelEBBtn")
-        self.DelEBBtn.setGeometry(QRect(260, 300, 111, 41))
+        self.DelEBBtn.setGeometry(QRect(150, 300, 111, 41))
         self.DelEBBtn.setFont(font4)
         self.DelEBBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DelEBBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -1021,7 +1023,7 @@ class Ui_MainWindow(object):
 "")
         self.UpdEBBtn = QPushButton(self.frame_18)
         self.UpdEBBtn.setObjectName(u"UpdEBBtn")
-        self.UpdEBBtn.setGeometry(QRect(140, 300, 111, 41))
+        self.UpdEBBtn.setGeometry(QRect(280, 300, 111, 41))
         self.UpdEBBtn.setFont(font4)
         self.UpdEBBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.UpdEBBtn.setStyleSheet(u"background-color: #666666; color: white\n"
@@ -1285,7 +1287,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(6)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

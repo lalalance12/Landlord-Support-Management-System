@@ -23,6 +23,46 @@ class appFunctions():
         self.arg = arg
         
 ############################################################################################################################################################
+    
+    def click_tenant_stat_list_page(self):
+         # Update the table widget with data from Tenant and Payment tables
+        update_table_widget_sql = """
+            SELECT t.Tenant_ID, t.Name, t.Phone_no, COALESCE(p.Payment_Status, 'No Payment') AS Payment_Status, p.Payment_Date, p.Payment_ID
+            FROM Tenant t
+            LEFT JOIN (
+                SELECT p1.*
+                FROM Payment p1
+                WHERE p1.Payment_ID = (
+                    SELECT Payment_ID
+                    FROM Payment
+                    WHERE tenant_id = p1.tenant_id
+                    ORDER BY
+                        CASE
+                            WHEN Payment_Status = 'overdue' THEN 0
+                            WHEN Payment_Status = 'pending' THEN 1
+                            WHEN Payment_Status = 'successful' THEN 2
+                        END,
+                        Payment_Status DESC,
+                        Payment_Date DESC
+                    LIMIT 1
+                )
+            ) p ON t.tenant_id = p.tenant_id
+        """
+        mycursor.execute(update_table_widget_sql)
+        tenant_data = mycursor.fetchall()
+
+        self.ui.Tenant_tableWidget_3.setRowCount(len(tenant_data))
+        for row, data in enumerate(tenant_data):
+            for column, value in enumerate(data):
+                item = QTableWidgetItem(str(value))
+                item.setTextAlignment(Qt.AlignCenter)
+                self.ui.Tenant_tableWidget_3.setItem(row, column, item)
+
+        self.ui.Tenant_tableWidget_3.verticalHeader().setVisible(True)
+        self.ui.Tenant_tableWidget_3.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.ui.Tenant_tableWidget_3.resizeColumnsToContents()
+    
+
 
 ############################################################################################################################################################
 
@@ -484,7 +524,19 @@ class appFunctions():
         except Error as e:
             print(e)
  
-                
+        
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -685,6 +737,34 @@ class appFunctions():
         self.ui.Apartment_tableWidget_2.setHorizontalHeaderLabels(header_labels)
         
     
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
         
   ############################################################################################################################################################      
     

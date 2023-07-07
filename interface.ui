@@ -468,7 +468,7 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>1</number>
+             <number>6</number>
             </property>
             <widget class="QWidget" name="TSListPage">
              <widget class="QLineEdit" name="Search_lineEdit">
@@ -797,6 +797,9 @@ QLineEdit:!hasFocus {
                     <bold>true</bold>
                    </font>
                   </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: white
 ;
@@ -820,6 +823,9 @@ QLineEdit:!hasFocus {
                     <pointsize>12</pointsize>
                     <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: #666666; color: white
@@ -1422,7 +1428,7 @@ QLineEdit:!hasFocus {
                   <property name="geometry">
                    <rect>
                     <x>150</x>
-                    <y>340</y>
+                    <y>260</y>
                     <width>111</width>
                     <height>41</height>
                    </rect>
@@ -1449,7 +1455,7 @@ QLineEdit:!hasFocus {
                   <property name="geometry">
                    <rect>
                     <x>150</x>
-                    <y>270</y>
+                    <y>320</y>
                     <width>111</width>
                     <height>41</height>
                    </rect>
@@ -1787,7 +1793,7 @@ color: white;</string>
                   <property name="geometry">
                    <rect>
                     <x>150</x>
-                    <y>340</y>
+                    <y>280</y>
                     <width>111</width>
                     <height>41</height>
                    </rect>
@@ -1814,7 +1820,7 @@ color: white;</string>
                   <property name="geometry">
                    <rect>
                     <x>150</x>
-                    <y>280</y>
+                    <y>340</y>
                     <width>111</width>
                     <height>41</height>
                    </rect>
@@ -2326,7 +2332,7 @@ color: white;</string>
                  <widget class="QPushButton" name="DelEBBtn">
                   <property name="geometry">
                    <rect>
-                    <x>260</x>
+                    <x>150</x>
                     <y>300</y>
                     <width>111</width>
                     <height>41</height>
@@ -2353,7 +2359,7 @@ color: white;</string>
                  <widget class="QPushButton" name="UpdEBBtn">
                   <property name="geometry">
                    <rect>
-                    <x>140</x>
+                    <x>280</x>
                     <y>300</y>
                     <width>111</width>
                     <height>41</height>
