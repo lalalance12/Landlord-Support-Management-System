@@ -34,6 +34,8 @@ class MainWindow(QMainWindow):
         
         ##  MAIN PAGES
         ####################################################################################################
+        
+        
         self.ui.TenantStatListBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.TSListPage))
         self.ui.CRUDTenantBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.CRUDTenantPage))
         self.ui.TenantInfoBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.TenantInfoPage))
@@ -48,12 +50,11 @@ class MainWindow(QMainWindow):
         self.ui.CRUDElectricBillBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.CRUDElecBillPage))
         
         
-        
         ##  TSListPage BUTTONS
         ####################################################################################################
         
-        self.ui.TenantStatListBtn.clicked.connect(lambda: appFunctions.click_tenant_stat_list_page(self))             # table
-        
+        self.ui.TenantStatListBtn.clicked.connect(lambda: appFunctions.click_tenant_stat_list_page(self))    # table
+        self.ui.Search_lineEdit.textChanged.connect(lambda: appFunctions.search_tenant_stat_list(self))      # search bar
         
         
         ##  CRUDTenantPage BUTTONS
