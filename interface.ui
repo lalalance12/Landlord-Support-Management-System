@@ -468,53 +468,9 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>6</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="TSListPage">
-             <widget class="QLineEdit" name="Search_lineEdit">
-              <property name="geometry">
-               <rect>
-                <x>610</x>
-                <y>20</y>
-                <width>240</width>
-                <height>20</height>
-               </rect>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>240</width>
-                <height>20</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>240</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-    border: none;
-    color: #FFF;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: rgb(33, 37, 41); 
-    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;
-}
-
-QLineEdit:hover {
-    border: 2px solid rgb(48, 50, 62);
-}
-
-QLineEdit:focus {
-    border: 2px solid rgb(85, 170, 255);
-    background-color: rgb(33, 37, 41); 
-}</string>
-              </property>
-              <property name="placeholderText">
-               <string>Search....</string>
-              </property>
-             </widget>
              <widget class="QLabel" name="TenantStatList_label">
               <property name="geometry">
                <rect>

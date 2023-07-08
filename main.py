@@ -54,8 +54,6 @@ class MainWindow(QMainWindow):
         ####################################################################################################
         
         self.ui.TenantStatListBtn.clicked.connect(lambda: appFunctions.click_tenant_stat_list_page(self))    # table
-        self.ui.Search_lineEdit.textChanged.connect(lambda: appFunctions.search_tenant_stat_list(self))      # search bar
-        
         
         ##  CRUDTenantPage BUTTONS
         ####################################################################################################
@@ -72,8 +70,6 @@ class MainWindow(QMainWindow):
         self.ui.TenantInfoBtn.clicked.connect(lambda: appFunctions.click_tenant_info_page(self))             # clear line edits and tables
         self.ui.SearchTenantBtn.clicked.connect(lambda: appFunctions.search_tenant(self))                    # search button
         self.ui.PayHisBtn.clicked.connect(lambda: appFunctions.payment_history(self))                        # payment history button
-        
-        
         
         ##  ApartmentInfoPage BUTTONS
         ####################################################################################################

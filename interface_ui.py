@@ -268,28 +268,6 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.TSListPage = QWidget()
         self.TSListPage.setObjectName(u"TSListPage")
-        self.Search_lineEdit = QLineEdit(self.TSListPage)
-        self.Search_lineEdit.setObjectName(u"Search_lineEdit")
-        self.Search_lineEdit.setGeometry(QRect(610, 20, 240, 20))
-        self.Search_lineEdit.setMinimumSize(QSize(240, 20))
-        self.Search_lineEdit.setMaximumSize(QSize(240, 30))
-        self.Search_lineEdit.setStyleSheet(u"QLineEdit {\n"
-"    border: none;\n"
-"    color: #FFF;\n"
-"    padding-left: 20px;\n"
-"    padding-right: 20px;\n"
-"    background-color: rgb(33, 37, 41); \n"
-"    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;\n"
-"}\n"
-"\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(48, 50, 62);\n"
-"}\n"
-"\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(85, 170, 255);\n"
-"    background-color: rgb(33, 37, 41); \n"
-"}")
         self.TenantStatList_label = QLabel(self.TSListPage)
         self.TenantStatList_label.setObjectName(u"TenantStatList_label")
         self.TenantStatList_label.setGeometry(QRect(30, 20, 201, 16))
@@ -1287,7 +1265,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(6)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1306,7 +1284,6 @@ class Ui_MainWindow(object):
         self.CRUDPaymentBtn.setText(QCoreApplication.translate("MainWindow", u"CRUD Payment", None))
         self.ElecBillBtn.setText(QCoreApplication.translate("MainWindow", u"Electric Bill List", None))
         self.CRUDElectricBillBtn.setText(QCoreApplication.translate("MainWindow", u"CRUD Electric Bill", None))
-        self.Search_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search....", None))
         self.TenantStatList_label.setText(QCoreApplication.translate("MainWindow", u"Tenant Status List", None))
         ___qtablewidgetitem = self.Tenant_tableWidget_3.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
