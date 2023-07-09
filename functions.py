@@ -86,13 +86,13 @@ class appFunctions():
         # Create table Tenant if there is no existing table
         mycursor.execute("""
             CREATE TABLE IF NOT EXISTS Tenant (
-                Tenant_ID INT AUTO_INCREMENT PRIMARY KEY,
-                Name VARCHAR (90),
-                Age INT,
-                Sex VARCHAR(10),
-                Phone_no BIGINT,
-                Email VARCHAR(50),
-                Apartment_ID INT,
+                Tenant_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                Name VARCHAR(90) NOT NULL,
+                Age INT NOT NULL,
+                Sex VARCHAR(10) NOT NULL,
+                Phone_no BIGINT NOT NULL,
+                Email VARCHAR(50) NOT NULL,
+                Apartment_ID INT NOT NULL,
                 CONSTRAINT fk1 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE
             )
         """)
@@ -101,10 +101,11 @@ class appFunctions():
          # Create table Lease if there is no existing table
         mycursor.execute("""
             CREATE TABLE IF NOT EXISTS Lease (
-                Lease_ID INT AUTO_INCREMENT PRIMARY KEY,
-                Date_Lease DATE,
-                Tenant_ID INT,
-                Apartment_ID INT,
+                Lease_ID INT NOT NULL AUTO_INCREMENT,
+                Date_Lease DATE NOT NULL,
+                Tenant_ID INT NOT NULL,
+                Apartment_ID INT NOT NULL,
+                PRIMARY KEY (Lease_ID, Tenant_ID, Apartment_ID),
                 CONSTRAINT fk5 FOREIGN KEY (Tenant_ID) REFERENCES Tenant (Tenant_ID) ON DELETE CASCADE ON UPDATE CASCADE,
                 CONSTRAINT fk6 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE
                 )
@@ -118,8 +119,8 @@ class appFunctions():
          # Create table Occupy if there is no existing table
         mycursor.execute("""
             CREATE TABLE IF NOT EXISTS Occupy (
-                Tenant_ID INT,
-                Apartment_ID INT,
+                Tenant_ID INT NOT NULL,
+                Apartment_ID INT NOT NULL,
                 PRIMARY KEY (Tenant_ID, Apartment_ID),
                 CONSTRAINT fk7 FOREIGN KEY (Tenant_ID) REFERENCES Tenant (Tenant_ID) ON DELETE CASCADE ON UPDATE CASCADE,
                 CONSTRAINT fk8 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE
@@ -939,13 +940,14 @@ class appFunctions():
         # Create table Payment if there is no existing table
         mycursor.execute("""
             CREATE TABLE IF NOT EXISTS Payment (
-                Payment_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                Payment_ID INT NOT NULL AUTO_INCREMENT,
                 Payment_Status VARCHAR(15) NOT NULL,
                 Payment_Date DATE,
                 Amount_Paid DECIMAL(10, 2),
                 Payment_Method VARCHAR(15),
                 Tenant_ID INT NOT NULL,
                 Apartment_ID INT NOT NULL,
+                PRIMARY KEY (Payment_ID, Tenant_ID, Apartment_ID),
                 CONSTRAINT fk2 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE,
                 CONSTRAINT fk3 FOREIGN KEY (Tenant_ID) REFERENCES Tenant (Tenant_ID) ON DELETE CASCADE ON UPDATE CASCADE
             )
@@ -1261,11 +1263,12 @@ class appFunctions():
         # Create table Electric_Bill if there is no existing table
         mycursor.execute("""
             CREATE TABLE IF NOT EXISTS Electric_Bill (
-                Elec_Bill_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                Elec_Bill_ID INT NOT NULL AUTO_INCREMENT,
                 Date_Start DATE NOT NULL,
                 KWH DECIMAL(10, 2) NOT NULL,
                 Status VARCHAR(15)NOT NULL,
                 Apartment_ID INT NOT NULL,
+                PRIMARY KEY (Elec_Bill_ID, Apartment_ID),
                 CONSTRAINT fk4 FOREIGN KEY (Apartment_ID) REFERENCES Apartment (Apartment_ID) ON DELETE CASCADE ON UPDATE CASCADE
             )
         """)
