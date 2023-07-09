@@ -468,7 +468,7 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>5</number>
+             <number>8</number>
             </property>
             <widget class="QWidget" name="TSListPage">
              <widget class="QLabel" name="TenantStatList_label">
@@ -1485,7 +1485,7 @@ color: white;</string>
                    <rect>
                     <x>160</x>
                     <y>60</y>
-                    <width>231</width>
+                    <width>41</width>
                     <height>21</height>
                    </rect>
                   </property>
@@ -1548,7 +1548,7 @@ QLineEdit:!hasFocus {
                    <rect>
                     <x>160</x>
                     <y>140</y>
-                    <width>121</width>
+                    <width>91</width>
                     <height>21</height>
                    </rect>
                   </property>
@@ -1564,7 +1564,7 @@ QLineEdit:!hasFocus {
                    <rect>
                     <x>160</x>
                     <y>100</y>
-                    <width>61</width>
+                    <width>41</width>
                     <height>22</height>
                    </rect>
                   </property>

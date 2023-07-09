@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfaceinGpHf.ui'
+## Form generated from reading UI file 'interfaceazPuHm.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -689,7 +689,7 @@ class Ui_MainWindow(object):
         self.page_label_4.setFont(font3)
         self.ApartNum_line_edit = QLineEdit(self.frame_15)
         self.ApartNum_line_edit.setObjectName(u"ApartNum_line_edit")
-        self.ApartNum_line_edit.setGeometry(QRect(160, 60, 231, 21))
+        self.ApartNum_line_edit.setGeometry(QRect(160, 60, 41, 21))
         self.ApartNum_line_edit.setStyleSheet(u"QLineEdit {\n"
 "    background-color: #666666;\n"
 "    color: black;\n"
@@ -710,13 +710,13 @@ class Ui_MainWindow(object):
         self.RentalBill.setGeometry(QRect(40, 140, 91, 16))
         self.RentalBill_line_edit = QLineEdit(self.frame_15)
         self.RentalBill_line_edit.setObjectName(u"RentalBill_line_edit")
-        self.RentalBill_line_edit.setGeometry(QRect(160, 140, 121, 21))
+        self.RentalBill_line_edit.setGeometry(QRect(160, 140, 91, 21))
         self.RentalBill_line_edit.setStyleSheet(u"background-color: #666666; color: black;")
         self.FloorLvl_comboBox = QComboBox(self.frame_15)
         self.FloorLvl_comboBox.addItem("")
         self.FloorLvl_comboBox.addItem("")
         self.FloorLvl_comboBox.setObjectName(u"FloorLvl_comboBox")
-        self.FloorLvl_comboBox.setGeometry(QRect(160, 100, 61, 22))
+        self.FloorLvl_comboBox.setGeometry(QRect(160, 100, 41, 22))
         self.FloorLvl_comboBox.setCursor(QCursor(Qt.PointingHandCursor))
         self.FloorLvl_comboBox.setStyleSheet(u"background-color: #666666; color: black;")
         self.AddApartBtn = QPushButton(self.frame_15)
@@ -1381,7 +1381,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(5)
+        self.stackedWidget.setCurrentIndex(8)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
