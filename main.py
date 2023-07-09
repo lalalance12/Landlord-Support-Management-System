@@ -76,8 +76,8 @@ class MainWindow(QMainWindow):
         
         ## Stack Widget Pages on Apartment Info
         self.ui.AptListBtn.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentWidget(self.ui.Apartment_ListPage))
-        self.ui.AptOcctBtn.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentWidget(self.ui.LeasePage))
-        self.ui.AptLeaseBtn.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentWidget(self.ui.OccupyPage))
+        self.ui.AptOcctBtn.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentWidget(self.ui.OccupyPage))
+        self.ui.AptLeaseBtn.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentWidget(self.ui.LeasePage))
         
         self.ui.ApartmentInfoBtn.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentWidget(self.ui.Apartment_ListPage))    # Landing Page
         self.ui.ApartmentInfoBtn.clicked.connect(lambda: appFunctions.click_apart_info_page(self))                                # table

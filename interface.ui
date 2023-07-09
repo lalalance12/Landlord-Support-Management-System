@@ -468,7 +468,7 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>2</number>
+             <number>5</number>
             </property>
             <widget class="QWidget" name="TSListPage">
              <widget class="QLabel" name="TenantStatList_label">

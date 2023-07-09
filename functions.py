@@ -665,35 +665,6 @@ class appFunctions():
         self.ui.Apartment_tableWidget_5.verticalHeader().setVisible(False)
         self.ui.Apartment_tableWidget_5.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
-    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
         
   ############################################################################################################################################################      
     
@@ -1011,6 +982,15 @@ class appFunctions():
             QMessageBox.warning(self, "Invalid Tenant ID", "Tenant ID does not exist.")
             return
 
+        # Check if the Tenant ID and Apartment ID match in the occupy table
+        check_occupy_sql = "SELECT COUNT(*) FROM occupy WHERE Tenant_ID = %s AND Apartment_ID = %s"
+        mycursor.execute(check_occupy_sql, (tenant_id, apartment_id))
+        count = mycursor.fetchone()[0]
+        if count == 0:
+            QMessageBox.warning(self, "Tenant Does Not Occupy Apartment",
+                                "This tenant does not occupy the specified apartment.")
+            return
+        
         # Check if the payment status is successful
         if PayStatus == "Successful":
             # Prompt for payment amount, payment date, and payment method
