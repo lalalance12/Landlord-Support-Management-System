@@ -74,21 +74,22 @@ class MainWindow(QMainWindow):
         ##  ApartmentInfoPage BUTTONS
         ####################################################################################################
         
-        self.ui.ApartmentInfoBtn.clicked.connect(lambda: appFunctions.click_apart_info_page(self))           # table
+        ## Stack Widget Pages on Apartment Info
+        self.ui.AptListBtn.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentWidget(self.ui.Apartment_ListPage))
+        self.ui.AptOcctBtn.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentWidget(self.ui.LeasePage))
+        self.ui.AptLeaseBtn.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentWidget(self.ui.OccupyPage))
         
-        self.ui.AptListBtn.clicked.connect(lambda: appFunctions.set_button_connections(self,"list"))
-        self.ui.AptOcctBtn.clicked.connect(lambda: appFunctions.set_button_connections(self,"occupy"))
-        self.ui.AptLeaseBtn.clicked.connect(lambda: appFunctions.set_button_connections(self,"lease"))
-        self.ui.Search_lineEdit_2.textChanged.connect(lambda: appFunctions.set_search_connection(self))
-
+        self.ui.ApartmentInfoBtn.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentWidget(self.ui.Apartment_ListPage))    # Landing Page
+        self.ui.ApartmentInfoBtn.clicked.connect(lambda: appFunctions.click_apart_info_page(self))                                # table
         
+        self.ui.AptListBtn.clicked.connect(lambda: appFunctions.apart_list(self))                                                 # apart. list
+        self.ui.AptList_Search_lineEdit.textChanged.connect(lambda: appFunctions.search_apartment_list(self))                     # search bar (apartment list)
         
-        """
-        self.ui.Search_lineEdit_2.textChanged.connect(lambda: appFunctions.search_apartment(self))           # search bar
-        self.ui.AptListBtn.clicked.connect(lambda: appFunctions.apartlist(self))                             # apart. list
-        self.ui.AptOcctBtn.clicked.connect(lambda: appFunctions.ocupy(self))                                 # occupy
-        self.ui.AptLeaseBtn.clicked.connect(lambda: appFunctions.lease(self))                                # lease
-        """
+        self.ui.AptOcctBtn.clicked.connect(lambda: appFunctions.ocupy(self))                                                      # occupy
+        self.ui.Occupy_Search_lineEdit.textChanged.connect(lambda: appFunctions.search_occupy(self))                              # search bar (occupy)
+        
+        self.ui.AptLeaseBtn.clicked.connect(lambda: appFunctions.lease(self))                                                     # lease
+        self.ui.Lease_Search_lineEdit.textChanged.connect(lambda: appFunctions.search_lease(self))                                # search bar (lease)
         ##  CRUDApartPage BUTTON
         ####################################################################################################
         

@@ -468,7 +468,7 @@ QPushButton{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="TSListPage">
              <widget class="QLabel" name="TenantStatList_label">
@@ -985,119 +985,6 @@ QLineEdit:!hasFocus {
                <string>Apartment Information</string>
               </property>
              </widget>
-             <widget class="QLineEdit" name="Search_lineEdit_2">
-              <property name="geometry">
-               <rect>
-                <x>600</x>
-                <y>20</y>
-                <width>240</width>
-                <height>20</height>
-               </rect>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>240</width>
-                <height>20</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>240</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-    border: none;
-    color: #FFF;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: rgb(33, 37, 41); 
-    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;
-}
-
-QLineEdit:hover {
-    border: 2px solid rgb(48, 50, 62);
-}
-
-QLineEdit:focus {
-    border: 2px solid rgb(85, 170, 255);
-    background-color: rgb(33, 37, 41); 
-}</string>
-              </property>
-              <property name="placeholderText">
-               <string>Search....</string>
-              </property>
-             </widget>
-             <widget class="QTableWidget" name="Apartment_tableWidget_2">
-              <property name="geometry">
-               <rect>
-                <x>230</x>
-                <y>50</y>
-                <width>611</width>
-                <height>421</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QTableWidget {
-    background-color: #333333;
-    color: white;
-}
-
-QHeaderView::section {
-    background-color: #555555;
-    color: white;
-}
-</string>
-              </property>
-              <property name="sortingEnabled">
-               <bool>false</bool>
-              </property>
-              <property name="wordWrap">
-               <bool>true</bool>
-              </property>
-              <attribute name="horizontalHeaderVisible">
-               <bool>true</bool>
-              </attribute>
-              <attribute name="horizontalHeaderCascadingSectionResizes">
-               <bool>false</bool>
-              </attribute>
-              <attribute name="horizontalHeaderHighlightSections">
-               <bool>true</bool>
-              </attribute>
-              <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-               <bool>false</bool>
-              </attribute>
-              <attribute name="horizontalHeaderStretchLastSection">
-               <bool>false</bool>
-              </attribute>
-              <attribute name="verticalHeaderVisible">
-               <bool>true</bool>
-              </attribute>
-              <attribute name="verticalHeaderStretchLastSection">
-               <bool>false</bool>
-              </attribute>
-              <column>
-               <property name="text">
-                <string>Apartment ID</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Apart. Number</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Floor Level </string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Rental Bill</string>
-               </property>
-              </column>
-             </widget>
              <widget class="QFrame" name="frame_13">
               <property name="geometry">
                <rect>
@@ -1197,6 +1084,351 @@ color: white;</string>
                <property name="text">
                 <string>APART. LIST</string>
                </property>
+              </widget>
+             </widget>
+             <widget class="QStackedWidget" name="stackedWidget_2">
+              <property name="geometry">
+               <rect>
+                <x>240</x>
+                <y>20</y>
+                <width>621</width>
+                <height>451</height>
+               </rect>
+              </property>
+              <widget class="QWidget" name="Apartment_ListPage">
+               <widget class="QTableWidget" name="Apartment_tableWidget_2">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>30</y>
+                  <width>611</width>
+                  <height>421</height>
+                 </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QTableWidget {
+    background-color: #333333;
+    color: white;
+}
+
+QHeaderView::section {
+    background-color: #555555;
+    color: white;
+}
+</string>
+                </property>
+                <property name="sortingEnabled">
+                 <bool>false</bool>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <attribute name="horizontalHeaderVisible">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="horizontalHeaderCascadingSectionResizes">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="horizontalHeaderHighlightSections">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="horizontalHeaderStretchLastSection">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderVisible">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="verticalHeaderStretchLastSection">
+                 <bool>false</bool>
+                </attribute>
+                <column>
+                 <property name="text">
+                  <string>Apartment ID</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Apart. Number</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Floor Level </string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Rental Bill</string>
+                 </property>
+                </column>
+               </widget>
+               <widget class="QLineEdit" name="AptList_Search_lineEdit">
+                <property name="geometry">
+                 <rect>
+                  <x>370</x>
+                  <y>0</y>
+                  <width>240</width>
+                  <height>20</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>240</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>240</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+    border: none;
+    color: #FFF;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(33, 37, 41); 
+    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;
+}
+
+QLineEdit:hover {
+    border: 2px solid rgb(48, 50, 62);
+}
+
+QLineEdit:focus {
+    border: 2px solid rgb(85, 170, 255);
+    background-color: rgb(33, 37, 41); 
+}</string>
+                </property>
+                <property name="placeholderText">
+                 <string>Search....</string>
+                </property>
+               </widget>
+              </widget>
+              <widget class="QWidget" name="LeasePage">
+               <widget class="QTableWidget" name="Apartment_tableWidget_5">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>30</y>
+                  <width>611</width>
+                  <height>421</height>
+                 </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QTableWidget {
+    background-color: #333333;
+    color: white;
+}
+
+QHeaderView::section {
+    background-color: #555555;
+    color: white;
+}
+</string>
+                </property>
+                <property name="sortingEnabled">
+                 <bool>false</bool>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <attribute name="horizontalHeaderVisible">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="horizontalHeaderCascadingSectionResizes">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="horizontalHeaderHighlightSections">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="horizontalHeaderStretchLastSection">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderVisible">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="verticalHeaderStretchLastSection">
+                 <bool>false</bool>
+                </attribute>
+                <column>
+                 <property name="text">
+                  <string>Lease ID</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Date Lease</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Tenant ID</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Apartment ID</string>
+                 </property>
+                </column>
+               </widget>
+               <widget class="QLineEdit" name="Lease_Search_lineEdit">
+                <property name="geometry">
+                 <rect>
+                  <x>370</x>
+                  <y>0</y>
+                  <width>240</width>
+                  <height>20</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>240</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>240</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+    border: none;
+    color: #FFF;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(33, 37, 41); 
+    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;
+}
+
+QLineEdit:hover {
+    border: 2px solid rgb(48, 50, 62);
+}
+
+QLineEdit:focus {
+    border: 2px solid rgb(85, 170, 255);
+    background-color: rgb(33, 37, 41); 
+}</string>
+                </property>
+                <property name="placeholderText">
+                 <string>Search....</string>
+                </property>
+               </widget>
+              </widget>
+              <widget class="QWidget" name="OccupyPage">
+               <widget class="QTableWidget" name="Apartment_tableWidget_4">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>30</y>
+                  <width>611</width>
+                  <height>421</height>
+                 </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QTableWidget {
+    background-color: #333333;
+    color: white;
+}
+
+QHeaderView::section {
+    background-color: #555555;
+    color: white;
+}
+</string>
+                </property>
+                <property name="sortingEnabled">
+                 <bool>false</bool>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <attribute name="horizontalHeaderVisible">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="horizontalHeaderCascadingSectionResizes">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="horizontalHeaderHighlightSections">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="horizontalHeaderStretchLastSection">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderVisible">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="verticalHeaderStretchLastSection">
+                 <bool>false</bool>
+                </attribute>
+                <column>
+                 <property name="text">
+                  <string>Tenant ID</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Apartment ID</string>
+                 </property>
+                </column>
+               </widget>
+               <widget class="QLineEdit" name="Occupy_Search_lineEdit">
+                <property name="geometry">
+                 <rect>
+                  <x>370</x>
+                  <y>0</y>
+                  <width>240</width>
+                  <height>20</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>240</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>240</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+    border: none;
+    color: #FFF;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(33, 37, 41); 
+    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;
+}
+
+QLineEdit:hover {
+    border: 2px solid rgb(48, 50, 62);
+}
+
+QLineEdit:focus {
+    border: 2px solid rgb(85, 170, 255);
+    background-color: rgb(33, 37, 41); 
+}</string>
+                </property>
+                <property name="placeholderText">
+                 <string>Search....</string>
+                </property>
+               </widget>
               </widget>
              </widget>
             </widget>

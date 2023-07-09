@@ -522,37 +522,6 @@ class appFunctions():
                     
         except Error as e:
             print(e)
- 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ############################################################################################################################################################     
     
@@ -562,12 +531,7 @@ class appFunctions():
         update_table_widget_sql = "SELECT * FROM Apartment"
         mycursor.execute(update_table_widget_sql)
         apartment_data = mycursor.fetchall()
-        
-        self.ui.Apartment_tableWidget_2.clear()
-        column_count = 4  
-        self.ui.Apartment_tableWidget_2.setRowCount(len(apartment_data))
-        self.ui.Apartment_tableWidget_2.setColumnCount(column_count)
-        
+            
         self.ui.Apartment_tableWidget_2.setRowCount(len(apartment_data))
         for row, apartment in enumerate(apartment_data):
             for column, value in enumerate(apartment):
@@ -577,42 +541,11 @@ class appFunctions():
                     
         self.ui.Apartment_tableWidget_2.verticalHeader().setVisible(False)
         self.ui.Apartment_tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        
-        # Set the header labels
-        header_labels = ["Apartment_ID", "Apartment_No", "Floor_level", "Rental_bill"]
-        self.ui.Apartment_tableWidget_2.setHorizontalHeaderLabels(header_labels)
     
     
-    def set_button_connections(self,button_type):
-        if button_type == "list":
-            self.ui.Search_lineEdit_2.textChanged.disconnect()  # Disconnect the previous connection
-            self.ui.Search_lineEdit_2.textChanged.connect(lambda: appFunctions.search_apartment(self))
-            self.ui.AptOcctBtn.clicked.disconnect()  # Disconnect the previous connection
-            self.ui.AptOcctBtn.clicked.connect(lambda: appFunctions.ocupy(self))
-        elif button_type == "occupy":
-            self.ui.Search_lineEdit_2.textChanged.disconnect()  # Disconnect the previous connection
-            self.ui.Search_lineEdit_2.textChanged.connect(lambda: appFunctions.search_occupy(self))
-            self.ui.AptOcctBtn.clicked.disconnect()  # Disconnect the previous connection
-            self.ui.AptOcctBtn.clicked.connect(lambda: appFunctions.ocupy(self))
-        elif button_type == "lease":
-            self.ui.Search_lineEdit_2.textChanged.disconnect()  # Disconnect the previous connection
-            self.ui.Search_lineEdit_2.textChanged.connect(lambda: appFunctions.search_lease(self))
-            self.ui.AptOcctBtn.clicked.disconnect()  # Disconnect the previous connection
-            self.ui.AptOcctBtn.clicked.connect(lambda: appFunctions.lease(self))
-
-    def set_search_connection(self):
-        if self.ui.AptOcctBtn.isChecked():
-            self.ui.Search_lineEdit_2.textChanged.disconnect()  # Disconnect the previous connection
-            self.ui.Search_lineEdit_2.textChanged.connect(lambda: appFunctions.search_occupy(self))
-        else:
-            self.ui.Search_lineEdit_2.textChanged.disconnect()  # Disconnect the previous connection
-            self.ui.Search_lineEdit_2.textChanged.connect(lambda: appFunctions.search_apartment(self))
-    
-    
-    
-    def search_apartment(self):
+    def search_apartment_list(self):
         # Find the data in the Apartment table
-        search_text = self.ui.Search_lineEdit_2.text()
+        search_text = self.ui.AptList_Search_lineEdit.text()
 
         mycursor.execute("SELECT * FROM Apartment WHERE Apartment_ID LIKE %s OR Apartment_No LIKE %s OR Floor_level LIKE %s OR Rental_bill LIKE %s",
             (f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%"))
@@ -635,7 +568,7 @@ class appFunctions():
     
     def search_occupy(self):
         # Find the data in the Occupy table
-        search_text = self.ui.Search_lineEdit_2.text()
+        search_text = self.ui.Occupy_Search_lineEdit.text()
 
         mycursor.execute("SELECT * FROM Occupy WHERE Tenant_ID LIKE %s OR Apartment_ID LIKE %s",
                         (f"{search_text}%", f"{search_text}%"))
@@ -643,7 +576,7 @@ class appFunctions():
         result = mycursor.fetchall()
 
         # Set up the table
-        table_widget = self.ui.Apartment_tableWidget_2
+        table_widget = self.ui.Apartment_tableWidget_4
         table_widget.clearContents()
         table_widget.setRowCount(len(result))
 
@@ -655,18 +588,36 @@ class appFunctions():
 
         table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)
         table_widget.resizeColumnsToContents()
+        
+    def search_lease(self):
+        # Find the data in the Lease table
+        search_text = self.ui.Lease_Search_lineEdit.text()
+
+        mycursor.execute("SELECT * FROM Lease WHERE Lease_ID LIKE %s OR Date_Lease LIKE %s OR Tenant_ID LIKE %s OR Apartment_ID LIKE %s",
+                        (f"{search_text}%", f"{search_text}%", f"{search_text}%", f"{search_text}%"))
+
+        result = mycursor.fetchall()
+
+        # Set up the table
+        table_widget = self.ui.Apartment_tableWidget_5
+        table_widget.clearContents()
+        table_widget.setRowCount(len(result))
+
+        for row, lease in enumerate(result):
+            for col, data in enumerate(lease):
+                item = QTableWidgetItem(str(data))
+                item.setTextAlignment(Qt.AlignCenter)
+                table_widget.setItem(row, col, item)
+
+        table_widget.setSizeAdjustPolicy(QAbstractItemView.AdjustToContents)
+        table_widget.resizeColumnsToContents()
     
-    def apartlist(self):
+    def apart_list(self):
          
         # Update the table widget with data from Apartment table
         update_table_widget_sql = "SELECT * FROM Apartment"
         mycursor.execute(update_table_widget_sql)
         apartment_data = mycursor.fetchall()
-        
-        self.ui.Apartment_tableWidget_2.clear()
-        column_count = 4  
-        self.ui.Apartment_tableWidget_2.setRowCount(len(apartment_data))
-        self.ui.Apartment_tableWidget_2.setColumnCount(column_count)  
             
         self.ui.Apartment_tableWidget_2.setRowCount(len(apartment_data))
         for row, apartment in enumerate(apartment_data):
@@ -678,9 +629,6 @@ class appFunctions():
         self.ui.Apartment_tableWidget_2.verticalHeader().setVisible(False)
         self.ui.Apartment_tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
         
-        # Set the header labels
-        header_labels = ["Apartment_ID", "Apartment_No", "Floor_level", "Rental_bill"]
-        self.ui.Apartment_tableWidget_2.setHorizontalHeaderLabels(header_labels)
     
     def ocupy(self): 
         
@@ -688,26 +636,17 @@ class appFunctions():
         update_table_widget_sql = "SELECT * FROM Occupy"
         mycursor.execute(update_table_widget_sql)
         occupy_data = mycursor.fetchall()
-        
-        self.ui.Apartment_tableWidget_2.clear()
-        column_count = 2  
-        self.ui.Apartment_tableWidget_2.setRowCount(len(occupy_data))
-        self.ui.Apartment_tableWidget_2.setColumnCount(column_count)  
     
-        self.ui.Apartment_tableWidget_2.setRowCount(len(occupy_data))
+        self.ui.Apartment_tableWidget_4.setRowCount(len(occupy_data))
         for row, occupy in enumerate(occupy_data):
             for column, value in enumerate(occupy):
                 item = QTableWidgetItem(str(value))
                 item.setTextAlignment(Qt.AlignCenter)
-                self.ui.Apartment_tableWidget_2.setItem(row, column, item)
+                self.ui.Apartment_tableWidget_4.setItem(row, column, item)
                     
-        self.ui.Apartment_tableWidget_2.verticalHeader().setVisible(False)
-        self.ui.Apartment_tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.ui.Apartment_tableWidget_4.verticalHeader().setVisible(False)
+        self.ui.Apartment_tableWidget_4.setEditTriggers(QAbstractItemView.NoEditTriggers)
         
-        # Set the header labels
-        header_labels = ["Tenant_ID", "Apartment_ID"]
-        self.ui.Apartment_tableWidget_2.setHorizontalHeaderLabels(header_labels)
-    
         
     def lease(self):
         
@@ -715,26 +654,17 @@ class appFunctions():
         update_table_widget_sql = "SELECT * FROM Lease"
         mycursor.execute(update_table_widget_sql)
         lease_data = mycursor.fetchall()
-        
-        self.ui.Apartment_tableWidget_2.clear()
-        column_count = 4  
-        self.ui.Apartment_tableWidget_2.setRowCount(len(lease_data))
-        self.ui.Apartment_tableWidget_2.setColumnCount(column_count) 
             
-        self.ui.Apartment_tableWidget_2.setRowCount(len(lease_data))
+        self.ui.Apartment_tableWidget_5.setRowCount(len(lease_data))
         for row, lease in enumerate(lease_data):
             for column, value in enumerate(lease):
                 item = QTableWidgetItem(str(value))
                 item.setTextAlignment(Qt.AlignCenter)
-                self.ui.Apartment_tableWidget_2.setItem(row, column, item)
+                self.ui.Apartment_tableWidget_5.setItem(row, column, item)
         
-        self.ui.Apartment_tableWidget_2.verticalHeader().setVisible(False)
-        self.ui.Apartment_tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.ui.Apartment_tableWidget_5.verticalHeader().setVisible(False)
+        self.ui.Apartment_tableWidget_5.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
-        # Set the header labels
-        header_labels = ["Lease_ID", "Date_Lease", "Tenant_ID", "Apartment_ID"]
-        self.ui.Apartment_tableWidget_2.setHorizontalHeaderLabels(header_labels)
-        
     
    
    

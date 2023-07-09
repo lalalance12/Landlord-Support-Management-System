@@ -466,60 +466,6 @@ class Ui_MainWindow(object):
         self.ApartmentInfo_label.setObjectName(u"ApartmentInfo_label")
         self.ApartmentInfo_label.setGeometry(QRect(20, 20, 201, 16))
         self.ApartmentInfo_label.setFont(font3)
-        self.Search_lineEdit_2 = QLineEdit(self.ApartmentInfoPage)
-        self.Search_lineEdit_2.setObjectName(u"Search_lineEdit_2")
-        self.Search_lineEdit_2.setGeometry(QRect(600, 20, 240, 20))
-        self.Search_lineEdit_2.setMinimumSize(QSize(240, 20))
-        self.Search_lineEdit_2.setMaximumSize(QSize(240, 30))
-        self.Search_lineEdit_2.setStyleSheet(u"QLineEdit {\n"
-"    border: none;\n"
-"    color: #FFF;\n"
-"    padding-left: 20px;\n"
-"    padding-right: 20px;\n"
-"    background-color: rgb(33, 37, 41); \n"
-"    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;\n"
-"}\n"
-"\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(48, 50, 62);\n"
-"}\n"
-"\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(85, 170, 255);\n"
-"    background-color: rgb(33, 37, 41); \n"
-"}")
-        self.Apartment_tableWidget_2 = QTableWidget(self.ApartmentInfoPage)
-        if (self.Apartment_tableWidget_2.columnCount() < 4):
-            self.Apartment_tableWidget_2.setColumnCount(4)
-        __qtablewidgetitem13 = QTableWidgetItem()
-        self.Apartment_tableWidget_2.setHorizontalHeaderItem(0, __qtablewidgetitem13)
-        __qtablewidgetitem14 = QTableWidgetItem()
-        self.Apartment_tableWidget_2.setHorizontalHeaderItem(1, __qtablewidgetitem14)
-        __qtablewidgetitem15 = QTableWidgetItem()
-        self.Apartment_tableWidget_2.setHorizontalHeaderItem(2, __qtablewidgetitem15)
-        __qtablewidgetitem16 = QTableWidgetItem()
-        self.Apartment_tableWidget_2.setHorizontalHeaderItem(3, __qtablewidgetitem16)
-        self.Apartment_tableWidget_2.setObjectName(u"Apartment_tableWidget_2")
-        self.Apartment_tableWidget_2.setGeometry(QRect(230, 50, 611, 421))
-        self.Apartment_tableWidget_2.setStyleSheet(u"QTableWidget {\n"
-"    background-color: #333333;\n"
-"    color: white;\n"
-"}\n"
-"\n"
-"QHeaderView::section {\n"
-"    background-color: #555555;\n"
-"    color: white;\n"
-"}\n"
-"")
-        self.Apartment_tableWidget_2.setSortingEnabled(False)
-        self.Apartment_tableWidget_2.setWordWrap(True)
-        self.Apartment_tableWidget_2.horizontalHeader().setVisible(True)
-        self.Apartment_tableWidget_2.horizontalHeader().setCascadingSectionResizes(False)
-        self.Apartment_tableWidget_2.horizontalHeader().setHighlightSections(True)
-        self.Apartment_tableWidget_2.horizontalHeader().setProperty("showSortIndicator", False)
-        self.Apartment_tableWidget_2.horizontalHeader().setStretchLastSection(False)
-        self.Apartment_tableWidget_2.verticalHeader().setVisible(True)
-        self.Apartment_tableWidget_2.verticalHeader().setStretchLastSection(False)
         self.frame_13 = QFrame(self.ApartmentInfoPage)
         self.frame_13.setObjectName(u"frame_13")
         self.frame_13.setGeometry(QRect(20, 50, 191, 421))
@@ -551,6 +497,176 @@ class Ui_MainWindow(object):
         self.AptListBtn.setStyleSheet(u"background-color: #666666; color: white\n"
 ";\n"
 "")
+        self.stackedWidget_2 = QStackedWidget(self.ApartmentInfoPage)
+        self.stackedWidget_2.setObjectName(u"stackedWidget_2")
+        self.stackedWidget_2.setGeometry(QRect(240, 20, 621, 451))
+        self.Apartment_ListPage = QWidget()
+        self.Apartment_ListPage.setObjectName(u"Apartment_ListPage")
+        self.Apartment_tableWidget_2 = QTableWidget(self.Apartment_ListPage)
+        if (self.Apartment_tableWidget_2.columnCount() < 4):
+            self.Apartment_tableWidget_2.setColumnCount(4)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.Apartment_tableWidget_2.setHorizontalHeaderItem(0, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.Apartment_tableWidget_2.setHorizontalHeaderItem(1, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.Apartment_tableWidget_2.setHorizontalHeaderItem(2, __qtablewidgetitem15)
+        __qtablewidgetitem16 = QTableWidgetItem()
+        self.Apartment_tableWidget_2.setHorizontalHeaderItem(3, __qtablewidgetitem16)
+        self.Apartment_tableWidget_2.setObjectName(u"Apartment_tableWidget_2")
+        self.Apartment_tableWidget_2.setGeometry(QRect(0, 30, 611, 421))
+        self.Apartment_tableWidget_2.setStyleSheet(u"QTableWidget {\n"
+"    background-color: #333333;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #555555;\n"
+"    color: white;\n"
+"}\n"
+"")
+        self.Apartment_tableWidget_2.setSortingEnabled(False)
+        self.Apartment_tableWidget_2.setWordWrap(True)
+        self.Apartment_tableWidget_2.horizontalHeader().setVisible(True)
+        self.Apartment_tableWidget_2.horizontalHeader().setCascadingSectionResizes(False)
+        self.Apartment_tableWidget_2.horizontalHeader().setHighlightSections(True)
+        self.Apartment_tableWidget_2.horizontalHeader().setProperty("showSortIndicator", False)
+        self.Apartment_tableWidget_2.horizontalHeader().setStretchLastSection(False)
+        self.Apartment_tableWidget_2.verticalHeader().setVisible(True)
+        self.Apartment_tableWidget_2.verticalHeader().setStretchLastSection(False)
+        self.AptList_Search_lineEdit = QLineEdit(self.Apartment_ListPage)
+        self.AptList_Search_lineEdit.setObjectName(u"AptList_Search_lineEdit")
+        self.AptList_Search_lineEdit.setGeometry(QRect(370, 0, 240, 20))
+        self.AptList_Search_lineEdit.setMinimumSize(QSize(240, 20))
+        self.AptList_Search_lineEdit.setMaximumSize(QSize(240, 30))
+        self.AptList_Search_lineEdit.setStyleSheet(u"QLineEdit {\n"
+"    border: none;\n"
+"    color: #FFF;\n"
+"    padding-left: 20px;\n"
+"    padding-right: 20px;\n"
+"    background-color: rgb(33, 37, 41); \n"
+"    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;\n"
+"}\n"
+"\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(48, 50, 62);\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(85, 170, 255);\n"
+"    background-color: rgb(33, 37, 41); \n"
+"}")
+        self.stackedWidget_2.addWidget(self.Apartment_ListPage)
+        self.LeasePage = QWidget()
+        self.LeasePage.setObjectName(u"LeasePage")
+        self.Apartment_tableWidget_5 = QTableWidget(self.LeasePage)
+        if (self.Apartment_tableWidget_5.columnCount() < 4):
+            self.Apartment_tableWidget_5.setColumnCount(4)
+        __qtablewidgetitem17 = QTableWidgetItem()
+        self.Apartment_tableWidget_5.setHorizontalHeaderItem(0, __qtablewidgetitem17)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.Apartment_tableWidget_5.setHorizontalHeaderItem(1, __qtablewidgetitem18)
+        __qtablewidgetitem19 = QTableWidgetItem()
+        self.Apartment_tableWidget_5.setHorizontalHeaderItem(2, __qtablewidgetitem19)
+        __qtablewidgetitem20 = QTableWidgetItem()
+        self.Apartment_tableWidget_5.setHorizontalHeaderItem(3, __qtablewidgetitem20)
+        self.Apartment_tableWidget_5.setObjectName(u"Apartment_tableWidget_5")
+        self.Apartment_tableWidget_5.setGeometry(QRect(0, 30, 611, 421))
+        self.Apartment_tableWidget_5.setStyleSheet(u"QTableWidget {\n"
+"    background-color: #333333;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #555555;\n"
+"    color: white;\n"
+"}\n"
+"")
+        self.Apartment_tableWidget_5.setSortingEnabled(False)
+        self.Apartment_tableWidget_5.setWordWrap(True)
+        self.Apartment_tableWidget_5.horizontalHeader().setVisible(True)
+        self.Apartment_tableWidget_5.horizontalHeader().setCascadingSectionResizes(False)
+        self.Apartment_tableWidget_5.horizontalHeader().setHighlightSections(True)
+        self.Apartment_tableWidget_5.horizontalHeader().setProperty("showSortIndicator", False)
+        self.Apartment_tableWidget_5.horizontalHeader().setStretchLastSection(False)
+        self.Apartment_tableWidget_5.verticalHeader().setVisible(True)
+        self.Apartment_tableWidget_5.verticalHeader().setStretchLastSection(False)
+        self.Lease_Search_lineEdit = QLineEdit(self.LeasePage)
+        self.Lease_Search_lineEdit.setObjectName(u"Lease_Search_lineEdit")
+        self.Lease_Search_lineEdit.setGeometry(QRect(370, 0, 240, 20))
+        self.Lease_Search_lineEdit.setMinimumSize(QSize(240, 20))
+        self.Lease_Search_lineEdit.setMaximumSize(QSize(240, 30))
+        self.Lease_Search_lineEdit.setStyleSheet(u"QLineEdit {\n"
+"    border: none;\n"
+"    color: #FFF;\n"
+"    padding-left: 20px;\n"
+"    padding-right: 20px;\n"
+"    background-color: rgb(33, 37, 41); \n"
+"    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;\n"
+"}\n"
+"\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(48, 50, 62);\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(85, 170, 255);\n"
+"    background-color: rgb(33, 37, 41); \n"
+"}")
+        self.stackedWidget_2.addWidget(self.LeasePage)
+        self.OccupyPage = QWidget()
+        self.OccupyPage.setObjectName(u"OccupyPage")
+        self.Apartment_tableWidget_4 = QTableWidget(self.OccupyPage)
+        if (self.Apartment_tableWidget_4.columnCount() < 2):
+            self.Apartment_tableWidget_4.setColumnCount(2)
+        __qtablewidgetitem21 = QTableWidgetItem()
+        self.Apartment_tableWidget_4.setHorizontalHeaderItem(0, __qtablewidgetitem21)
+        __qtablewidgetitem22 = QTableWidgetItem()
+        self.Apartment_tableWidget_4.setHorizontalHeaderItem(1, __qtablewidgetitem22)
+        self.Apartment_tableWidget_4.setObjectName(u"Apartment_tableWidget_4")
+        self.Apartment_tableWidget_4.setGeometry(QRect(0, 30, 611, 421))
+        self.Apartment_tableWidget_4.setStyleSheet(u"QTableWidget {\n"
+"    background-color: #333333;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #555555;\n"
+"    color: white;\n"
+"}\n"
+"")
+        self.Apartment_tableWidget_4.setSortingEnabled(False)
+        self.Apartment_tableWidget_4.setWordWrap(True)
+        self.Apartment_tableWidget_4.horizontalHeader().setVisible(True)
+        self.Apartment_tableWidget_4.horizontalHeader().setCascadingSectionResizes(False)
+        self.Apartment_tableWidget_4.horizontalHeader().setHighlightSections(True)
+        self.Apartment_tableWidget_4.horizontalHeader().setProperty("showSortIndicator", False)
+        self.Apartment_tableWidget_4.horizontalHeader().setStretchLastSection(False)
+        self.Apartment_tableWidget_4.verticalHeader().setVisible(True)
+        self.Apartment_tableWidget_4.verticalHeader().setStretchLastSection(False)
+        self.Occupy_Search_lineEdit = QLineEdit(self.OccupyPage)
+        self.Occupy_Search_lineEdit.setObjectName(u"Occupy_Search_lineEdit")
+        self.Occupy_Search_lineEdit.setGeometry(QRect(370, 0, 240, 20))
+        self.Occupy_Search_lineEdit.setMinimumSize(QSize(240, 20))
+        self.Occupy_Search_lineEdit.setMaximumSize(QSize(240, 30))
+        self.Occupy_Search_lineEdit.setStyleSheet(u"QLineEdit {\n"
+"    border: none;\n"
+"    color: #FFF;\n"
+"    padding-left: 20px;\n"
+"    padding-right: 20px;\n"
+"    background-color: rgb(33, 37, 41); \n"
+"    border-image: url(rounded-border.png) 15 15 15 15 stretch stretch;\n"
+"}\n"
+"\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(48, 50, 62);\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(85, 170, 255);\n"
+"    background-color: rgb(33, 37, 41); \n"
+"}")
+        self.stackedWidget_2.addWidget(self.OccupyPage)
         self.stackedWidget.addWidget(self.ApartmentInfoPage)
         self.CRUDApartPage = QWidget()
         self.CRUDApartPage.setObjectName(u"CRUDApartPage")
@@ -652,14 +768,14 @@ class Ui_MainWindow(object):
         self.Apartment_tableWidget_3 = QTableWidget(self.frame_16)
         if (self.Apartment_tableWidget_3.columnCount() < 4):
             self.Apartment_tableWidget_3.setColumnCount(4)
-        __qtablewidgetitem17 = QTableWidgetItem()
-        self.Apartment_tableWidget_3.setHorizontalHeaderItem(0, __qtablewidgetitem17)
-        __qtablewidgetitem18 = QTableWidgetItem()
-        self.Apartment_tableWidget_3.setHorizontalHeaderItem(1, __qtablewidgetitem18)
-        __qtablewidgetitem19 = QTableWidgetItem()
-        self.Apartment_tableWidget_3.setHorizontalHeaderItem(2, __qtablewidgetitem19)
-        __qtablewidgetitem20 = QTableWidgetItem()
-        self.Apartment_tableWidget_3.setHorizontalHeaderItem(3, __qtablewidgetitem20)
+        __qtablewidgetitem23 = QTableWidgetItem()
+        self.Apartment_tableWidget_3.setHorizontalHeaderItem(0, __qtablewidgetitem23)
+        __qtablewidgetitem24 = QTableWidgetItem()
+        self.Apartment_tableWidget_3.setHorizontalHeaderItem(1, __qtablewidgetitem24)
+        __qtablewidgetitem25 = QTableWidgetItem()
+        self.Apartment_tableWidget_3.setHorizontalHeaderItem(2, __qtablewidgetitem25)
+        __qtablewidgetitem26 = QTableWidgetItem()
+        self.Apartment_tableWidget_3.setHorizontalHeaderItem(3, __qtablewidgetitem26)
         self.Apartment_tableWidget_3.setObjectName(u"Apartment_tableWidget_3")
         self.Apartment_tableWidget_3.setGeometry(QRect(0, 0, 411, 451))
         self.Apartment_tableWidget_3.setStyleSheet(u"\n"
@@ -721,20 +837,20 @@ class Ui_MainWindow(object):
         self.Payment_tableWidget = QTableWidget(self.PaymentListPage)
         if (self.Payment_tableWidget.columnCount() < 7):
             self.Payment_tableWidget.setColumnCount(7)
-        __qtablewidgetitem21 = QTableWidgetItem()
-        self.Payment_tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem21)
-        __qtablewidgetitem22 = QTableWidgetItem()
-        self.Payment_tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem22)
-        __qtablewidgetitem23 = QTableWidgetItem()
-        self.Payment_tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem23)
-        __qtablewidgetitem24 = QTableWidgetItem()
-        self.Payment_tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem24)
-        __qtablewidgetitem25 = QTableWidgetItem()
-        self.Payment_tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem25)
-        __qtablewidgetitem26 = QTableWidgetItem()
-        self.Payment_tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem26)
         __qtablewidgetitem27 = QTableWidgetItem()
-        self.Payment_tableWidget.setHorizontalHeaderItem(6, __qtablewidgetitem27)
+        self.Payment_tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem27)
+        __qtablewidgetitem28 = QTableWidgetItem()
+        self.Payment_tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem28)
+        __qtablewidgetitem29 = QTableWidgetItem()
+        self.Payment_tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem29)
+        __qtablewidgetitem30 = QTableWidgetItem()
+        self.Payment_tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem30)
+        __qtablewidgetitem31 = QTableWidgetItem()
+        self.Payment_tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem31)
+        __qtablewidgetitem32 = QTableWidgetItem()
+        self.Payment_tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem32)
+        __qtablewidgetitem33 = QTableWidgetItem()
+        self.Payment_tableWidget.setHorizontalHeaderItem(6, __qtablewidgetitem33)
         self.Payment_tableWidget.setObjectName(u"Payment_tableWidget")
         self.Payment_tableWidget.setGeometry(QRect(0, 40, 831, 421))
         self.Payment_tableWidget.setStyleSheet(u"QTableWidget {\n"
@@ -853,20 +969,20 @@ class Ui_MainWindow(object):
         self.Payment_tableWidget_5 = QTableWidget(self.frame_22)
         if (self.Payment_tableWidget_5.columnCount() < 7):
             self.Payment_tableWidget_5.setColumnCount(7)
-        __qtablewidgetitem28 = QTableWidgetItem()
-        self.Payment_tableWidget_5.setHorizontalHeaderItem(0, __qtablewidgetitem28)
-        __qtablewidgetitem29 = QTableWidgetItem()
-        self.Payment_tableWidget_5.setHorizontalHeaderItem(1, __qtablewidgetitem29)
-        __qtablewidgetitem30 = QTableWidgetItem()
-        self.Payment_tableWidget_5.setHorizontalHeaderItem(2, __qtablewidgetitem30)
-        __qtablewidgetitem31 = QTableWidgetItem()
-        self.Payment_tableWidget_5.setHorizontalHeaderItem(3, __qtablewidgetitem31)
-        __qtablewidgetitem32 = QTableWidgetItem()
-        self.Payment_tableWidget_5.setHorizontalHeaderItem(4, __qtablewidgetitem32)
-        __qtablewidgetitem33 = QTableWidgetItem()
-        self.Payment_tableWidget_5.setHorizontalHeaderItem(5, __qtablewidgetitem33)
         __qtablewidgetitem34 = QTableWidgetItem()
-        self.Payment_tableWidget_5.setHorizontalHeaderItem(6, __qtablewidgetitem34)
+        self.Payment_tableWidget_5.setHorizontalHeaderItem(0, __qtablewidgetitem34)
+        __qtablewidgetitem35 = QTableWidgetItem()
+        self.Payment_tableWidget_5.setHorizontalHeaderItem(1, __qtablewidgetitem35)
+        __qtablewidgetitem36 = QTableWidgetItem()
+        self.Payment_tableWidget_5.setHorizontalHeaderItem(2, __qtablewidgetitem36)
+        __qtablewidgetitem37 = QTableWidgetItem()
+        self.Payment_tableWidget_5.setHorizontalHeaderItem(3, __qtablewidgetitem37)
+        __qtablewidgetitem38 = QTableWidgetItem()
+        self.Payment_tableWidget_5.setHorizontalHeaderItem(4, __qtablewidgetitem38)
+        __qtablewidgetitem39 = QTableWidgetItem()
+        self.Payment_tableWidget_5.setHorizontalHeaderItem(5, __qtablewidgetitem39)
+        __qtablewidgetitem40 = QTableWidgetItem()
+        self.Payment_tableWidget_5.setHorizontalHeaderItem(6, __qtablewidgetitem40)
         self.Payment_tableWidget_5.setObjectName(u"Payment_tableWidget_5")
         self.Payment_tableWidget_5.setGeometry(QRect(0, 0, 411, 451))
         self.Payment_tableWidget_5.setStyleSheet(u"\n"
@@ -928,16 +1044,16 @@ class Ui_MainWindow(object):
         self.ElectricBill_tableWidget = QTableWidget(self.EBListPage)
         if (self.ElectricBill_tableWidget.columnCount() < 5):
             self.ElectricBill_tableWidget.setColumnCount(5)
-        __qtablewidgetitem35 = QTableWidgetItem()
-        self.ElectricBill_tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem35)
-        __qtablewidgetitem36 = QTableWidgetItem()
-        self.ElectricBill_tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem36)
-        __qtablewidgetitem37 = QTableWidgetItem()
-        self.ElectricBill_tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem37)
-        __qtablewidgetitem38 = QTableWidgetItem()
-        self.ElectricBill_tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem38)
-        __qtablewidgetitem39 = QTableWidgetItem()
-        self.ElectricBill_tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem39)
+        __qtablewidgetitem41 = QTableWidgetItem()
+        self.ElectricBill_tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem41)
+        __qtablewidgetitem42 = QTableWidgetItem()
+        self.ElectricBill_tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem42)
+        __qtablewidgetitem43 = QTableWidgetItem()
+        self.ElectricBill_tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem43)
+        __qtablewidgetitem44 = QTableWidgetItem()
+        self.ElectricBill_tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem44)
+        __qtablewidgetitem45 = QTableWidgetItem()
+        self.ElectricBill_tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem45)
         self.ElectricBill_tableWidget.setObjectName(u"ElectricBill_tableWidget")
         self.ElectricBill_tableWidget.setGeometry(QRect(10, 40, 831, 421))
         self.ElectricBill_tableWidget.setStyleSheet(u"QTableWidget {\n"
@@ -1047,16 +1163,16 @@ class Ui_MainWindow(object):
         self.ElectricBill_tableWidget_2 = QTableWidget(self.frame_19)
         if (self.ElectricBill_tableWidget_2.columnCount() < 5):
             self.ElectricBill_tableWidget_2.setColumnCount(5)
-        __qtablewidgetitem40 = QTableWidgetItem()
-        self.ElectricBill_tableWidget_2.setHorizontalHeaderItem(0, __qtablewidgetitem40)
-        __qtablewidgetitem41 = QTableWidgetItem()
-        self.ElectricBill_tableWidget_2.setHorizontalHeaderItem(1, __qtablewidgetitem41)
-        __qtablewidgetitem42 = QTableWidgetItem()
-        self.ElectricBill_tableWidget_2.setHorizontalHeaderItem(2, __qtablewidgetitem42)
-        __qtablewidgetitem43 = QTableWidgetItem()
-        self.ElectricBill_tableWidget_2.setHorizontalHeaderItem(3, __qtablewidgetitem43)
-        __qtablewidgetitem44 = QTableWidgetItem()
-        self.ElectricBill_tableWidget_2.setHorizontalHeaderItem(4, __qtablewidgetitem44)
+        __qtablewidgetitem46 = QTableWidgetItem()
+        self.ElectricBill_tableWidget_2.setHorizontalHeaderItem(0, __qtablewidgetitem46)
+        __qtablewidgetitem47 = QTableWidgetItem()
+        self.ElectricBill_tableWidget_2.setHorizontalHeaderItem(1, __qtablewidgetitem47)
+        __qtablewidgetitem48 = QTableWidgetItem()
+        self.ElectricBill_tableWidget_2.setHorizontalHeaderItem(2, __qtablewidgetitem48)
+        __qtablewidgetitem49 = QTableWidgetItem()
+        self.ElectricBill_tableWidget_2.setHorizontalHeaderItem(3, __qtablewidgetitem49)
+        __qtablewidgetitem50 = QTableWidgetItem()
+        self.ElectricBill_tableWidget_2.setHorizontalHeaderItem(4, __qtablewidgetitem50)
         self.ElectricBill_tableWidget_2.setObjectName(u"ElectricBill_tableWidget_2")
         self.ElectricBill_tableWidget_2.setGeometry(QRect(0, 0, 411, 451))
         self.ElectricBill_tableWidget_2.setStyleSheet(u"\n"
@@ -1205,20 +1321,20 @@ class Ui_MainWindow(object):
         self.Tenant_tableWidget = QTableWidget(self.frame_8)
         if (self.Tenant_tableWidget.columnCount() < 7):
             self.Tenant_tableWidget.setColumnCount(7)
-        __qtablewidgetitem45 = QTableWidgetItem()
-        self.Tenant_tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem45)
-        __qtablewidgetitem46 = QTableWidgetItem()
-        self.Tenant_tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem46)
-        __qtablewidgetitem47 = QTableWidgetItem()
-        self.Tenant_tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem47)
-        __qtablewidgetitem48 = QTableWidgetItem()
-        self.Tenant_tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem48)
-        __qtablewidgetitem49 = QTableWidgetItem()
-        self.Tenant_tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem49)
-        __qtablewidgetitem50 = QTableWidgetItem()
-        self.Tenant_tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem50)
         __qtablewidgetitem51 = QTableWidgetItem()
-        self.Tenant_tableWidget.setHorizontalHeaderItem(6, __qtablewidgetitem51)
+        self.Tenant_tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem51)
+        __qtablewidgetitem52 = QTableWidgetItem()
+        self.Tenant_tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem52)
+        __qtablewidgetitem53 = QTableWidgetItem()
+        self.Tenant_tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem53)
+        __qtablewidgetitem54 = QTableWidgetItem()
+        self.Tenant_tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem54)
+        __qtablewidgetitem55 = QTableWidgetItem()
+        self.Tenant_tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem55)
+        __qtablewidgetitem56 = QTableWidgetItem()
+        self.Tenant_tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem56)
+        __qtablewidgetitem57 = QTableWidgetItem()
+        self.Tenant_tableWidget.setHorizontalHeaderItem(6, __qtablewidgetitem57)
         self.Tenant_tableWidget.setObjectName(u"Tenant_tableWidget")
         self.Tenant_tableWidget.setGeometry(QRect(0, 0, 411, 451))
         self.Tenant_tableWidget.setStyleSheet(u"\n"
@@ -1265,7 +1381,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1327,7 +1443,9 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem12 = self.PayHis_tableWidget_2.horizontalHeaderItem(6)
         ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         self.ApartmentInfo_label.setText(QCoreApplication.translate("MainWindow", u"Apartment Information", None))
-        self.Search_lineEdit_2.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search....", None))
+        self.AptLeaseBtn.setText(QCoreApplication.translate("MainWindow", u"LEASE", None))
+        self.AptOcctBtn.setText(QCoreApplication.translate("MainWindow", u"OCCUPY", None))
+        self.AptListBtn.setText(QCoreApplication.translate("MainWindow", u"APART. LIST", None))
         ___qtablewidgetitem13 = self.Apartment_tableWidget_2.horizontalHeaderItem(0)
         ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         ___qtablewidgetitem14 = self.Apartment_tableWidget_2.horizontalHeaderItem(1)
@@ -1336,9 +1454,21 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Floor Level ", None));
         ___qtablewidgetitem16 = self.Apartment_tableWidget_2.horizontalHeaderItem(3)
         ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Rental Bill", None));
-        self.AptLeaseBtn.setText(QCoreApplication.translate("MainWindow", u"LEASE", None))
-        self.AptOcctBtn.setText(QCoreApplication.translate("MainWindow", u"OCCUPY", None))
-        self.AptListBtn.setText(QCoreApplication.translate("MainWindow", u"APART. LIST", None))
+        self.AptList_Search_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search....", None))
+        ___qtablewidgetitem17 = self.Apartment_tableWidget_5.horizontalHeaderItem(0)
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Lease ID", None));
+        ___qtablewidgetitem18 = self.Apartment_tableWidget_5.horizontalHeaderItem(1)
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Date Lease", None));
+        ___qtablewidgetitem19 = self.Apartment_tableWidget_5.horizontalHeaderItem(2)
+        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
+        ___qtablewidgetitem20 = self.Apartment_tableWidget_5.horizontalHeaderItem(3)
+        ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
+        self.Lease_Search_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search....", None))
+        ___qtablewidgetitem21 = self.Apartment_tableWidget_4.horizontalHeaderItem(0)
+        ___qtablewidgetitem21.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
+        ___qtablewidgetitem22 = self.Apartment_tableWidget_4.horizontalHeaderItem(1)
+        ___qtablewidgetitem22.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
+        self.Occupy_Search_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search....", None))
         self.page_label_4.setText(QCoreApplication.translate("MainWindow", u"CRUD Apartment", None))
         self.ApartNum_line_edit.setPlaceholderText("")
         self.ApartNum.setText(QCoreApplication.translate("MainWindow", u"Apartment Number:", None))
@@ -1352,30 +1482,30 @@ class Ui_MainWindow(object):
         self.DelApartBtn.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
         self.UpdApartBtn.setText(QCoreApplication.translate("MainWindow", u"UPDATE", None))
         self.GetApartBtn.setText(QCoreApplication.translate("MainWindow", u"GET", None))
-        ___qtablewidgetitem17 = self.Apartment_tableWidget_3.horizontalHeaderItem(0)
-        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
-        ___qtablewidgetitem18 = self.Apartment_tableWidget_3.horizontalHeaderItem(1)
-        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Apart. Number", None));
-        ___qtablewidgetitem19 = self.Apartment_tableWidget_3.horizontalHeaderItem(2)
-        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"Floor Level", None));
-        ___qtablewidgetitem20 = self.Apartment_tableWidget_3.horizontalHeaderItem(3)
-        ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"Rental Bill", None));
+        ___qtablewidgetitem23 = self.Apartment_tableWidget_3.horizontalHeaderItem(0)
+        ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
+        ___qtablewidgetitem24 = self.Apartment_tableWidget_3.horizontalHeaderItem(1)
+        ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"Apart. Number", None));
+        ___qtablewidgetitem25 = self.Apartment_tableWidget_3.horizontalHeaderItem(2)
+        ___qtablewidgetitem25.setText(QCoreApplication.translate("MainWindow", u"Floor Level", None));
+        ___qtablewidgetitem26 = self.Apartment_tableWidget_3.horizontalHeaderItem(3)
+        ___qtablewidgetitem26.setText(QCoreApplication.translate("MainWindow", u"Rental Bill", None));
         self.PaymentList_label.setText(QCoreApplication.translate("MainWindow", u"Payment List", None))
         self.Search_lineEdit_3.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search....", None))
-        ___qtablewidgetitem21 = self.Payment_tableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem21.setText(QCoreApplication.translate("MainWindow", u"Payment ID", None));
-        ___qtablewidgetitem22 = self.Payment_tableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem22.setText(QCoreApplication.translate("MainWindow", u"Payment Status", None));
-        ___qtablewidgetitem23 = self.Payment_tableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"Payment Date", None));
-        ___qtablewidgetitem24 = self.Payment_tableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"Amount Paid", None));
-        ___qtablewidgetitem25 = self.Payment_tableWidget.horizontalHeaderItem(4)
-        ___qtablewidgetitem25.setText(QCoreApplication.translate("MainWindow", u"Payment Method", None));
-        ___qtablewidgetitem26 = self.Payment_tableWidget.horizontalHeaderItem(5)
-        ___qtablewidgetitem26.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
-        ___qtablewidgetitem27 = self.Payment_tableWidget.horizontalHeaderItem(6)
-        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
+        ___qtablewidgetitem27 = self.Payment_tableWidget.horizontalHeaderItem(0)
+        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"Payment ID", None));
+        ___qtablewidgetitem28 = self.Payment_tableWidget.horizontalHeaderItem(1)
+        ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"Payment Status", None));
+        ___qtablewidgetitem29 = self.Payment_tableWidget.horizontalHeaderItem(2)
+        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"Payment Date", None));
+        ___qtablewidgetitem30 = self.Payment_tableWidget.horizontalHeaderItem(3)
+        ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Amount Paid", None));
+        ___qtablewidgetitem31 = self.Payment_tableWidget.horizontalHeaderItem(4)
+        ___qtablewidgetitem31.setText(QCoreApplication.translate("MainWindow", u"Payment Method", None));
+        ___qtablewidgetitem32 = self.Payment_tableWidget.horizontalHeaderItem(5)
+        ___qtablewidgetitem32.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
+        ___qtablewidgetitem33 = self.Payment_tableWidget.horizontalHeaderItem(6)
+        ___qtablewidgetitem33.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         self.CRUDPayment_label.setText(QCoreApplication.translate("MainWindow", u"CRUD Payment", None))
         self.AddPayBtn.setText(QCoreApplication.translate("MainWindow", u"ADD", None))
         self.DelPayBtn.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
@@ -1390,32 +1520,32 @@ class Ui_MainWindow(object):
         self.ApartID_line_edit_3.setPlaceholderText("")
         self.TenantID_line_edit3.setPlaceholderText("")
         self.GetPayBtn.setText(QCoreApplication.translate("MainWindow", u"GET", None))
-        ___qtablewidgetitem28 = self.Payment_tableWidget_5.horizontalHeaderItem(0)
-        ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"Payment ID", None));
-        ___qtablewidgetitem29 = self.Payment_tableWidget_5.horizontalHeaderItem(1)
-        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"Payment Status", None));
-        ___qtablewidgetitem30 = self.Payment_tableWidget_5.horizontalHeaderItem(2)
-        ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Payment Date", None));
-        ___qtablewidgetitem31 = self.Payment_tableWidget_5.horizontalHeaderItem(3)
-        ___qtablewidgetitem31.setText(QCoreApplication.translate("MainWindow", u"Amount Paid", None));
-        ___qtablewidgetitem32 = self.Payment_tableWidget_5.horizontalHeaderItem(4)
-        ___qtablewidgetitem32.setText(QCoreApplication.translate("MainWindow", u"Payment Method", None));
-        ___qtablewidgetitem33 = self.Payment_tableWidget_5.horizontalHeaderItem(5)
-        ___qtablewidgetitem33.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
-        ___qtablewidgetitem34 = self.Payment_tableWidget_5.horizontalHeaderItem(6)
-        ___qtablewidgetitem34.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
+        ___qtablewidgetitem34 = self.Payment_tableWidget_5.horizontalHeaderItem(0)
+        ___qtablewidgetitem34.setText(QCoreApplication.translate("MainWindow", u"Payment ID", None));
+        ___qtablewidgetitem35 = self.Payment_tableWidget_5.horizontalHeaderItem(1)
+        ___qtablewidgetitem35.setText(QCoreApplication.translate("MainWindow", u"Payment Status", None));
+        ___qtablewidgetitem36 = self.Payment_tableWidget_5.horizontalHeaderItem(2)
+        ___qtablewidgetitem36.setText(QCoreApplication.translate("MainWindow", u"Payment Date", None));
+        ___qtablewidgetitem37 = self.Payment_tableWidget_5.horizontalHeaderItem(3)
+        ___qtablewidgetitem37.setText(QCoreApplication.translate("MainWindow", u"Amount Paid", None));
+        ___qtablewidgetitem38 = self.Payment_tableWidget_5.horizontalHeaderItem(4)
+        ___qtablewidgetitem38.setText(QCoreApplication.translate("MainWindow", u"Payment Method", None));
+        ___qtablewidgetitem39 = self.Payment_tableWidget_5.horizontalHeaderItem(5)
+        ___qtablewidgetitem39.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
+        ___qtablewidgetitem40 = self.Payment_tableWidget_5.horizontalHeaderItem(6)
+        ___qtablewidgetitem40.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         self.ElectricBillList_label.setText(QCoreApplication.translate("MainWindow", u"Electric Bill List", None))
         self.Search_lineEdit_4.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search....", None))
-        ___qtablewidgetitem35 = self.ElectricBill_tableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem35.setText(QCoreApplication.translate("MainWindow", u"Electric Bill ID", None));
-        ___qtablewidgetitem36 = self.ElectricBill_tableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem36.setText(QCoreApplication.translate("MainWindow", u"Date Started", None));
-        ___qtablewidgetitem37 = self.ElectricBill_tableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem37.setText(QCoreApplication.translate("MainWindow", u"Kwh", None));
-        ___qtablewidgetitem38 = self.ElectricBill_tableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem38.setText(QCoreApplication.translate("MainWindow", u"Status", None));
-        ___qtablewidgetitem39 = self.ElectricBill_tableWidget.horizontalHeaderItem(4)
-        ___qtablewidgetitem39.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
+        ___qtablewidgetitem41 = self.ElectricBill_tableWidget.horizontalHeaderItem(0)
+        ___qtablewidgetitem41.setText(QCoreApplication.translate("MainWindow", u"Electric Bill ID", None));
+        ___qtablewidgetitem42 = self.ElectricBill_tableWidget.horizontalHeaderItem(1)
+        ___qtablewidgetitem42.setText(QCoreApplication.translate("MainWindow", u"Date Started", None));
+        ___qtablewidgetitem43 = self.ElectricBill_tableWidget.horizontalHeaderItem(2)
+        ___qtablewidgetitem43.setText(QCoreApplication.translate("MainWindow", u"Kwh", None));
+        ___qtablewidgetitem44 = self.ElectricBill_tableWidget.horizontalHeaderItem(3)
+        ___qtablewidgetitem44.setText(QCoreApplication.translate("MainWindow", u"Status", None));
+        ___qtablewidgetitem45 = self.ElectricBill_tableWidget.horizontalHeaderItem(4)
+        ___qtablewidgetitem45.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         self.CRUDElecBill_label.setText(QCoreApplication.translate("MainWindow", u"CRUD Electric Bill", None))
         self.DateStarted.setText(QCoreApplication.translate("MainWindow", u"Date Started:", None))
         self.Kwh.setText(QCoreApplication.translate("MainWindow", u"Kwh:", None))
@@ -1431,16 +1561,16 @@ class Ui_MainWindow(object):
         self.Status_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Overdue", None))
 
         self.GetEBBtn.setText(QCoreApplication.translate("MainWindow", u"GET", None))
-        ___qtablewidgetitem40 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(0)
-        ___qtablewidgetitem40.setText(QCoreApplication.translate("MainWindow", u"Electric Bill ID", None));
-        ___qtablewidgetitem41 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(1)
-        ___qtablewidgetitem41.setText(QCoreApplication.translate("MainWindow", u"Date Started", None));
-        ___qtablewidgetitem42 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(2)
-        ___qtablewidgetitem42.setText(QCoreApplication.translate("MainWindow", u"Kwh", None));
-        ___qtablewidgetitem43 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(3)
-        ___qtablewidgetitem43.setText(QCoreApplication.translate("MainWindow", u"Status", None));
-        ___qtablewidgetitem44 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(4)
-        ___qtablewidgetitem44.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
+        ___qtablewidgetitem46 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(0)
+        ___qtablewidgetitem46.setText(QCoreApplication.translate("MainWindow", u"Electric Bill ID", None));
+        ___qtablewidgetitem47 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(1)
+        ___qtablewidgetitem47.setText(QCoreApplication.translate("MainWindow", u"Date Started", None));
+        ___qtablewidgetitem48 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(2)
+        ___qtablewidgetitem48.setText(QCoreApplication.translate("MainWindow", u"Kwh", None));
+        ___qtablewidgetitem49 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(3)
+        ___qtablewidgetitem49.setText(QCoreApplication.translate("MainWindow", u"Status", None));
+        ___qtablewidgetitem50 = self.ElectricBill_tableWidget_2.horizontalHeaderItem(4)
+        ___qtablewidgetitem50.setText(QCoreApplication.translate("MainWindow", u"Apartment ID", None));
         self.page_label.setText(QCoreApplication.translate("MainWindow", u"CRUD Tenant", None))
         self.Name_line_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"First Name, Middle Name, Last Name", None))
         self.Name.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
@@ -1459,19 +1589,19 @@ class Ui_MainWindow(object):
         self.UpdTenantBtn.setText(QCoreApplication.translate("MainWindow", u"UPDATE", None))
         self.GetTenantBtn.setText(QCoreApplication.translate("MainWindow", u"GET", None))
         self.ApartNum_line_edit_3.setText("")
-        ___qtablewidgetitem45 = self.Tenant_tableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem45.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
-        ___qtablewidgetitem46 = self.Tenant_tableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem46.setText(QCoreApplication.translate("MainWindow", u"Name", None));
-        ___qtablewidgetitem47 = self.Tenant_tableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem47.setText(QCoreApplication.translate("MainWindow", u"Age", None));
-        ___qtablewidgetitem48 = self.Tenant_tableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem48.setText(QCoreApplication.translate("MainWindow", u"Sex", None));
-        ___qtablewidgetitem49 = self.Tenant_tableWidget.horizontalHeaderItem(4)
-        ___qtablewidgetitem49.setText(QCoreApplication.translate("MainWindow", u"Email", None));
-        ___qtablewidgetitem50 = self.Tenant_tableWidget.horizontalHeaderItem(5)
-        ___qtablewidgetitem50.setText(QCoreApplication.translate("MainWindow", u"Phone Number", None));
-        ___qtablewidgetitem51 = self.Tenant_tableWidget.horizontalHeaderItem(6)
-        ___qtablewidgetitem51.setText(QCoreApplication.translate("MainWindow", u"Apart. Number", None));
+        ___qtablewidgetitem51 = self.Tenant_tableWidget.horizontalHeaderItem(0)
+        ___qtablewidgetitem51.setText(QCoreApplication.translate("MainWindow", u"Tenant ID", None));
+        ___qtablewidgetitem52 = self.Tenant_tableWidget.horizontalHeaderItem(1)
+        ___qtablewidgetitem52.setText(QCoreApplication.translate("MainWindow", u"Name", None));
+        ___qtablewidgetitem53 = self.Tenant_tableWidget.horizontalHeaderItem(2)
+        ___qtablewidgetitem53.setText(QCoreApplication.translate("MainWindow", u"Age", None));
+        ___qtablewidgetitem54 = self.Tenant_tableWidget.horizontalHeaderItem(3)
+        ___qtablewidgetitem54.setText(QCoreApplication.translate("MainWindow", u"Sex", None));
+        ___qtablewidgetitem55 = self.Tenant_tableWidget.horizontalHeaderItem(4)
+        ___qtablewidgetitem55.setText(QCoreApplication.translate("MainWindow", u"Email", None));
+        ___qtablewidgetitem56 = self.Tenant_tableWidget.horizontalHeaderItem(5)
+        ___qtablewidgetitem56.setText(QCoreApplication.translate("MainWindow", u"Phone Number", None));
+        ___qtablewidgetitem57 = self.Tenant_tableWidget.horizontalHeaderItem(6)
+        ___qtablewidgetitem57.setText(QCoreApplication.translate("MainWindow", u"Apart. Number", None));
     # retranslateUi
 
