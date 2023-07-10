@@ -1,2 +1,2 @@
-# Web App (Pyqt)
+# Application (Pyqt)
  A Landlord Support Management System designed for the VJ's Apartment Building
