@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfaceazPuHm.ui'
+## Form generated from reading UI file 'interfaceOLXLsl.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -1598,9 +1598,9 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem54 = self.Tenant_tableWidget.horizontalHeaderItem(3)
         ___qtablewidgetitem54.setText(QCoreApplication.translate("MainWindow", u"Sex", None));
         ___qtablewidgetitem55 = self.Tenant_tableWidget.horizontalHeaderItem(4)
-        ___qtablewidgetitem55.setText(QCoreApplication.translate("MainWindow", u"Email", None));
+        ___qtablewidgetitem55.setText(QCoreApplication.translate("MainWindow", u"Phone Number", None));
         ___qtablewidgetitem56 = self.Tenant_tableWidget.horizontalHeaderItem(5)
-        ___qtablewidgetitem56.setText(QCoreApplication.translate("MainWindow", u"Phone Number", None));
+        ___qtablewidgetitem56.setText(QCoreApplication.translate("MainWindow", u"Email", None));
         ___qtablewidgetitem57 = self.Tenant_tableWidget.horizontalHeaderItem(6)
         ___qtablewidgetitem57.setText(QCoreApplication.translate("MainWindow", u"Apart. Number", None));
     # retranslateUi

@@ -3179,12 +3179,12 @@ QLineEdit:!hasFocus {
                     </column>
                     <column>
                      <property name="text">
-                      <string>Email</string>
+                      <string>Phone Number</string>
                      </property>
                     </column>
                     <column>
                      <property name="text">
-                      <string>Phone Number</string>
+                      <string>Email</string>
                      </property>
                     </column>
                     <column>
